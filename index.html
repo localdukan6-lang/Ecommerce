@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>E-Commerce | Fresh Mart</title>
-  <meta name="description" content="E-Commerce grocery store featuring rice, dal, spices, fruits, vegetables and daily essentials." />
+  <title>Fresh Basket Kirana Store</title>
+  <meta name="description" content="Fresh Basket Kirana Store offers rice, dal, atta, spices, fruits, vegetables, and daily essentials with home delivery." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,265 +13,300 @@
 
   <style>
     :root {
-      --bg: #f7faf4;
-      --bg-soft: #eefaf0;
+      --bg: #f7f5ee;
+      --bg-soft: #f1f7ef;
       --panel: #ffffff;
-      --panel-alt: #f4faf4;
-      --text: #122719;
-      --text-soft: #4d6957;
-      --muted: #738c7c;
-      --primary: #2f8d4a;
-      --primary-2: #1c6c36;
-      --primary-3: #0f4b28;
-      --secondary: #bfeab7;
-      --line: rgba(13, 39, 25, 0.10);
-      --shadow: 0 18px 34px rgba(17, 45, 28, 0.08);
-      --dark: #0d2d1c;
-      --dark-2: #153c2a;
-      --warning: #ffbf47;
+      --panel-2: #fbfaf7;
+      --text: #1b2d1d;
+      --text-soft: #536a5d;
+      --muted: #7a8e80;
+      --primary: #1f8d4f;
+      --primary-2: #176d3d;
+      --primary-3: #0f4e30;
+      --secondary: #f2c768;
+      --line: rgba(27, 45, 29, 0.10);
+      --shadow: 0 18px 36px rgba(16, 51, 33, 0.08);
+      --dark: #0f2e1d;
+      --green-soft: #e8f9ec;
       --radius: 18px;
-      --radius-lg: 28px;
+      --radius-lg: 30px;
+      --success: #2daa68;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      margin: 0; width: 100%; overflow-x: hidden; background: linear-gradient(180deg, #ffffff 0%, #f7faf4 100%);
+      margin: 0; width: 100%; overflow-x: hidden; background: linear-gradient(180deg, #ffffff 0%, #f8f5ef 100%);
       color: var(--text); font-family: 'Rubik', sans-serif;
     }
-    a { color: inherit; text-decoration: none; }
+    a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
     button, input { font-family: 'Rubik', sans-serif; }
     .container { max-width: 1280px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
 
-    .top-strip {
-      background: linear-gradient(90deg, #113d28, #164d38, #2f8d4a);
-      color: #f6fff8; position: sticky; top: 0; z-index: 50;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    .top-bar {
+      background: linear-gradient(90deg, #0c2c1a, #1d4b33, #1f8d4f);
+      color: #f7fff8; border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .top-strip marquee {
-      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
-      padding: 8px 0;
+    .top-bar marquee {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 8px 0;
     }
 
     .header {
-      position: sticky; top: 30px; z-index: 40; background: rgba(15, 52, 32, 0.92);
+      position: sticky; top: 30px; z-index: 50; background: rgba(11, 38, 26, 0.92);
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 10px 22px rgba(17, 45, 28, 0.08);
+      box-shadow: 0 12px 24px rgba(11,38,26,0.10);
     }
     .header-inner {
-      max-width: 1280px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      max-width: 1280px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
     }
     .brand {
-      font-size: clamp(1.3rem, 1.6vw, 1.9rem); color: #fff; font-weight: 800; letter-spacing: 0.04em;
+      display: flex; align-items: center; gap: 12px;
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      font-size: clamp(1.2rem, 1.5vw, 1.7rem);
     }
-    .nav { display: flex; align-items: center; gap: 26px; color: rgba(255,255,255,0.8); font-size: 0.94rem; }
-    .nav a { transition: color 0.2s ease; }
-    .nav a:hover { color: white; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, #f7d97f, #f2c768 55%, #e0a84a);
+      color: #173c28; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; box-shadow: 0 10px 18px rgba(242, 199, 104, 0.35);
+    }
+    .nav { display: flex; align-items: center; gap: 24px; color: rgba(255,255,255,0.78); font-size: 0.94rem; }
+    .nav a:hover { color: #fff; }
     .header-actions { display: flex; align-items: center; gap: 10px; }
     .icon-btn {
-      width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.04);
+      width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; background: rgba(255,255,255,0.04);
       color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; transition: transform 0.2s ease;
     }
     .icon-btn:hover { transform: translateY(-2px); }
     .badge {
-      position: absolute; top: -5px; right: -3px; min-width: 18px; height: 18px; border-radius: 50%;
-      background: linear-gradient(135deg, #d4f9c4, #4bb86c); color: #113d28; font-weight: 800; font-size: 9px; display: flex; align-items: center; justify-content: center; padding: 0 4px;
+      position: absolute; right: -4px; top: -5px; min-width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, #cfeecb, #7fd58a);
+      color: #123d2a; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 9px; padding: 0 5px;
     }
 
     .hero {
-      padding-top: 26px; padding-bottom: 24px; background: linear-gradient(180deg, #f0faf2 0%, #f9fcf9 100%);
+      background: linear-gradient(180deg, #f1f7ed 0%, #faf7f0 100%);
+      padding-top: 28px; padding-bottom: 24px;
     }
     .hero-grid {
-      display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 22px; align-items: stretch;
+      display: grid; grid-template-columns: 1.45fr 0.85fr; gap: 22px;
     }
     .hero-main {
-      background: linear-gradient(135deg, #0d2d1c 0%, #174f34 35%, #2a8d4a 100%); border-radius: var(--radius-lg);
-      box-shadow: var(--shadow); overflow: hidden; position: relative; min-height: 470px; color: #fff; padding: 32px 28px;
+      background: linear-gradient(135deg, #0c2d1a 0%, #113f2a 27%, #1f8d4f 100%);
+      min-height: 460px; border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; position: relative; padding: 34px 28px;
       display: flex; flex-direction: column; justify-content: space-between;
     }
     .hero-main::before {
-      content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(255,255,255,0.08), transparent 30%, rgba(255,255,255,0.08));
+      content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(255,255,255,0.07), transparent 25%, rgba(255,255,255,0.08));
       pointer-events: none;
     }
-    .hero-copy, .hero-image-area { position: relative; z-index: 1; }
+    .hero-content, .hero-image-wrap { position: relative; z-index: 1; }
     .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px;
-      background: rgba(255,255,255,0.08); color: #eefdf3; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.16);
-      margin-bottom: 18px;
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #effef0;
+      margin-bottom: 20px;
     }
-    .hero-copy h1 {
-      font-size: clamp(2.3rem, 4vw, 4rem); line-height: 1.04; letter-spacing: -0.06em; margin-bottom: 18px; color: #fff;
-      max-width: 560px;
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 4vw, 4.2rem); letter-spacing: -0.06em; line-height: 1.04; max-width: 550px; color: #fff; margin-bottom: 16px;
     }
-    .hero-copy p {
-      max-width: 540px; color: rgba(255,255,255,0.82); font-size: 1rem; line-height: 1.7;
+    .hero-content p {
+      max-width: 560px; font-size: 1.02rem; line-height: 1.7; color: rgba(255,255,255,0.8);
     }
-    .hero-cta { display: flex; align-items: center; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 26px; }
     .btn {
       border: none; border-radius: 999px; padding: 14px 22px; font-weight: 700; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .btn:hover { transform: translateY(-2px); }
     .btn-primary {
-      background: linear-gradient(135deg, #cff6c8, #3ea260 55%, #1f6c3b); color: #fff; box-shadow: 0 18px 30px rgba(16,96,52,0.30);
+      background: linear-gradient(135deg, #fce298, #f0c765 55%, #dca74d); color: #123421; box-shadow: 0 16px 28px rgba(243, 198, 104, 0.28);
     }
     .btn-secondary {
-      background: rgba(255,255,255,0.10); color: #fff; border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.18);
     }
-    .hero-image-area {
-      display: flex; align-items: flex-end; justify-content: flex-end; margin-top: 12px;
+    .hero-image-wrap { display: flex; align-items: flex-end; justify-content: flex-end; }
+    .hero-card {
+      width: min(310px, 100%); background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 12px; box-shadow: 0 18px 34px rgba(0,0,0,0.2);
     }
-    .hero-product-card {
-      width: min(300px, 100%); background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 22px; padding: 12px; box-shadow: 0 18px 34px rgba(0,0,0,0.22);
-    }
-    .hero-product-card img {
+    .hero-card img {
       width: 100%; height: 220px; object-fit: cover; border-radius: 18px;
     }
-    .hero-product-info {
+    .hero-card-bottom {
       display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; color: #fff;
     }
-    .hero-product-info h3 { font-size: 1rem; color: #fff; }
-    .price-badge {
-      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.16); border-radius: 999px;
-      padding: 8px 12px; font-weight: 700; font-size: 0.86rem; color: #effef3;
+    .hero-card-bottom h3 { font-size: 1rem; }
+    .price-chip {
+      border-radius: 999px; padding: 8px 12px; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.15); font-size: 0.86rem; font-weight: 700;
     }
 
     .side-stack { display: grid; gap: 18px; }
     .mini-card {
-      background: linear-gradient(180deg, #ffffff 0%, #f3faf5 100%);
-      border: 1px solid var(--line); border-radius: 22px; padding: 16px; box-shadow: var(--shadow);
+      background: linear-gradient(180deg, #fff 0%, #f5faf6 100%); border: 1px solid var(--line); border-radius: 22px; padding: 16px; box-shadow: var(--shadow);
     }
-    .mini-card .mini-label {
-      display: inline-block; padding: 8px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
-      background: rgba(47,141,74,0.08); color: var(--primary-2); margin-bottom: 14px;
+    .mini-tag {
+      display: inline-block; margin-bottom: 12px; padding: 7px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      background: rgba(31,141,79,0.08); color: var(--primary-2);
     }
-    .mini-card h3 { font-size: 1.4rem; margin-bottom: 8px; color: var(--text); }
-    .mini-card p { color: var(--text-soft); line-height: 1.6; }
-    .mini-card .mini-image { width: 100%; height: 180px; object-fit: cover; border-radius: 18px; margin-top: 14px; }
+    .mini-card h3 { font-size: 1.45rem; margin-bottom: 8px; }
+    .mini-card p { color: var(--text-soft); line-height: 1.7; }
+    .mini-image {
+      width: 100%; height: 170px; object-fit: cover; border-radius: 18px; margin-top: 14px;
+    }
 
-    .search-bar { margin-top: 22px; margin-bottom: 18px; }
-    .search-shell {
-      max-width: 720px; margin: 0 auto; display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--line);
-      box-shadow: var(--shadow); padding: 10px 18px; border-radius: 999px;
+    .search-box {
+      margin-top: 22px; margin-bottom: 18px;
     }
-    .search-shell input {
+    .search-bar {
+      max-width: 740px; margin: 0 auto; display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; box-shadow: var(--shadow);
+    }
+    .search-bar input {
       flex: 1; border: none; outline: none; background: transparent; color: var(--text); font-size: 0.96rem;
     }
-    .search-shell input::placeholder { color: var(--muted); }
-    .search-shell button {
-      padding: 10px 18px; border: none; border-radius: 999px; background: linear-gradient(135deg, #d4f9c4, #2f8d4a);
-      color: #fff; font-weight: 700; cursor: pointer;
+    .search-bar input::placeholder { color: var(--muted); }
+    .search-bar button {
+      border: none; border-radius: 999px; background: linear-gradient(135deg, #d1f5c4, #1f8d4f); color: #fff; font-weight: 700; padding: 10px 18px; cursor: pointer;
     }
 
-    .section { padding-top: 18px; padding-bottom: 16px; }
+    .section { padding-top: 18px; padding-bottom: 18px; }
     .section-head {
-      display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;
     }
-    .section-head h2 { font-size: clamp(1.7rem, 2vw, 2.5rem); letter-spacing: -0.05em; color: var(--text); }
+    .section-head h2 {
+      font-size: clamp(1.8rem, 2vw, 2.6rem); letter-spacing: -0.05em; color: var(--text);
+    }
     .chip {
       display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
-      color: var(--primary-2); background: rgba(47,141,74,0.08); border: 1px solid rgba(47,141,74,0.12);
+      color: var(--primary-2); background: rgba(31,141,79,0.08); border: 1px solid rgba(31,141,79,0.12);
     }
 
     .category-row {
       display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;
     }
     .category-card {
-      background: linear-gradient(180deg, #ffffff 0%, #f0faf3 100%); border: 1px solid var(--line); border-radius: 22px;
-      box-shadow: 0 12px 24px rgba(17,45,28,0.06); padding: 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 12px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: linear-gradient(180deg, #ffffff 0%, #f0faf2 100%); border: 1px solid var(--line); border-radius: 22px; padding: 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 12px; box-shadow: 0 12px 22px rgba(20, 57, 39, 0.04); transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .category-card:hover { transform: translateY(-4px); box-shadow: 0 18px 32px rgba(17,45,28,0.10); }
-    .category-card img { width: 78px; height: 78px; object-fit: cover; border-radius: 18px; }
-    .category-card span { color: var(--text); font-size: 0.82rem; font-weight: 700; text-align: center; line-height: 1.45; }
+    .category-card:hover { transform: translateY(-4px); box-shadow: 0 18px 30px rgba(20,57,39,0.08); }
+    .category-card img {
+      width: 82px; height: 82px; object-fit: cover; border-radius: 18px; border: 1px solid rgba(27,45,29,0.07);
+    }
+    .category-card span {
+      font-size: 0.82rem; font-weight: 700; text-align: center; line-height: 1.4; color: var(--text);
+    }
 
-    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
-    .product-card {
-      background: var(--panel); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: var(--shadow);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    .product-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px;
     }
-    .product-card:hover { transform: translateY(-4px); box-shadow: 0 18px 28px rgba(17,45,28,0.12); }
-    .product-card .image-wrap { position: relative; background: linear-gradient(180deg, #effaf0 0%, #f9fcf9 100%); }
-    .product-card img { width: 100%; height: 260px; object-fit: cover; display: block; }
+    .product-card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 18px 28px rgba(16, 51, 33, 0.12); }
+    .product-card .image-wrap { position: relative; background: linear-gradient(180deg, #edf9f1 0%, #f8faf4 100%); }
+    .product-card img { width: 100%; height: 260px; object-fit: cover; }
     .tag {
-      position: absolute; top: 12px; left: 12px; padding: 7px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-      color: var(--primary-2); background: rgba(47,141,74,0.10); border: 1px solid rgba(47,141,74,0.12);
+      position: absolute; top: 12px; left: 12px; padding: 7px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(31,141,79,0.09); color: var(--primary-2); border: 1px solid rgba(31,141,79,0.10);
     }
     .product-body { padding: 16px; }
-    .product-title { font-size: 1.05rem; color: var(--text); font-weight: 700; margin-bottom: 8px; }
+    .product-title { font-size: 1.07rem; color: var(--text); font-weight: 700; margin-bottom: 8px; }
     .meta-row {
-      display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px;
     }
-    .stars { color: #ffbb39; letter-spacing: 2px; font-size: 0.88rem; }
-    .reviews-count { color: var(--muted); font-size: 0.8rem; }
-    .price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 12px; }
+    .stars { color: #ffbd3d; letter-spacing: 2px; font-size: 0.88rem; }
+    .reviews { color: var(--muted); font-size: 0.8rem; }
+    .price-row {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 12px;
+    }
     .price { font-size: 1.3rem; font-weight: 800; color: var(--text); }
     .old-price { text-decoration: line-through; color: var(--muted); font-size: 0.85rem; }
     .buy-btn {
-      width: 100%; display: inline-flex; align-items: center; justify-content: center; border: none; border-radius: 999px; padding: 10px 16px;
-      background: linear-gradient(135deg, #d4f9c4, #2f8d4a); color: #fff; font-weight: 700; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; border: none; border-radius: 999px; padding: 10px 15px; width: 100%; background: linear-gradient(135deg, #d0f0c8, #1f8d4f); color: #fff; font-weight: 700; cursor: pointer;
     }
 
-    .feature-band { margin-top: 18px; padding: 20px 0; }
-    .feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; }
+    .feature-band { margin-top: 14px; padding: 16px 0 10px; }
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px;
+    }
     .feature-box {
-      background: linear-gradient(180deg, #ffffff 0%, #f6fbf6 100%); border: 1px solid var(--line); border-radius: 18px; padding: 18px 16px; box-shadow: var(--shadow); text-align: center;
+      background: linear-gradient(180deg, #fff 0%, #f7faf4 100%); border: 1px solid var(--line); border-radius: 18px; padding: 18px 16px; box-shadow: var(--shadow); text-align: center;
     }
     .feature-box i {
-      width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
-      background: rgba(47,141,74,0.08); color: var(--primary-2); margin: 0 auto 12px;
+      width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; border-radius: 14px;
+      background: rgba(31,141,79,0.08); color: var(--primary-2); font-size: 1.4rem;
     }
-    .feature-box h3 { font-size: 1.02rem; margin-bottom: 6px; color: var(--text); }
-    .feature-box p { font-size: 0.87rem; line-height: 1.6; color: var(--text-soft); }
+    .feature-box h3 { margin-bottom: 6px; color: var(--text); }
+    .feature-box p { color: var(--text-soft); font-size: 0.88rem; line-height: 1.6; }
 
     .promo-banner {
-      margin-top: 18px; margin-bottom: 18px; border-radius: 28px; overflow: hidden; position: relative; background: linear-gradient(135deg, #0f3b26, #164c34, #2b7a45);
-      box-shadow: var(--shadow); min-height: 220px; padding: 28px 30px; color: #fff;
+      margin-top: 20px; margin-bottom: 18px; border-radius: 30px; overflow: hidden; position: relative; background: linear-gradient(135deg, #0f3b28, #134b34, #237b49); box-shadow: var(--shadow); min-height: 220px; padding: 28px 30px;
+      color: #fff;
     }
     .promo-banner::before {
-      content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,0.08), transparent 40%, rgba(255,255,255,0.08));
+      content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,0.08), transparent 38%, rgba(255,255,255,0.08));
       pointer-events: none;
     }
-    .promo-banner-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; align-items: center; }
-    .promo-banner h2 { font-size: clamp(2.1rem, 3vw, 3.1rem); line-height: 1.05; letter-spacing: -0.05em; color: #fff; }
-    .promo-banner p { color: rgba(255,255,255,0.82); font-size: 1rem; line-height: 1.7; }
-    .promo-image { width: 100%; max-width: 420px; margin-left: auto; border-radius: 18px; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 18px 34px rgba(0,0,0,0.22); }
+    .promo-banner-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.4fr 1fr; align-items: center; gap: 18px; }
+    .promo-banner h2 { font-size: clamp(2rem,3vw,3.2rem); letter-spacing: -0.05em; color: #fff; line-height: 1.05; }
+    .promo-banner p { color: rgba(255,255,255,0.8); font-size: 1rem; line-height: 1.7; }
+    .promo-image { width: 100%; max-width: 430px; margin-left: auto; border-radius: 18px; box-shadow: 0 18px 34px rgba(0,0,0,0.22); border: 1px solid rgba(255,255,255,0.12); }
 
-    .testimonial-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
-    .testimonial {
-      background: linear-gradient(180deg, #ffffff 0%, #f5faf6 100%); border: 1px solid var(--line); border-radius: 22px; padding: 22px 18px; box-shadow: var(--shadow);
+    .store-grid {
+      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; align-items: stretch;
     }
-    .quote { font-size: 1.2rem; line-height: 1.7; color: var(--text); margin-bottom: 16px; }
+    .about-box, .info-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f8faf5 100%); border: 1px solid var(--line); border-radius: 22px; padding: 22px; box-shadow: var(--shadow);
+    }
+    .about-box h3, .info-box h3 { font-size: 1.7rem; margin-bottom: 10px; color: var(--text); }
+    .about-box p, .info-box p { color: var(--text-soft); line-height: 1.8; }
+    .info-list { display: grid; gap: 12px; margin-top: 16px; }
+    .info-item {
+      display: flex; align-items: flex-start; gap: 12px; background: rgba(31,141,79,0.04); border: 1px solid rgba(31,141,79,0.08); border-radius: 16px; padding: 12px 14px;
+    }
+    .info-item i { color: var(--primary-2); font-size: 1.1rem; margin-top: 2px; }
+    .info-item strong { display: block; color: var(--text); margin-bottom: 2px; }
+    .info-item span { color: var(--text-soft); }
+
+    .map-box {
+      border-radius: 22px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: #f6f7f3; min-height: 420px;
+    }
+    .map-box iframe {
+      width: 100%; height: 100%; min-height: 420px; border: 0; display: block;
+    }
+
+    .testimonial-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px;
+    }
+    .testimonial {
+      background: linear-gradient(180deg, #fff 0%, #f5faf7 100%); border: 1px solid var(--line); border-radius: 22px; padding: 22px 18px; box-shadow: var(--shadow);
+    }
+    .quote { font-size: 1.18rem; line-height: 1.7; color: var(--text); margin-bottom: 16px; }
     .person { display: flex; align-items: center; gap: 12px; }
-    .person img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+    .person img { width: 52px; height: 52px; object-fit: cover; border-radius: 50%; }
     .person strong { display: block; color: var(--text); }
     .person span { color: var(--muted); font-size: 0.8rem; }
 
     .footer {
-      margin-top: 30px; background: linear-gradient(180deg, rgba(12,44,28,0.96), rgba(16,59,38,0.96));
-      border-top: 1px solid rgba(255,255,255,0.08); padding: 36px 0 18px; color: rgba(255,255,255,0.78);
+      margin-top: 30px; background: linear-gradient(180deg, rgba(15,44,29,0.96), rgba(12,41,27,0.96));
+      border-top: 1px solid rgba(255,255,255,0.08); padding: 34px 0 18px; color: rgba(255,255,255,0.76);
     }
-    .footer-grid { display: grid; grid-template-columns: 1.15fr 0.7fr 0.9fr 0.9fr; gap: 22px; }
-    .brand-block .brand { font-size: 1.5rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 0.7fr 0.8fr 0.9fr; gap: 22px; }
+    .brand-block .brand { font-size: 1.45rem; }
     .brand-block p { margin-top: 16px; color: rgba(255,255,255,0.72); line-height: 1.8; }
-    .footer h4 { color: #fff; font-size: 1rem; margin-bottom: 14px; }
-    .footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer li, .footer a { color: rgba(255,255,255,0.74); font-size: 0.92rem; }
-    .social-list { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .social-list { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
     .social-list a {
-      width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.04); color: #fff;
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: #fff;
     }
+    .footer h4 { color: #fff; margin-bottom: 14px; font-size: 1rem; }
+    .footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer a { color: rgba(255,255,255,0.72); }
     .footer-bottom {
-      margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; color: rgba(255,255,255,0.6); font-size: 0.86rem;
+      margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+      color: rgba(255,255,255,0.6); font-size: 0.86rem;
     }
 
     @media (max-width: 1100px) {
       .product-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
       .category-row { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .store-grid { grid-template-columns: 1fr; }
       .promo-banner-inner { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
@@ -285,32 +320,35 @@
     @media (max-width: 560px) {
       .header-inner { padding-top: 10px; padding-bottom: 10px; }
       .hero-main { padding: 22px 18px; }
-      .hero-copy h1 { font-size: 2.3rem; }
+      .hero-content h1 { font-size: 2.3rem; }
       .product-grid { grid-template-columns: 1fr; }
       .category-row { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .feature-grid { grid-template-columns: 1fr; }
-      .search-shell { padding: 8px 12px; }
+      .search-bar { padding: 8px 12px; }
       .footer-grid { grid-template-columns: 1fr; }
       .promo-banner { padding: 22px 18px; }
     }
   </style>
 </head>
 <body>
-  <div class="top-strip">
-    <marquee behavior="scroll" direction="left" scrollamount="5">Fresh Groceries • Free Delivery • Best Daily Prices • Trusted by Families</marquee>
+  <div class="top-bar">
+    <marquee behavior="scroll" direction="left" scrollamount="5">Fresh Delivery • Home Essentials • Quality Groceries • Trusted Kirana Store</marquee>
   </div>
 
   <header class="header">
     <div class="header-inner">
-      <div class="brand">E-Commerce</div>
+      <div class="brand">
+        <span class="brand-mark"><i class="bi bi-basket2-fill"></i></span>
+        Fresh Basket
+      </div>
 
       <nav class="nav" aria-label="Main navigation">
         <a href="#">Home</a>
-        <a href="#">Categories</a>
-        <a href="#">Fresh Picks</a>
-        <a href="#">Offers</a>
-        <a href="#">Best Deals</a>
-        <a href="#">Contact</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#offers">Offers</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <div class="header-actions">
@@ -318,7 +356,7 @@
         <button class="icon-btn" aria-label="Orders"><i class="bi bi-bag"></i></button>
         <button class="icon-btn" aria-label="Cart">
           <i class="bi bi-cart3"></i>
-          <span class="badge">3</span>
+          <span class="badge">2</span>
         </button>
       </div>
     </div>
@@ -329,23 +367,23 @@
       <div class="container">
         <div class="hero-grid">
           <div class="hero-main">
-            <div class="hero-copy">
-              <div class="eyebrow">Fresh everyday</div>
-              <h1>Local grocery essentials delivered fresh to your home.</h1>
-              <p>From rice, dal and spices to fruits, vegetables and daily household items — E-Commerce brings trusted grocery essentials with quality, affordability and dependable delivery.</p>
+            <div class="hero-content">
+              <div class="eyebrow">Trusted daily essentials</div>
+              <h1>Your neighborhood kirana store, always fresh.</h1>
+              <p>Fresh Basket brings rice, atta, dal, spices, milk, fruits, vegetables and household needs delivered to your home with quality, trust and comfort.</p>
 
-              <div class="hero-cta">
-                <button class="btn btn-primary">Shop Now</button>
-                <button class="btn btn-secondary">View Offers</button>
+              <div class="hero-actions">
+                <button class="btn btn-primary">Order Now</button>
+                <button class="btn btn-secondary">Browse Offers</button>
               </div>
             </div>
 
-            <div class="hero-image-area">
-              <div class="hero-product-card">
+            <div class="hero-image-wrap">
+              <div class="hero-card">
                 <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Fresh grocery basket" />
-                <div class="hero-product-info">
-                  <h3>Fresh Veg Box</h3>
-                  <span class="price-badge">₹699</span>
+                <div class="hero-card-bottom">
+                  <h3>Fresh Veg Basket</h3>
+                  <span class="price-chip">₹699</span>
                 </div>
               </div>
             </div>
@@ -353,35 +391,35 @@
 
           <div class="side-stack">
             <div class="mini-card">
-              <div class="mini-label">Trending</div>
-              <h3>Daily Essentials</h3>
-              <p>Rice, lentils, spices, snacks and kitchen staples picked with quality and care.</p>
-              <img class="mini-image" src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80" alt="Daily essentials" />
+              <div class="mini-tag">Trending</div>
+              <h3>Daily Needs</h3>
+              <p>Rice, pulses, grains, spices, soaps, shampoos and family essentials all in one place.</p>
+              <img class="mini-image" src="https://images.unsplash.com/photo-1571167530147-0a1fbb59a2a8?auto=format&fit=crop&w=900&q=80" alt="Daily needs" />
             </div>
 
             <div class="mini-card">
-              <div class="mini-label">Best Deals</div>
+              <div class="mini-tag">Hot Deals</div>
               <h3>Save More</h3>
-              <p>Weekly combo offers on fresh produce, pulses, masalas and other essential household items.</p>
-              <img class="mini-image" src="https://images.unsplash.com/photo-1571167530147-0a1fbb59a2a8?auto=format&fit=crop&w=900&q=80" alt="Best deals" />
+              <p>Weekly combo discounts on grains, spices, atta, fruits and kitchen essentials.</p>
+              <img class="mini-image" src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80" alt="Hot deals" />
             </div>
           </div>
         </div>
 
-        <div class="search-bar">
-          <div class="search-shell">
+        <div class="search-box">
+          <div class="search-bar">
             <i class="bi bi-search" style="color: var(--primary-2); font-size: 1.1rem;"></i>
-            <input type="text" placeholder="Search rice, pulses, fruits, vegetables, masala..." />
+            <input type="text" placeholder="Search atta, rice, dal, fruits, spices, toiletry..." />
             <button>Search</button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section id="categories" class="section">
       <div class="container">
         <div class="section-head">
-          <h2>Shop by Categories</h2>
+          <h2>Shop by Category</h2>
           <span class="chip">Fresh picks</span>
         </div>
 
@@ -395,11 +433,11 @@
             <span>Pulses & Dal</span>
           </div>
           <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=500&q=80" alt="Spices" />
-            <span>Spices</span>
+            <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=500&q=80" alt="Masala" />
+            <span>Masalas</span>
           </div>
           <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80" alt="Vegetables" />
+            <img src="https://images.unsplash.com/photo-1518843875459-f738682238a6?auto=format&fit=crop&w=500&q=80" alt="Vegetables" />
             <span>Vegetables</span>
           </div>
           <div class="category-card">
@@ -407,31 +445,31 @@
             <span>Fruits</span>
           </div>
           <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1571167530147-0a1fbb59a2a8?auto=format&fit=crop&w=500&q=80" alt="Bakery" />
-            <span>Daily Needs</span>
+            <img src="https://images.unsplash.com/photo-1571167530147-0a1fbb59a2a8?auto=format&fit=crop&w=500&q=80" alt="Household" />
+            <span>Household</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section id="products" class="section">
       <div class="container">
         <div class="section-head">
-          <h2>Best Selling Groceries</h2>
-          <span class="chip">Fresh this week</span>
+          <h2>Featured Products</h2>
+          <span class="chip">Best sellers</span>
         </div>
 
         <div class="product-grid">
           <article class="product-card">
             <div class="image-wrap">
               <span class="tag">Fresh</span>
-              <img src="https://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=900&q=80" alt="Sharbati Rice" />
+              <img src="https://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=900&q=80" alt="Basmati rice" />
             </div>
             <div class="product-body">
-              <div class="product-title">Sharbati Rice</div>
+              <div class="product-title">Premium Basmati Rice</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">2,140 reviews</span>
+                <span class="reviews">1,240 reviews</span>
               </div>
               <div class="price-row">
                 <div>
@@ -446,13 +484,13 @@
           <article class="product-card">
             <div class="image-wrap">
               <span class="tag">Popular</span>
-              <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=900&q=80" alt="Tur Dal" />
+              <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=900&q=80" alt="Toor dal" />
             </div>
             <div class="product-body">
-              <div class="product-title">Tur Dal</div>
+              <div class="product-title">Toor Dal</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">1,430 reviews</span>
+                <span class="reviews">980 reviews</span>
               </div>
               <div class="price-row">
                 <div>
@@ -467,13 +505,13 @@
           <article class="product-card">
             <div class="image-wrap">
               <span class="tag">Pure</span>
-              <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=900&q=80" alt="Turmeric Powder" />
+              <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=900&q=80" alt="Turmeric powder" />
             </div>
             <div class="product-body">
               <div class="product-title">Turmeric Powder</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">972 reviews</span>
+                <span class="reviews">814 reviews</span>
               </div>
               <div class="price-row">
                 <div>
@@ -488,113 +526,18 @@
           <article class="product-card">
             <div class="image-wrap">
               <span class="tag">Farm</span>
-              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Fresh Vegetables" />
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Fresh vegetables" />
             </div>
             <div class="product-body">
               <div class="product-title">Fresh Vegetable Mix</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">1,780 reviews</span>
+                <span class="reviews">1,870 reviews</span>
               </div>
               <div class="price-row">
                 <div>
                   <div class="price">₹349</div>
                   <div class="old-price">₹499</div>
-                </div>
-                <button class="buy-btn">Add to cart</button>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Popular Everyday Picks</h2>
-          <span class="chip">Customer favorites</span>
-        </div>
-
-        <div class="product-grid">
-          <article class="product-card">
-            <div class="image-wrap">
-              <span class="tag">Top</span>
-              <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=900&q=80" alt="Fresh Fruits" />
-            </div>
-            <div class="product-body">
-              <div class="product-title">Fresh Fruit Basket</div>
-              <div class="meta-row">
-                <span class="stars">★★★★★</span>
-                <span class="reviews-count">814 reviews</span>
-              </div>
-              <div class="price-row">
-                <div>
-                  <div class="price">₹499</div>
-                  <div class="old-price">₹699</div>
-                </div>
-                <button class="buy-btn">Add to cart</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="image-wrap">
-              <span class="tag">Combo</span>
-              <img src="https://images.unsplash.com/photo-1571167530147-0a1fbb59a2a8?auto=format&fit=crop&w=900&q=80" alt="Kitchen combo pack" />
-            </div>
-            <div class="product-body">
-              <div class="product-title">Kitchen Essentials Combo</div>
-              <div class="meta-row">
-                <span class="stars">★★★★★</span>
-                <span class="reviews-count">956 reviews</span>
-              </div>
-              <div class="price-row">
-                <div>
-                  <div class="price">₹799</div>
-                  <div class="old-price">₹1,099</div>
-                </div>
-                <button class="buy-btn">Add to cart</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="image-wrap">
-              <span class="tag">Organic</span>
-              <img src="https://images.unsplash.com/photo-1461354464878-ad92f492a5a0?auto=format&fit=crop&w=900&q=80" alt="Organic Veg Box" />
-            </div>
-            <div class="product-body">
-              <div class="product-title">Organic Veg Box</div>
-              <div class="meta-row">
-                <span class="stars">★★★★★</span>
-                <span class="reviews-count">1,120 reviews</span>
-              </div>
-              <div class="price-row">
-                <div>
-                  <div class="price">₹599</div>
-                  <div class="old-price">₹849</div>
-                </div>
-                <button class="buy-btn">Add to cart</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="image-wrap">
-              <span class="tag">Family</span>
-              <img src="https://images.unsplash.com/photo-1551739440-5dd934d3a94a?auto=format&fit=crop&w=900&q=80" alt="Snacks and biscuits" />
-            </div>
-            <div class="product-body">
-              <div class="product-title">Snacks & Biscuit Pack</div>
-              <div class="meta-row">
-                <span class="stars">★★★★★</span>
-                <span class="reviews-count">1,394 reviews</span>
-              </div>
-              <div class="price-row">
-                <div>
-                  <div class="price">₹279</div>
-                  <div class="old-price">₹399</div>
                 </div>
                 <button class="buy-btn">Add to cart</button>
               </div>
@@ -610,41 +553,100 @@
           <div class="feature-box">
             <i class="bi bi-truck"></i>
             <h3>Fast Delivery</h3>
-            <p>Quick home delivery across your city with freshness guaranteed.</p>
+            <p>Same-day grocery delivery for nearby areas and reliable doorstep service.</p>
           </div>
           <div class="feature-box">
             <i class="bi bi-shield-check"></i>
-            <h3>Fresh Quality</h3>
-            <p>Each product is carefully sourced and checked before packing.</p>
+            <h3>Quality Checked</h3>
+            <p>All products are checked for freshness, quality and hygiene before shipping.</p>
           </div>
           <div class="feature-box">
-            <i class="bi bi-arrow-repeat"></i>
-            <h3>Easy Returns</h3>
-            <p>Simple and transparent replacement support on damaged items.</p>
+            <i class="bi bi-wallet2"></i>
+            <h3>Affordable Prices</h3>
+            <p>Competitive local market pricing with special deals and value packs.</p>
           </div>
           <div class="feature-box">
             <i class="bi bi-headset"></i>
-            <h3>24/7 Support</h3>
-            <p>Friendly support team ready to assist before and after purchase.</p>
+            <h3>Friendly Support</h3>
+            <p>Direct support for orders, replacements and quick customer assistance.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <section class="section">
+    <section id="offers" class="section">
       <div class="container">
         <div class="promo-banner">
           <div class="promo-banner-inner">
             <div>
-              <div class="chip" style="margin-bottom: 12px; background: rgba(255,255,255,0.10); color: #fff; border-color: rgba(255,255,255,0.15);">Weekend Special</div>
-              <h2>Fresh groceries at unbeatable prices.</h2>
-              <p>Enjoy free delivery on selected orders and save on rice, dal, vegetables, fruits and daily household essentials. The best grocery deals are waiting for you.</p>
-              <div class="hero-cta" style="margin-top: 18px;">
-                <button class="btn btn-primary">Shop The Deal</button>
+              <div class="chip" style="margin-bottom: 12px; background: rgba(255,255,255,0.10); color:#fff; border-color: rgba(255,255,255,0.14);">Weekend special</div>
+              <h2>Fresh essentials at your doorstep.</h2>
+              <p>Enjoy combo packs on rice, dal, flour, vegetables, tea, spices and household essentials with free delivery on selected orders.</p>
+              <div class="hero-actions" style="margin-top: 18px;">
+                <button class="btn btn-primary">Shop the offer</button>
               </div>
             </div>
-            <img class="promo-image" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80" alt="Fresh groceries" />
+            <img class="promo-image" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80" alt="Fresh groceries offer" />
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="store-grid">
+          <div class="about-box">
+            <h3>About Fresh Basket</h3>
+            <p>Fresh Basket is a trusted neighborhood kirana store built to serve families with daily groceries, fresh vegetables, spices, grains and home care products. We focus on freshness, honest pricing and convenience.</p>
+            <p style="margin-top: 14px;">Whether you need rice for the month, nutritious atta, seasonal vegetables, dal, masalas, or daily household essentials, Fresh Basket keeps your home stocked with care and quality.</p>
+          </div>
+
+          <div class="info-box">
+            <h3>Store Details</h3>
+            <div class="info-list">
+              <div class="info-item">
+                <i class="bi bi-geo-alt-fill"></i>
+                <div>
+                  <strong>Store Location</strong>
+                  <span>Near Main Market, Your City, India</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="bi bi-clock-fill"></i>
+                <div>
+                  <strong>Opening Hours</strong>
+                  <span>Mon-Sun: 8:00 AM - 10:00 PM</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="bi bi-telephone-fill"></i>
+                <div>
+                  <strong>Call Us</strong>
+                  <span>+91 98765 43210</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="bi bi-whatsapp"></i>
+                <div>
+                  <strong>WhatsApp</strong>
+                  <span>+91 98765 43210</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Visit Our Store</h2>
+          <span class="chip">Nearby location</span>
+        </div>
+
+        <div class="map-box">
+          <iframe src="https://www.google.com/maps?q=Indore%20India&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Fresh Basket Store Map"></iframe>
         </div>
       </div>
     </section>
@@ -652,40 +654,40 @@
     <section class="section">
       <div class="container">
         <div class="section-head">
-          <h2>What customers say</h2>
-          <span class="chip">Trusted by families</span>
+          <h2>Customer Reviews</h2>
+          <span class="chip">Loved by families</span>
         </div>
 
         <div class="testimonial-grid">
           <article class="testimonial">
-            <div class="quote">“Quality is very good and delivery is fast. The rice, dal and vegetables look fresh and are really good for daily use.”</div>
+            <div class="quote">“Fresh vegetables and pantry items are always quality checked. Delivery is quick and reliable.”</div>
             <div class="person">
-              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Customer" />
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Customer review" />
               <div>
                 <strong>Seema R.</strong>
-                <span>Verified Buyer</span>
+                <span>Verified buyer</span>
               </div>
             </div>
           </article>
 
           <article class="testimonial">
-            <div class="quote">“Clean website, easy ordering, and fresh produce every time. This feels like a premium local grocery store.”</div>
+            <div class="quote">“Best neighborhood kirana store for daily groceries. Prices are fair, and products are always fresh.”</div>
             <div class="person">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Customer" />
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Customer review" />
               <div>
                 <strong>Vikas M.</strong>
-                <span>Regular Customer</span>
+                <span>Regular customer</span>
               </div>
             </div>
           </article>
 
           <article class="testimonial">
-            <div class="quote">“Very professional and trustworthy. Prices are fair, and the shopping experience is smooth from start to finish.”</div>
+            <div class="quote">“This feels like a dependable local store with a modern service approach. Highly recommended.”</div>
             <div class="person">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Customer" />
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Customer review" />
               <div>
                 <strong>Pooja S.</strong>
-                <span>Happy Shopper</span>
+                <span>Happy shopper</span>
               </div>
             </div>
           </article>
@@ -698,8 +700,13 @@
     <div class="container">
       <div class="footer-grid">
         <div class="brand-block">
-          <div class="brand">E-Commerce</div>
-          <p>Your go-to grocery partner for fresh food, healthy essentials, daily needs and trusted family shopping.</p>
+          <div class="brand">
+            <span class="brand-mark" style="width: 38px; height:38px; font-size: 1rem;">
+              <i class="bi bi-basket2-fill"></i>
+            </span>
+            Fresh Basket
+          </div>
+          <p>Your neighborhood kirana store for groceries, fresh produce, pantry essentials and household needs.</p>
           <div class="social-list">
             <a href="#"><i class="bi bi-facebook"></i></a>
             <a href="#"><i class="bi bi-instagram"></i></a>
@@ -712,9 +719,9 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Offers</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#offers">Offers</a></li>
           </ul>
         </div>
 
@@ -722,26 +729,26 @@
           <h4>Categories</h4>
           <ul>
             <li><a href="#">Rice & Grains</a></li>
-            <li><a href="#">Pulses</a></li>
+            <li><a href="#">Dal & Pulses</a></li>
+            <li><a href="#">Masalas</a></li>
             <li><a href="#">Vegetables</a></li>
-            <li><a href="#">Fruits</a></li>
           </ul>
         </div>
 
         <div>
           <h4>Support</h4>
           <ul>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">Shipping</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Delivery</a></li>
             <li><a href="#">Returns</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#">FAQ</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>© 2026 E-Commerce. All rights reserved.</span>
-        <span>Fresh groceries for daily life</span>
+        <span>© 2026 Fresh Basket. All rights reserved.</span>
+        <span>Fresh groceries for everyday living</span>
       </div>
     </div>
   </footer>
