@@ -101,13 +101,80 @@ const catalog=[
 ["Household & Personal Care","soap",[
 ["Bathing Soap",35,"100 g","bathing,soap,bar"],["Shampoo Sachets",2,"1 sachet","shampoo,sachet"],["Shampoo Bottle",120,"180 ml","shampoo,bottle"],["Toothpaste",65,"100 g","toothpaste,tube"],["Toothbrush",25,"1 pc","toothbrush"],["Washing Powder",60,"500 g","washing,detergent,powder"],["Dishwash Bar",20,"1 pc","dishwashing,soap,bar"],["Dishwash Liquid",85,"500 ml","dishwashing,liquid"],["Floor Cleaner",95,"500 ml","floor,cleaner,bottle"],["Toilet Cleaner",100,"500 ml","toilet,cleaner,bottle"]]]
 ];
+const categoryImagePool = {
+  "Rice & Grains": [
+    "https://images.unsplash.com/photo-1586201375761-83865001e31d?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1604908553252-7f8d9b4b1b2b?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1615485490382-441e4d049cb5?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Atta & Flour": [
+    "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Dal & Pulses": [
+    "https://images.unsplash.com/photo-1518843875459-f738682238a6?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Spices & Masala": [
+    "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1622057862044-de583d2ba887?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Oil & Ghee": [
+    "https://images.unsplash.com/photo-1626785774625-ddcddc342cc0?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1604908553252-7f8d9b4b1b2b?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Bread & Bakery": [
+    "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Biscuits & Cookies": [
+    "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1499636136210-6d8479053f4f?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Dairy & Eggs": [
+    "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1563636619-e9143da7d8af?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Tea & Beverages": [
+    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Snacks & Namkeen": [
+    "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Fruits & Vegetables": [
+    "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1566385090619-18c6d6c8dd2d?auto=format&fit=crop&w=900&q=80"
+  ],
+  "Household & Personal Care": [
+    "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80"
+  ]
+};
+
 const products = [];
 let nextId = 1;
 
 catalog.forEach(([category, group, items]) => {
-  items.forEach((it) => {
+  const imagePool = categoryImagePool[category] || [
+    "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80"
+  ];
+
+  items.forEach((it, index) => {
     const productName = it[0];
-    const imageUrl = `https://placehold.co/600x500/edf5eb/123c2a?text=${encodeURIComponent(productName)}`;
+    const imageUrl = imagePool[index % imagePool.length];
 
     products.push({
       id: nextId++,
