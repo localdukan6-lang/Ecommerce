@@ -101,24 +101,319 @@ const catalog=[
 ["Household & Personal Care","soap",[
 ["Bathing Soap",35,"100 g","bathing,soap,bar"],["Shampoo Sachets",2,"1 sachet","shampoo,sachet"],["Shampoo Bottle",120,"180 ml","shampoo,bottle"],["Toothpaste",65,"100 g","toothpaste,tube"],["Toothbrush",25,"1 pc","toothbrush"],["Washing Powder",60,"500 g","washing,detergent,powder"],["Dishwash Bar",20,"1 pc","dishwashing,soap,bar"],["Dishwash Liquid",85,"500 ml","dishwashing,liquid"],["Floor Cleaner",95,"500 ml","floor,cleaner,bottle"],["Toilet Cleaner",100,"500 ml","toilet,cleaner,bottle"]]]
 ];
-const products=[];let nextId=1;
-catalog.forEach(([category,group,items])=>items.forEach((it,index)=>products.push({id:nextId++,name:it[0],price:it[1],oldPrice:Math.round(it[1]*1.15),unit:it[2],category,terms:it[3],imageUrl:`https://loremflickr.com/600/500/${encodeURIComponent(it[3])}?lock=${nextId+300}`})));
-const categories=["All Products",...catalog.map(c=>c[0])];let activeCategory="All Products",searchTerm="",cart={};
-try{cart=JSON.parse(localStorage.getItem("freshBasketCart"))||{}}catch(e){cart={}}
-function formatPrice(n){return "₹"+Number(n).toLocaleString("en-IN")}
-function renderCategories(){const el=document.getElementById("categoryList");el.innerHTML="";categories.forEach(cat=>{const b=document.createElement("button");b.className="category-btn"+(cat===activeCategory?" active":"");b.textContent=cat;b.onclick=()=>{activeCategory=cat;renderCategories();renderProducts();document.getElementById("products").scrollIntoView({behavior:"smooth",block:"start"})};el.appendChild(b)})}
-function renderProducts(){const grid=document.getElementById("productGrid"),no=document.getElementById("noResults");let list=products.filter(p=>(activeCategory==="All Products"||p.category===activeCategory)&&(p.name+" "+p.category+" "+p.unit+" "+p.terms).toLowerCase().includes(searchTerm));const sort=document.getElementById("sortSelect")?.value||"featured";if(sort==="price-low")list.sort((a,b)=>a.price-b.price);if(sort==="price-high")list.sort((a,b)=>b.price-a.price);if(sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name));document.getElementById("productHeading").textContent=activeCategory;document.getElementById("productCount").textContent=`${list.length} products to explore`;grid.innerHTML="";no.style.display=list.length?"none":"block";
-list.forEach(p=>{const card=document.createElement("article");card.className="product-card";const wrap=document.createElement("div");wrap.className="product-image-wrap";const img=document.createElement("img");img.className="product-image";img.src=p.imageUrl;img.alt=p.name;img.loading="lazy";img.onerror=function(){this.onerror=null;this.src=`https://placehold.co/600x500/eaf5eb/176d3d?text=${encodeURIComponent(p.name)}`};const label=document.createElement("span");label.className="product-label";label.textContent="Popular pick";wrap.append(img,label);const body=document.createElement("div");body.className="product-body";const cat=document.createElement("div");cat.className="product-category";cat.textContent=p.category;const name=document.createElement("h3");name.className="product-name";name.textContent=p.name;const unit=document.createElement("div");unit.className="product-weight";unit.textContent=p.unit;const priceLine=document.createElement("div");priceLine.className="price-line";const box=document.createElement("div");const price=document.createElement("div");price.className="product-price";price.textContent=formatPrice(p.price);const old=document.createElement("div");old.className="product-old";old.textContent=formatPrice(p.oldPrice);box.append(price,old);const disc=document.createElement("span");disc.className="discount";disc.textContent="DEMO PRICE";priceLine.append(box,disc);const actions=document.createElement("div");actions.className="product-actions";const add=document.createElement("button");add.className="add-btn";add.innerHTML='<i class="bi bi-cart-plus"></i> Add';add.onclick=()=>addToCart(p.id);const buy=document.createElement("button");buy.className="buy-btn";buy.innerHTML='<i class="bi bi-bag-check"></i> Buy now';buy.onclick=()=>{addToCart(p.id,false);openCart()};actions.append(add,buy);body.append(cat,name,unit,priceLine,actions);card.append(wrap,body);grid.appendChild(card)})}
-function saveCart(){try{localStorage.setItem("freshBasketCart",JSON.stringify(cart))}catch(e){}}
-function addToCart(id,message=true){const p=products.find(x=>x.id===id);if(!p)return;cart[id]=(cart[id]||0)+1;saveCart();updateCart();if(message)showToast(p.name+" added to your basket")}
-function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];saveCart();updateCart()}
-function updateCart(){document.getElementById("cartCount").textContent=Object.values(cart).reduce((s,q)=>s+q,0);const el=document.getElementById("cartItems");el.innerHTML="";let total=0;const entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id===Number(id)));if(!entries.length)el.innerHTML='<div class="empty-cart"><i class="bi bi-basket" style="font-size:38px"></i><p style="margin-top:12px">Your basket is waiting.</p><p style="font-size:12px;margin-top:6px">Add some everyday favourites.</p></div>';entries.forEach(([id,q])=>{const p=products.find(x=>x.id===Number(id));if(!p)return;total+=p.price*q;const row=document.createElement("div");row.className="cart-item";const img=document.createElement("img");img.src=p.imageUrl;img.alt=p.name;img.onerror=function(){this.onerror=null;this.src="https://placehold.co/100x100/eaf5eb/176d3d?text=Item"};const info=document.createElement("div"),title=document.createElement("h4");title.textContent=p.name;const price=document.createElement("div");price.className="cart-item-price";price.textContent=formatPrice(p.price*q);const qty=document.createElement("div");qty.className="qty-row";const minus=document.createElement("button");minus.textContent="−";minus.setAttribute("aria-label","Decrease quantity");minus.onclick=()=>changeQty(p.id,-1);const count=document.createElement("span");count.textContent=q;const plus=document.createElement("button");plus.textContent="+";plus.setAttribute("aria-label","Increase quantity");plus.onclick=()=>changeQty(p.id,1);qty.append(minus,count,plus);info.append(title,price,qty);row.append(img,info);el.appendChild(row)});document.getElementById("cartTotal").textContent=formatPrice(total)}
-function openCart(){document.getElementById("cartOverlay").classList.add("open");document.body.style.overflow="hidden";updateCart()}function closeCart(){document.getElementById("cartOverlay").classList.remove("open");document.body.style.overflow=""}function overlayClick(e){if(e.target.id==="cartOverlay")closeCart()}
-function showToast(msg){const el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove("show"),2300)}
-function searchProducts(){searchTerm=document.getElementById("searchInput").value.trim().toLowerCase();renderProducts();document.getElementById("products").scrollIntoView({behavior:"smooth",block:"start"})}
-document.getElementById("searchInput").addEventListener("input",e=>{searchTerm=e.target.value.trim().toLowerCase();renderProducts()});document.getElementById("sortSelect").addEventListener("change",renderProducts);
-function checkout(){const entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id===Number(id)));if(!entries.length){showToast("Please add products to your basket first.");return}if(!STORE_WHATSAPP||STORE_WHATSAPP==="919876543210"){showToast("Please add your real store WhatsApp number in the code first.");return}const lines=["*Fresh Basket — New Grocery Order*","","Order items:"];let total=0;entries.forEach(([id,q])=>{const p=products.find(x=>x.id===Number(id));if(!p)return;const sub=p.price*q;total+=sub;lines.push(`• ${p.name} (${p.unit}) x ${q} = ${formatPrice(sub)}`)});lines.push("",`*Estimated total: ${formatPrice(total)}*`,"","Please confirm availability, delivery charges and final prices.","Customer name:","Delivery address:","Payment preference:");window.open("https://wa.me/"+STORE_WHATSAPP+"?text="+encodeURIComponent(lines.join("\n")),"_blank")}
-renderCategories();renderProducts();updateCart();
+const products = [];
+let nextId = 1;
+
+catalog.forEach(([category, group, items]) => {
+  items.forEach((it) => {
+    const productName = it[0];
+    const imageUrl = `https://placehold.co/600x500/edf5eb/123c2a?text=${encodeURIComponent(productName)}`;
+
+    products.push({
+      id: nextId++,
+      name: productName,
+      price: it[1],
+      oldPrice: Math.round(it[1] * 1.15),
+      unit: it[2],
+      category,
+      terms: it[3],
+      imageUrl
+    });
+  });
+});
+
+const categories = ["All Products", ...catalog.map(c => c[0])];
+let activeCategory = "All Products", searchTerm = "", cart = {};
+
+try {
+  cart = JSON.parse(localStorage.getItem("freshBasketCart")) || {};
+} catch (e) {
+  cart = {};
+}
+
+function formatPrice(n) {
+  return "₹" + Number(n).toLocaleString("en-IN");
+}
+
+function renderCategories() {
+  const el = document.getElementById("categoryList");
+  el.innerHTML = "";
+  categories.forEach(cat => {
+    const b = document.createElement("button");
+    b.className = "category-btn" + (cat === activeCategory ? " active" : "");
+    b.textContent = cat;
+    b.onclick = () => {
+      activeCategory = cat;
+      renderCategories();
+      renderProducts();
+      document.getElementById("products").scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    el.appendChild(b);
+  });
+}
+
+function renderProducts() {
+  const grid = document.getElementById("productGrid");
+  const no = document.getElementById("noResults");
+
+  let list = products.filter(p =>
+    (activeCategory === "All Products" || p.category === activeCategory) &&
+    (p.name + " " + p.category + " " + p.unit + " " + p.terms).toLowerCase().includes(searchTerm)
+  );
+
+  const sort = document.getElementById("sortSelect")?.value || "featured";
+
+  if (sort === "price-low") list.sort((a, b) => a.price - b.price);
+  if (sort === "price-high") list.sort((a, b) => b.price - a.price);
+  if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
+
+  document.getElementById("productHeading").textContent = activeCategory;
+  document.getElementById("productCount").textContent = `${list.length} products to explore`;
+
+  grid.innerHTML = "";
+  no.style.display = list.length ? "none" : "block";
+
+  list.forEach(p => {
+    const card = document.createElement("article");
+    card.className = "product-card";
+
+    const wrap = document.createElement("div");
+    wrap.className = "product-image-wrap";
+
+    const img = document.createElement("img");
+    img.className = "product-image";
+    img.src = p.imageUrl;
+    img.alt = p.name;
+    img.loading = "lazy";
+    img.onerror = function () {
+      this.onerror = null;
+      this.src = `https://placehold.co/600x500/edf5eb/123c2a?text=${encodeURIComponent(p.name)}`;
+    };
+
+    const label = document.createElement("span");
+    label.className = "product-label";
+    label.textContent = "Popular pick";
+
+    wrap.append(img, label);
+
+    const body = document.createElement("div");
+    body.className = "product-body";
+
+    const cat = document.createElement("div");
+    cat.className = "product-category";
+    cat.textContent = p.category;
+
+    const name = document.createElement("h3");
+    name.className = "product-name";
+    name.textContent = p.name;
+
+    const unit = document.createElement("div");
+    unit.className = "product-weight";
+    unit.textContent = p.unit;
+
+    const priceLine = document.createElement("div");
+    priceLine.className = "price-line";
+
+    const box = document.createElement("div");
+
+    const price = document.createElement("div");
+    price.className = "product-price";
+    price.textContent = formatPrice(p.price);
+
+    const old = document.createElement("div");
+    old.className = "product-old";
+    old.textContent = formatPrice(p.oldPrice);
+
+    box.append(price, old);
+
+    const disc = document.createElement("span");
+    disc.className = "discount";
+    disc.textContent = "DEMO PRICE";
+
+    priceLine.append(box, disc);
+
+    const actions = document.createElement("div");
+    actions.className = "product-actions";
+
+    const add = document.createElement("button");
+    add.className = "add-btn";
+    add.innerHTML = '<i class="bi bi-cart-plus"></i> Add';
+    add.onclick = () => addToCart(p.id);
+
+    const buy = document.createElement("button");
+    buy.className = "buy-btn";
+    buy.innerHTML = '<i class="bi bi-bag-check"></i> Buy now';
+    buy.onclick = () => {
+      addToCart(p.id, false);
+      openCart();
+    };
+
+    actions.append(add, buy);
+
+    body.append(cat, name, unit, priceLine, actions);
+    card.append(wrap, body);
+    grid.appendChild(card);
+  });
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem("freshBasketCart", JSON.stringify(cart));
+  } catch (e) {}
+}
+
+function addToCart(id, message = true) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+
+  cart[id] = (cart[id] || 0) + 1;
+  saveCart();
+  updateCart();
+
+  if (message) showToast(p.name + " added to your basket");
+}
+
+function changeQty(id, delta) {
+  cart[id] = (cart[id] || 0) + delta;
+  if (cart[id] <= 0) delete cart[id];
+
+  saveCart();
+  updateCart();
+}
+
+function updateCart() {
+  document.getElementById("cartCount").textContent = Object.values(cart).reduce((s, q) => s + q, 0);
+
+  const el = document.getElementById("cartItems");
+  el.innerHTML = "";
+
+  let total = 0;
+  const entries = Object.entries(cart).filter(([id, q]) => q > 0 && products.some(p => p.id === Number(id)));
+
+  if (!entries.length) {
+    el.innerHTML = '<div class="empty-cart"><i class="bi bi-basket" style="font-size:38px"></i><p style="margin-top:12px">Your basket is waiting.</p><p style="font-size:12px;margin-top:6px">Add some everyday favourites.</p></div>';
+  }
+
+  entries.forEach(([id, q]) => {
+    const p = products.find(x => x.id === Number(id));
+    if (!p) return;
+
+    total += p.price * q;
+
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    const img = document.createElement("img");
+    img.src = p.imageUrl;
+    img.alt = p.name;
+    img.onerror = function () {
+      this.onerror = null;
+      this.src = "https://placehold.co/100x100/edf5eb/123c2a?text=Item";
+    };
+
+    const info = document.createElement("div");
+    const title = document.createElement("h4");
+    title.textContent = p.name;
+
+    const price = document.createElement("div");
+    price.className = "cart-item-price";
+    price.textContent = formatPrice(p.price * q);
+
+    const qty = document.createElement("div");
+    qty.className = "qty-row";
+
+    const minus = document.createElement("button");
+    minus.textContent = "−";
+    minus.setAttribute("aria-label", "Decrease quantity");
+    minus.onclick = () => changeQty(p.id, -1);
+
+    const count = document.createElement("span");
+    count.textContent = q;
+
+    const plus = document.createElement("button");
+    plus.textContent = "+";
+    plus.setAttribute("aria-label", "Increase quantity");
+    plus.onclick = () => changeQty(p.id, 1);
+
+    qty.append(minus, count, plus);
+    info.append(title, price, qty);
+
+    row.append(img, info);
+    el.appendChild(row);
+  });
+
+  document.getElementById("cartTotal").textContent = formatPrice(total);
+}
+
+function openCart() {
+  document.getElementById("cartOverlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+  updateCart();
+}
+
+function closeCart() {
+  document.getElementById("cartOverlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function overlayClick(e) {
+  if (e.target.id === "cartOverlay") closeCart();
+}
+
+function showToast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => el.classList.remove("show"), 2300);
+}
+
+function searchProducts() {
+  searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+  renderProducts();
+  document.getElementById("products").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.getElementById("searchInput").addEventListener("input", e => {
+  searchTerm = e.target.value.trim().toLowerCase();
+  renderProducts();
+});
+
+document.getElementById("sortSelect").addEventListener("change", renderProducts);
+
+function checkout() {
+  const entries = Object.entries(cart).filter(([id, q]) => q > 0 && products.some(p => p.id === Number(id)));
+
+  if (!entries.length) {
+    showToast("Please add products to your basket first.");
+    return;
+  }
+
+  if (!STORE_WHATSAPP || STORE_WHATSAPP === "919876543210") {
+    showToast("Please add your real store WhatsApp number in the code first.");
+    return;
+  }
+
+  const lines = ["*Fresh Basket — New Grocery Order*", "", "Order items:"];
+  let total = 0;
+
+  entries.forEach(([id, q]) => {
+    const p = products.find(x => x.id === Number(id));
+    if (!p) return;
+
+    const sub = p.price * q;
+    total += sub;
+    lines.push(`• ${p.name} (${p.unit}) x ${q} = ${formatPrice(sub)}`);
+  });
+
+  lines.push("", `*Estimated total: ${formatPrice(total)}*`, "", "Please confirm availability, delivery charges and final prices.", "Customer name:", "Delivery address:", "Payment preference:");
+
+  window.open("https://wa.me/" + STORE_WHATSAPP + "?text=" + encodeURIComponent(lines.join("\n")), "_blank");
+}
+
+renderCategories();
+renderProducts();
+updateCart();
 </script>
 </body>
 </html>
