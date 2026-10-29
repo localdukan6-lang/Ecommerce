@@ -318,8 +318,12 @@ const catalog = [
     ["Muesli / म्यूज़ली", 150, "500 g", "muesli, म्यूज़ली, breakfast", "./images/200.webp"]
   ]]
 ];
+// Product list
 const products = [];
 let nextId = 1;
+
+// Fallback image for products
+const categoryImagePool = {};
 
 catalog.forEach(([category, group, items]) => {
   const imagePool = categoryImagePool[category] || [
