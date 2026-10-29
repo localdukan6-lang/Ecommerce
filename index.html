@@ -127,9 +127,68 @@ const productNames = [
 
 
 console.log("Total Products:", products.length);
-const products=[];let nextId=1;
-catalog.forEach(([category,group,items])=>items.forEach((it,index)=>products.push({id:nextId++,name:it[0],price:it[1],oldPrice:Math.round(it[1]*1.15),unit:it[2],category,terms:it[3],imageUrl:`https://loremflickr.com/600/500/${encodeURIComponent(it[3])}?lock=${nextId+300}`})));
-const categories=["All Products",...catalog.map(c=>c[0])];let activeCategory="All Products",searchTerm="",cart={};
+
+const categoryMap = {
+  "Rice": ["Basmati Rice", "Sona Masoori Rice", "Brown Rice", "Kolam Rice"],
+  "Atta & Flours": ["Wheat Flour", "Maida", "Besan", "Suji", "Dalia"],
+  "Dal & Pulses": ["Toor Dal", "Moong Dal", "Masoor Dal", "Urad Dal", "Chana Dal", "Rajma", "Kabuli Chana", "Black Chana", "White Peas", "Green Peas"],
+  "Oil & Ghee": ["Mustard Oil", "Sunflower Oil", "Soybean Oil", "Groundnut Oil", "Ghee", "Refined Oil", "Coconut Oil", "Olive Oil", "Butter", "Margarine"],
+  "Spices": ["Turmeric Powder", "Red Chilli Powder", "Coriander Powder", "Cumin Seeds", "Mustard Seeds", "Black Pepper", "Garam Masala", "Chaat Masala", "Kitchen King Masala", "Curry Powder", "Cardamom", "Cloves", "Cinnamon", "Bay Leaves", "Fenugreek Seeds"],
+  "Dairy": ["Milk", "Toned Milk", "Curd", "Paneer", "Cheese", "Buttermilk", "Flavoured Milk"],
+  "Bakery & Biscuits": ["Bread", "Brown Bread", "Burger Buns", "Pav", "Rusk", "Marie Biscuits", "Glucose Biscuits", "Cream Biscuits", "Chocolate Biscuits", "Cookies", "Crackers", "Digestive Biscuits"],
+  "Snacks": ["Potato Chips", "Banana Chips", "Namkeen", "Bhujia", "Peanuts", "Papad"],
+  "Dry Fruits": ["Almonds", "Cashews", "Raisins", "Walnuts", "Pistachios", "Dates", "Pistachio Nuts", "Fox Nuts", "Chia Seeds", "Flax Seeds"],
+  "Vegetables": ["Potato", "Onion", "Tomato", "Garlic", "Ginger", "Green Chilli", "Coriander Leaves", "Mint Leaves", "Lemon", "Carrot", "Cabbage", "Cauliflower", "Brinjal", "Okra", "Bottle Gourd", "Bitter Gourd", "Cucumber", "Spinach", "Capsicum", "Pumpkin"],
+  "Fruits": ["Apple", "Banana", "Orange", "Mango", "Papaya", "Guava", "Grapes", "Pomegranate", "Watermelon", "Pineapple", "Coconut", "Strawberry", "Pear", "Sweet Lime", "Kiwi"],
+  "Beverages": ["Mineral Water", "Soda Water", "Orange Juice", "Mango Juice", "Apple Juice", "Lemon Drink", "Soft Drink", "Energy Drink", "Cold Coffee", "Packaged Lassi"],
+  "Personal Care": ["Toothpaste", "Toothbrush", "Bath Soap", "Handwash", "Shampoo", "Conditioner", "Hair Oil", "Face Wash", "Body Lotion", "Cold Cream", "Talcum Powder", "Deodorant", "Shaving Cream", "Razor", "Comb"],
+  "Cleaning & Household": ["Laundry Detergent", "Washing Powder", "Dishwash Bar", "Dishwash Liquid", "Floor Cleaner", "Toilet Cleaner", "Phenyl", "Fabric Softener", "Scrub Pad", "Garbage Bags", "Tissue Paper", "Toilet Paper", "Aluminium Foil", "Cling Film", "Paper Plates", "Paper Cups", "Matchbox", "Candles", "Batteries", "Mosquito Repellent", "Room Freshener", "Shoe Polish", "Glue"],
+  "Baby & Health": ["Baby Soap", "Baby Shampoo", "Baby Wipes", "Baby Diapers", "Sanitary Pads", "Cotton Balls", "Bandages", "Antiseptic Liquid"],
+  "Baking & Frozen": ["Instant Yeast", "Baking Powder", "Baking Soda", "Cocoa Powder", "Food Colour", "Ice Cream", "Frozen Peas", "Frozen Corn", "Frozen French Fries", "Ready-to-Eat Meals"]
+};
+
+function getCategory(name) {
+  for (const [category, names] of Object.entries(categoryMap)) {
+    if (names.includes(name)) return category;
+  }
+
+  if (["Sugar", "Jaggery", "Salt", "Rock Salt", "Black Salt"].includes(name)) {
+    return "Daily Essentials";
+  }
+
+  if (["Tea", "Green Tea", "Coffee"].includes(name)) {
+    return "Tea & Coffee";
+  }
+
+  if (["Pasta", "Macaroni", "Noodles", "Vermicelli", "Instant Soup"].includes(name)) {
+    return "Instant Foods";
+  }
+
+  if (["Pickle", "Mango Pickle", "Lemon Pickle", "Mixed Pickle", "Tomato Ketchup", "Mayonnaise", "Soy Sauce", "Vinegar", "Chilli Sauce"].includes(name)) {
+    return "Sauces & Pickles";
+  }
+
+  if (["Oats", "Cornflakes", "Muesli", "Chocos", "Peanut Butter", "Jam", "Honey", "Chocolate Spread", "Maple Syrup", "Custard Powder"].includes(name)) {
+    return "Breakfast & Spreads";
+  }
+
+  return "Other Groceries";
+}
+
+const products = productNames.map((name, index) => ({
+  id: index + 1,
+  name,
+  price: 20 + (index % 20) * 5,
+  oldPrice: Math.round((20 + (index % 20) * 5) * 1.15),
+  unit: "1 pack",
+  category: getCategory(name),
+  terms: name.toLowerCase(),
+  imageUrl: getImageUrl({ id: index + 1, name })
+}));
+
+const categories = ["All Products", ...new Set(products.map(p => p.category))];
+
+console.log("Total Products Loaded:", products.length);let activeCategory="All Products",searchTerm="",cart={};
 try{cart=JSON.parse(localStorage.getItem("freshBasketCart"))||{}}catch(e){cart={}}
 function getImageUrl(product) {
   const productImages = {
