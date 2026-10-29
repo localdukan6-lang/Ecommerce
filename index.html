@@ -3,441 +3,792 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>E-Commerce</title>
+  <title>E-Commerce | Premium Lifestyle Store</title>
+  <meta name="description" content="Premium E-Commerce website for lifestyle, fashion, home, gifting and business essentials." />
 
-  <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=64&q=80" />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #ffffff;
+      --bg: #f5f9ff;
+      --bg-soft: #edf5ff;
       --panel: #ffffff;
-      --text: #0d2338;
-      --text-strong: #071d2e;
-      --muted: #4e6a82;
-      --muted-2: #788ea6;
+      --panel-2: #f6fbff;
+      --text: #102638;
+      --text-soft: #4d647d;
+      --muted: #6f8397;
       --primary: #168fe5;
       --primary-2: #0d75d1;
       --primary-3: #095ca5;
-      --secondary: #66c6ff;
-      --line: rgba(13, 35, 56, 0.12);
-      --shadow: 0 8px 24px rgba(13, 35, 56, 0.08);
-      --dark-bg: #0d2338;
-      --dark-panel: #122d45;
-      --dark-text: #f3faff;
-      --dark-muted: #c9dff7;
-      --dark-line: rgba(201, 223, 247, 0.15);
+      --secondary: #64c8ff;
+      --line: rgba(10, 33, 49, 0.12);
+      --shadow: 0 14px 30px rgba(10, 33, 49, 0.09);
+      --deep: #0d2338;
+      --deep-2: #102b42;
+      --dark-line: rgba(201,223,247,0.15);
+      --success: #1fbc84;
+      --warning: #ffc857;
       --radius: 18px;
+      --radius-lg: 28px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      width: 100%;
-      overflow-x: hidden;
-      font-family: 'Rubik', sans-serif;
-      background: linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
-      color: var(--text);
+      margin: 0; width: 100%; overflow-x: hidden; background: linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
+      color: var(--text); font-family: 'Rubik', sans-serif;
     }
-    a { text-decoration: none; color: inherit; }
+    a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
     button, input { font-family: 'Rubik', sans-serif; }
-    h1,h2,h3,h4,h5,h6 { color: var(--text-strong); }
-    p,label,small { color: var(--muted); }
+    .container { max-width: 1280px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
 
-    .top-scroll {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 30px; z-index: 99999;
-      background: linear-gradient(90deg, #0b2843, #0d3359, #1d9be7);
-      color: #fff; display: flex; align-items: center; overflow: hidden;
-      box-shadow: 0 6px 20px rgba(29, 155, 231, 0.25);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+    .top-strip {
+      position: sticky; top: 0; z-index: 50; background: linear-gradient(90deg, #0b2843, #0d3359, #1d9be7);
+      color: #f7fbff; border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .top-scroll marquee {
-      width: 100%; font-size: 11px; font-weight: 600; letter-spacing: 0.2px;
+    .top-strip marquee {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 8px 0;
     }
 
-    .navbar {
-      position: fixed; top: 30px; left: 0; right: 0;
-      z-index: 9999; background: rgba(11,26,38,0.8);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line); box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+    .header {
+      background: rgba(11, 26, 38, 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 30px; z-index: 40;
+      box-shadow: 0 10px 25px rgba(13, 35, 56, 0.08);
     }
-    .navbar-wrapper {
-      max-width: 1400px; margin: 0 auto; display: flex; align-items: center;
-      justify-content: space-between; padding: 8px 12px; gap: 8px;
+    .header-inner {
+      max-width: 1280px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
     }
-    .navbar-brand {
-      display: flex; align-items: center; justify-content: center; font-weight: 800;
-      color: #fff; font-size: 1.3rem; letter-spacing: 0.04em;
+    .brand {
+      font-weight: 800; letter-spacing: 0.04em; color: #ffffff; font-size: clamp(1.3rem, 1.5vw, 1.9rem);
     }
-    .brand-logo {
-      width: 200px; height: 40px; object-fit: contain;
-      filter: drop-shadow(0 8px 18px rgba(94, 201, 255, 0.2));
+    .nav { display: flex; align-items: center; gap: 26px; color: rgba(255,255,255,0.8); font-size: 0.94rem; }
+    .nav a { transition: color 0.2s ease; }
+    .nav a:hover { color: #fff; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .icon-btn {
+      position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(147, 195, 255, 0.2);
+      background: rgba(255,255,255,0.03); color: #edf7ff; display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; cursor: pointer; transition: transform 0.2s ease;
     }
-    .navbar-icons { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-    .nav-btn {
-      width: 38px; height: 38px; border: none; border-radius: 50%; display: flex;
-      align-items: center; justify-content: center; color: #eaf6ff; background: linear-gradient(180deg, rgba(18,46,72,0.95), rgba(9,24,37,0.9));
-      border: 1px solid rgba(151,202,255,0.16); box-shadow: 0 8px 18px rgba(4,17,28,0.28);
-      position: relative; cursor: pointer; transition: all 0.25s ease;
-    }
-    .nav-btn:hover {
-      background: linear-gradient(180deg, rgba(25,72,110,0.9), rgba(14,31,47,0.92));
-      transform: translateY(-2px); box-shadow: 0 12px 22px rgba(16,109,194,0.28);
-    }
+    .icon-btn:hover { transform: translateY(-2px); }
     .badge {
-      position: absolute; top: -6px; right: -5px; min-width: 16px; height: 16px; padding: 0 4px; display: flex;
-      align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg,#5ec9ff,#1f8af5);
-      color: #fff; font-weight: 700; font-size: 9px; box-shadow: 0 8px 18px rgba(47,146,255,0.36);
+      position: absolute; top: -5px; right: -3px; min-width: 18px; height: 18px; border-radius: 50%;
+      background: linear-gradient(135deg, #5ec9ff, #1f8af5); color: #fff; font-size: 9px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; padding: 0 4px;
     }
 
-    .main-container {
-      max-width: 1400px; margin: 0 auto; padding: 18px 10px 28px; position: relative; z-index: 1;
+    .hero {
+      padding-top: 26px; padding-bottom: 18px; background: linear-gradient(180deg, #eef8ff 0%, #f8fbff 100%);
     }
-    .search-section {
-      margin-top: 72px; background: rgba(13,35,56,0.94); border: 1px solid var(--dark-line);
-      box-shadow: var(--shadow); border-radius: 18px; padding: 10px 12px; backdrop-filter: blur(8px);
+    .hero-grid {
+      display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 22px; align-items: stretch;
     }
-    .search-input {
-      width: 100%; height: 42px; border: 1px solid rgba(124,180,255,0.14); border-radius: 24px;
-      background: linear-gradient(180deg, #10283e, #0d2033); color: var(--dark-text); font-size: 13px; padding: 0 14px;
-      outline: none; box-shadow: inset 0 1px 2px rgba(255,255,255,0.02);
+    .hero-main {
+      background: linear-gradient(135deg, #0d2237 0%, #11324f 35%, #0e7ccf 100%); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow); overflow: hidden; position: relative; min-height: 470px; color: #fff;
+      padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between;
     }
-    .search-input::placeholder { color: #a8bfd7; }
-    .search-input:focus { border-color: rgba(94,201,255,0.65); box-shadow: 0 0 0 4px rgba(94,201,255,0.12); }
+    .hero-main::before {
+      content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(255,255,255,0.08), transparent 30%, rgba(255,255,255,0.08));
+      pointer-events: none;
+    }
+    .hero-copy, .hero-image-area { position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: #ecf8ff; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 8px 12px; border-radius: 999px; margin-bottom: 18px;
+    }
+    .hero-copy h1 {
+      font-size: clamp(2.2rem, 4vw, 4rem); line-height: 1.05; letter-spacing: -0.06em; margin-bottom: 18px; color: #fff;
+      max-width: 520px;
+    }
+    .hero-copy p {
+      max-width: 540px; color: rgba(255,255,255,0.8); font-size: 1rem; line-height: 1.7;
+    }
 
-    .categories {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 8px; padding: 12px 4px 0;
+    .hero-cta { display: flex; align-items: center; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 22px; border-radius: 999px;
+      font-weight: 700; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; border: none;
     }
-    .category {
-      display: flex; justify-content: center; align-items: center; border-radius: 14px; transition: 0.25s ease;
-      cursor: pointer; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.06);
-      padding: 12px; min-height: 110px;
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, #5ec9ff, #168fe5 55%, #0d75d1); color: #fff; box-shadow: 0 18px 30px rgba(18,130,224,0.3);
     }
-    .category img {
-      width: 76px; height: 76px; object-fit: cover; border-radius: 16px; transition: 0.25s ease;
-      filter: drop-shadow(0 10px 18px rgba(30,116,214,0.16));
+    .btn-secondary {
+      background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.18);
     }
-    .category:hover { transform: translateY(-2px) scale(1.02); }
-    .category:hover img { filter: drop-shadow(0 16px 24px rgba(94,201,255,0.22)); }
 
-    .promo-container { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
-    .promo-card {
-      display: block; border-radius: 18px; overflow: hidden; background: rgba(12,29,43,0.8);
-      border: 1px solid rgba(143,191,255,0.12); box-shadow: var(--shadow); transition: 0.25s ease;
+    .hero-image-area {
+      display: flex; align-items: end; justify-content: flex-end; margin-top: 14px;
     }
-    .promo-card:hover { transform: translateY(-2px); box-shadow: 0 16px 26px rgba(28,85,125,0.22); }
-    .promo-card img { width: 100%; display: block; border-radius: 18px; }
-
-    .section-title {
-      display: flex; align-items: center; justify-content: center; gap: 10px; margin: 18px 0 12px; text-align: center;
-      font-size: clamp(20px, 4.4vw, 29px); font-weight: 700; color: var(--text-strong); letter-spacing: -0.02em; line-height: 1.2;
+    .hero-product-card {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 22px; padding: 12px;
+      width: min(300px, 100%); box-shadow: 0 18px 40px rgba(0,0,0,0.25);
     }
-    .section-title span { display: block; flex: 1; max-width: 70px; height: 2px; background: linear-gradient(90deg, transparent, rgba(94,201,255,0.8), transparent); border-radius: 999px; }
-
-    .business-needs, .trending-categories {
-      background: linear-gradient(180deg, rgba(13,35,56,0.96), rgba(10,24,37,0.96)); border-radius: 18px;
-      border: 1px solid var(--dark-line); box-shadow: var(--shadow); padding: 12px 10px 14px; margin-top: 14px;
+    .hero-product-card img {
+      width: 100%; height: 220px; object-fit: cover; border-radius: 18px;
     }
-    .business-needs .section-title, .trending-categories .section-title { color: var(--dark-text); }
-
-    .business-list { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px 8px; margin-top: 8px; }
-    .business-card {
-      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;
-      border-radius: 12px; overflow: hidden; transition: 0.25s ease; position: relative; background: rgba(17,39,59,0.7);
-      border: 1px solid rgba(143,191,255,0.08);
+    .hero-product-info {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; color: #fff;
     }
-    .business-card:hover { transform: translateY(-2px); box-shadow: 0 12px 22px rgba(25,98,175,0.18); }
-    .business-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; background: #0d1c2b; }
-    .business-card span { display: block; width: 100%; padding: 0 4px 6px; font-size: 12px; line-height: 1.3; font-weight: 600; color: var(--dark-text); }
+    .hero-product-info h3 { color: #fff; font-size: 1rem; font-weight: 700; }
+    .price-badge {
+      background: rgba(94, 201, 255, 0.18); border: 1px solid rgba(255,255,255,0.18); color: #dff7ff; border-radius: 999px;
+      padding: 8px 12px; font-weight: 700; font-size: 0.86rem;
+    }
 
-    .products-grid {
-      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 8px;
+    .side-stack {
+      display: grid; gap: 18px;
+    }
+    .mini-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f3f9ff 100%); border: 1px solid var(--line);
+      border-radius: 22px; padding: 16px; box-shadow: var(--shadow);
+    }
+    .mini-card .mini-label {
+      display: inline-flex; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--primary-2); background: rgba(22, 143, 229, 0.08); padding: 8px 10px; border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .mini-card h3 { color: var(--text); font-size: 1.4rem; margin-bottom: 8px; }
+    .mini-card p { color: var(--text-soft); line-height: 1.6; }
+    .mini-card .mini-image {
+      width: 100%; height: 180px; border-radius: 18px; object-fit: cover; margin-top: 14px;
+    }
+
+    .search-bar {
+      margin-top: 22px; margin-bottom: 20px;
+    }
+    .search-shell {
+      display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px;
+      box-shadow: var(--shadow); padding: 10px 18px; max-width: 720px; margin: 0 auto;
+    }
+    .search-shell input {
+      flex: 1; border: none; outline: none; font-size: 0.96rem; color: var(--text); background: transparent;
+    }
+    .search-shell input::placeholder { color: var(--muted); }
+    .search-shell button {
+      padding: 10px 18px; border: none; border-radius: 999px; background: linear-gradient(135deg, #5ec9ff, #0d75d1);
+      color: #fff; font-weight: 700; cursor: pointer;
+    }
+
+    .section {
+      padding-top: 18px; padding-bottom: 16px;
+    }
+    .section-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px;
+    }
+    .section-head h2 {
+      font-size: clamp(1.7rem, 2vw, 2.5rem); letter-spacing: -0.05em; color: var(--text);
+    }
+    .chip {
+      display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
+      color: var(--primary-2); background: rgba(22,143,229,0.08); border: 1px solid rgba(22,143,229,0.1);
+    }
+
+    .category-row {
+      display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;
+    }
+    .category-card {
+      background: linear-gradient(180deg, #0d2237 0%, #153859 100%); border-radius: 22px; overflow: hidden; border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 12px 24px rgba(13, 35, 56, 0.08); padding: 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .category-card:hover { transform: translateY(-4px); box-shadow: 0 18px 30px rgba(13,35,56,0.12); }
+    .category-card img {
+      width: 78px; height: 78px; object-fit: cover; border-radius: 18px; border: 1px solid rgba(255,255,255,0.08);
+    }
+    .category-card span {
+      color: #eaf6ff; font-size: 0.82rem; font-weight: 700; text-align: center; line-height: 1.45;
+    }
+
+    .product-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px;
     }
     .product-card {
-      position: relative; overflow: hidden; border: 1px solid var(--dark-line); border-radius: 16px;
-      background: linear-gradient(180deg, rgba(18,45,69,0.96), rgba(12,28,40,0.96)); box-shadow: var(--shadow);
-      cursor: pointer; transition: 0.25s ease; display: flex; flex-direction: column; min-height: 196px; color: var(--dark-text);
+      background: var(--panel); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .product-card:hover { transform: translateY(-2px); box-shadow: 0 18px 28px rgba(19,78,140,0.28); }
-    .product-image {
-      width: 100%; height: 126px; object-fit: cover; padding: 8px 8px 0; background: linear-gradient(180deg, rgba(19,43,61,0.9), rgba(11,24,35,0.7));
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 18px 28px rgba(13,35,56,0.12); }
+    .product-card .image-wrap { position: relative; background: linear-gradient(180deg, #edf6ff 0%, #f9fbff 100%); }
+    .product-card img {
+      width: 100%; height: 260px; object-fit: cover; display: block;
     }
-    .product-card h3 {
-      font-size: 12px !important; font-weight: 600 !important; color: var(--dark-text) !important; line-height: 1.35 !important;
-      text-align: center !important; padding: 8px 8px 10px !important; margin: 0 !important; letter-spacing: -0.01em;
+    .tag {
+      position: absolute; left: 12px; top: 12px; background: rgba(22,143,229,0.12); color: var(--primary-2); border: 1px solid rgba(22,143,229,0.12);
+      padding: 7px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
     }
-
-    .offer-banner { margin-top: 14px; }
-    .offer-banner-img { width: 100%; display: block; border-radius: 18px; box-shadow: var(--shadow); border: 1px solid var(--line); }
-
-    .reviews { background: linear-gradient(180deg, rgba(13,30,45,0.96), rgba(11,21,32,0.95)); border: 1px solid var(--dark-line); border-radius: 18px; padding: 12px 10px 14px; margin-top: 14px; box-shadow: var(--shadow); }
-    .reviews .section-title { color: var(--dark-text); }
-    .reviews-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 8px; }
-    .review-photo { width: 100%; height: 150px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 8px 18px rgba(17,24,39,0.12); }
-
-    .about-printizy {
-      background: linear-gradient(180deg, rgba(13,30,45,0.96), rgba(11,21,32,0.96)); border: 1px solid var(--dark-line);
-      border-radius: 18px; padding: 18px 12px; margin-top: 14px; box-shadow: var(--shadow);
+    .product-body { padding: 16px; }
+    .product-title {
+      font-size: 1.05rem; color: var(--text); font-weight: 700; line-height: 1.4; margin-bottom: 8px;
     }
-    .about-content h2 { font-size: clamp(22px, 6vw, 30px); font-weight: 800; line-height: 1.15; margin-bottom: 10px; color: var(--dark-text); }
-    .about-content p { font-size: 13px; line-height: 1.7; color: var(--dark-muted); margin-bottom: 12px; }
-    .counter-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 12px; }
-    .counter-box {
-      background: linear-gradient(180deg, rgba(15,39,59,0.9), rgba(12,26,39,0.88)); border: 1px solid rgba(143,191,255,0.12);
-      border-radius: 14px; padding: 14px 10px; text-align: center; box-shadow: 0 8px 18px rgba(8,20,34,0.22);
+    .meta-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px;
     }
-    .counter-box h3 { font-size: 20px; color: var(--dark-text); font-weight: 800; margin-bottom: 4px; }
-    .counter-box span { font-size: 11px; color: var(--dark-muted); }
-
-    .faq-section {
-      background: linear-gradient(180deg, rgba(11,23,34,0.94), rgba(13,33,48,0.96)); border: 1px solid var(--dark-line);
-      border-radius: 18px; padding: 14px 10px 18px; margin-top: 14px; box-shadow: var(--shadow);
-    }
-    .faq-section .section-title { color: var(--dark-text); }
-    .faq-container { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-    .faq-item { background: rgba(14,33,49,0.88); border: 1px solid rgba(143,191,255,0.12); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 18px rgba(7,18,29,0.12); }
-    .faq-question { padding: 14px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; color: var(--dark-text); cursor: pointer; gap: 8px; }
-    .faq-question span { font-size: 20px; line-height: 1; color: var(--secondary); font-weight: 700; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: 0.35s ease; }
-    .faq-answer p { font-size: 12px; line-height: 1.6; color: var(--dark-muted); padding: 0 12px 14px; }
-
-    .printizy-footer {
-      background: linear-gradient(180deg, rgba(9,22,33,0.92), rgba(12,29,43,0.95)); border-top: 1px solid rgba(143,191,255,0.12);
-      margin-top: 20px; padding: 18px 12px 28px;
-    }
-    .brand-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-    .brand-top .brand-logo { width: 110px; }
-    .brand-line { font-size: 12px; color: var(--dark-muted); line-height: 1.45; margin: 0; }
-    .brand-text h3 { margin-top: 8px; font-size: 12px; line-height: 1.5; color: #dfeffb; font-weight: 600; }
-    .footer-accordion { background: rgba(10,25,37,0.92); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-    .accordion-item { border-bottom: 1px solid rgba(143,191,255,0.1); background: transparent; }
-    .accordion-item:last-child { border-bottom: none; }
-    .accordion-btn { width: 100%; background: transparent; border: none; color: var(--dark-text); padding: 14px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; cursor: pointer; text-align: left; }
-    .accordion-btn i { font-size: 18px; color: var(--secondary); }
-    .accordion-content { display: none; padding: 0 12px 12px; background: transparent; }
-    .accordion-content a { display: block; padding: 8px 0; color: var(--dark-muted); font-size: 12px; border-bottom: 1px solid rgba(143,191,255,0.08); }
-    .accordion-content a:last-child { border-bottom: none; }
-    .footer-social { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 18px 0 12px; flex-wrap: wrap; }
-    .footer-social a { width: 40px; height: 40px; background: linear-gradient(180deg, rgba(16,39,61,0.9), rgba(12,28,42,0.9)); color: #dfeeff; border: 1px solid rgba(125,176,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 8px 18px rgba(7,18,29,0.14); }
-    .footer-apps, .footer-payments { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-    .footer-apps img, .footer-payments img { height: 32px; border-radius: 8px; }
-    .footer-copy { text-align: center; font-size: 11px; color: var(--dark-muted); padding-top: 10px; border-top: 1px solid rgba(143,191,255,0.08); }
-    .whatsapp-float {
-      position: fixed; right: 16px; bottom: 20px; width: 54px; height: 54px; border-radius: 50%;
-      background: linear-gradient(135deg, #25D366, #1fc15d); color: #fff; display: flex; align-items: center; justify-content: center;
-      font-size: 28px; z-index: 9999; box-shadow: 0 14px 28px rgba(37,211,102,0.32);
+    .stars { color: #ffbb39; letter-spacing: 2px; font-size: 0.88rem; }
+    .reviews-count { color: var(--muted); font-size: 0.8rem; }
+    .price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 12px; }
+    .price { font-size: 1.3rem; font-weight: 800; color: var(--text); }
+    .old-price { text-decoration: line-through; color: var(--muted); font-size: 0.85rem; }
+    .buy-btn {
+      display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: 10px 16px;
+      background: linear-gradient(135deg, #5ec9ff, #168fe5); color: #fff; font-weight: 700; border: none; cursor: pointer; width: 100%;
     }
 
-    @media (max-width: 360px) {
-      .brand-logo { width: 170px; }
-      .categories { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .products-grid { grid-template-columns: 1fr; }
-      .business-list { grid-template-columns: 1fr; }
-      .reviews-grid { grid-template-columns: 1fr; }
+    .feature-band {
+      margin-top: 18px; padding: 20px 0;
+    }
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px;
+    }
+    .feature-box {
+      background: linear-gradient(180deg, #fff 0%, #f5faff 100%); border: 1px solid var(--line); border-radius: 18px;
+      padding: 18px 16px; box-shadow: var(--shadow); text-align: center;
+    }
+    .feature-box i {
+      width: 52px; height: 52px; margin: 0 auto 12px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      background: rgba(22,143,229,0.08); color: var(--primary-2); font-size: 1.4rem;
+    }
+    .feature-box h3 {
+      font-size: 1.02rem; margin-bottom: 6px; color: var(--text);
+    }
+    .feature-box p { color: var(--text-soft); font-size: 0.87rem; line-height: 1.6; }
+
+    .promo-banner {
+      margin-top: 18px; margin-bottom: 18px; border-radius: 28px; overflow: hidden; position: relative; background: linear-gradient(135deg, #0d2338, #153b5a, #1c7ad1);
+      box-shadow: var(--shadow); padding: 28px 30px;
+      color: #fff; min-height: 220px;
+    }
+    .promo-banner::before {
+      content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,0.08), transparent 40%, rgba(255,255,255,0.08));
+      pointer-events: none;
+    }
+    .promo-banner-inner {
+      position: relative; z-index: 1; display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; align-items: center;
+    }
+    .promo-banner h2 { font-size: clamp(2rem, 3vw, 3.2rem); letter-spacing: -0.05em; color: #fff; line-height: 1.05; }
+    .promo-banner p { color: rgba(255,255,255,0.8); max-width: 560px; font-size: 1rem; line-height: 1.7; }
+    .promo-banner .promo-image {
+      width: 100%; max-width: 420px; margin-left: auto; border-radius: 18px; box-shadow: 0 18px 40px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .testimonial-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px;
+    }
+    .testimonial {
+      background: linear-gradient(180deg, #fff 0%, #f5fbff 100%); border: 1px solid var(--line); border-radius: 22px; padding: 22px 18px; box-shadow: var(--shadow);
+    }
+    .quote {
+      font-size: 1.2rem; line-height: 1.7; color: var(--text); margin-bottom: 16px;
+    }
+    .person { display: flex; align-items: center; gap: 12px; }
+    .person img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+    .person strong { display: block; color: var(--text); }
+    .person span { color: var(--muted); font-size: 0.8rem; }
+
+    .footer {
+      margin-top: 30px; background: linear-gradient(180deg, rgba(9,22,33,0.96) 0%, rgba(13,35,56,0.96) 100%);
+      border-top: 1px solid rgba(143,191,255,0.08); padding: 36px 0 18px; color: rgba(255,255,255,0.75);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.1fr 0.7fr 0.9fr 0.9fr; gap: 22px;
+    }
+    .brand-block .brand { font-size: 1.5rem; }
+    .brand-block p { margin-top: 16px; color: rgba(255,255,255,0.7); line-height: 1.8; }
+    .footer h4 { color: #fff; font-size: 1rem; margin-bottom: 14px; }
+    .footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer li, .footer a { color: rgba(255,255,255,0.72); font-size: 0.92rem; }
+    .social-list { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .social-list a {
+      width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.03); color: #fff;
+    }
+    .footer-bottom {
+      margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; gap: 10px; color: rgba(255,255,255,0.6); font-size: 0.86rem; flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .product-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .category-row { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .promo-banner-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 850px) {
+      .nav { display: none; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .feature-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .testimonial-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .header-inner { padding-top: 10px; padding-bottom: 10px; }
+      .brand { font-size: 1.1rem; }
+      .hero-main { padding: 22px 18px; }
+      .hero-copy h1 { font-size: 2.3rem; }
+      .product-grid { grid-template-columns: 1fr; }
+      .category-row { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .feature-grid { grid-template-columns: 1fr; }
+      .search-shell { padding: 8px 12px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .promo-banner { padding: 22px 18px; }
     }
   </style>
 </head>
 <body>
-  <div class="top-scroll">
-    <marquee behavior="scroll" direction="left" scrollamount="5">
-      Welcome to E-Commerce • Free Delivery on Orders Above ₹999 • Secure Online Payments • Best Offers on Premium Products • Customer Support Available 24/7
-    </marquee>
+  <div class="top-strip">
+    <marquee behavior="scroll" direction="left" scrollamount="5">Welcome to E-Commerce • Free Delivery on Orders Above ₹999 • Secure Payments • Premium Picks • Customer Support 24/7</marquee>
   </div>
 
-  <nav class="navbar">
-    <div class="navbar-wrapper">
-      <a href="/" class="navbar-brand">E-Commerce</a>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">E-Commerce</div>
 
-      <div class="navbar-icons">
-        <button class="nav-btn" title="Profile"><i class="bi bi-person"></i></button>
-        <button class="nav-btn" title="Orders"><i class="bi bi-bag"></i></button>
-        <button class="nav-btn" title="Cart">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#">Home</a>
+        <a href="#">Categories</a>
+        <a href="#">New Arrivals</a>
+        <a href="#">Best Sellers</a>
+        <a href="#">Offers</a>
+        <a href="#">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="Profile"><i class="bi bi-person"></i></button>
+        <button class="icon-btn" aria-label="Orders"><i class="bi bi-bag"></i></button>
+        <button class="icon-btn" aria-label="Cart">
           <i class="bi bi-cart3"></i>
-          <span class="badge" id="cartBadge">0</span>
+          <span class="badge">3</span>
         </button>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <div class="main-container">
-    <div class="search-section">
-      <input type="text" id="searchInput" class="search-input" placeholder="Search Products, Categories, Shop..." />
-    </div>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-main">
+            <div class="hero-copy">
+              <div class="eyebrow">Premium Collections</div>
+              <h1>Smart shopping for modern living.</h1>
+              <p>Shop trending essentials for lifestyle, fashion, tech, gifting and business needs. Premium quality, faster delivery and complete trust at every step.</p>
 
-    <div class="categories">
-      <div class="category"><img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80" alt="Fashion" /></div>
-      <div class="category"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80" alt="Shoes" /></div>
-      <div class="category"><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Accessories" /></div>
-      <div class="category"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=80" alt="Home" /></div>
-      <div class="category"><img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=400&q=80" alt="Stationery" /></div>
-      <div class="category"><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=400&q=80" alt="Gifts" /></div>
-      <div class="category"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Beauty" /></div>
-      <div class="category"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=400&q=80" alt="Electronics" /></div>
-    </div>
+              <div class="hero-cta">
+                <button class="btn btn-primary">Shop Now</button>
+                <button class="btn btn-secondary">Explore Deals</button>
+              </div>
+            </div>
 
-    <div class="promo-container">
-      <a href="#" class="promo-card"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80" alt="Promo Banner 1" /></a>
-      <a href="#" class="promo-card"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1200&q=80" alt="Promo Banner 2" /></a>
-    </div>
+            <div class="hero-image-area">
+              <div class="hero-product-card">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80" alt="Premium Product" />
+                <div class="hero-product-info">
+                  <h3>Signature Cotton Tee</h3>
+                  <span class="price-badge">₹999</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <section class="business-needs">
-      <h2 class="section-title"><span></span>Everything Your Business Needs<span></span></h2>
-      <div class="business-list">
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=600&q=80" alt="Startup Branding" /><span>Startup Branding</span></a>
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=80" alt="Cafe & Restaurant" /><span>Cafe & Restaurant Essentials</span></a>
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Education" /><span>Education & Campus Needs</span></a>
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=600&q=80" alt="Events" /><span>Events & Promotions</span></a>
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="E-Commerce" /><span>E-Commerce Business</span></a>
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" alt="Corporate" /><span>Corporate & Business Promotion</span></a>
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Hotels" /><span>Hotels & Rooms</span></a>
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=600&q=80" alt="Packaging" /><span>End to End Packaging</span></a>
-      </div>
-    </section>
+          <div class="side-stack">
+            <div class="mini-card">
+              <div class="mini-label">Trending</div>
+              <h3>Fresh Picks</h3>
+              <p>Trending lifestyle essentials curated for comfort, style and convenience.</p>
+              <img class="mini-image" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Fresh picks" />
+            </div>
 
-    <section class="trending-categories">
-      <h2 class="section-title"><span></span>Trending Categories<span></span></h2>
-      <div class="business-list">
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80" alt="Same Day Delivery" /><span>Same Day Delivery</span></a>
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=600&q=80" alt="Business Stationery" /><span>Business Stationery</span></a>
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80" alt="Personalized Gifts" /><span>Personalized Gifts</span></a>
-        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Apparel" /><span>Apparel</span></a>
-      </div>
-    </section>
+            <div class="mini-card">
+              <div class="mini-label">Flash Sale</div>
+              <h3>Up to 50% Off</h3>
+              <p>Top-rated products with limited-time savings on premium essentials.</p>
+              <img class="mini-image" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Flash sale" />
+            </div>
+          </div>
+        </div>
 
-    <section class="best-selling">
-      <h2 class="section-title"><span></span>Popular Products<span></span></h2>
-      <div class="products-grid">
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" alt="T-Shirts" /><h3>T-Shirts</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="Photo Prints" /><h3>Photo Prints</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Photo Frames" /><h3>Photo Frames</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" alt="Business Cards" /><h3>Business Cards</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80" alt="Booklets" /><h3>Booklets</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80" alt="Hoodies" /><h3>Sweatshirts & Hoodies</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Posters" /><h3>Posters</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80" alt="Drinkware" /><h3>Drinkware</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=800&q=80" alt="Tote Bags" /><h3>Tote Bags</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" alt="Labels" /><h3>Labels</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" alt="Stickers" /><h3>Stickers</h3></div>
-        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80" alt="Certificates" /><h3>Certificates</h3></div>
-      </div>
-    </section>
-
-    <div class="offer-banner">
-      <img class="offer-banner-img" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80" alt="Offer Banner" />
-    </div>
-
-    <section class="reviews">
-      <h2 class="section-title"><span></span>What our Customers Says<span></span></h2>
-      <div class="reviews-grid">
-        <div class="review-card"><img class="review-photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Customer review 1" /></div>
-        <div class="review-card"><img class="review-photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Customer review 2" /></div>
-        <div class="review-card"><img class="review-photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Customer review 3" /></div>
-        <div class="review-card"><img class="review-photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Customer review 4" /></div>
-      </div>
-    </section>
-
-    <section class="about-printizy">
-      <div class="about-content">
-        <h2>About E-Commerce</h2>
-        <p>
-          E-Commerce is your trusted online store for premium products, stylish accessories, and everyday essentials.
-          From fashion and home décor to office supplies and personalized gifts, we deliver quality with fast service and secure shopping.
-        </p>
-        <div class="counter-grid">
-          <div class="counter-box"><h3>50K+</h3><span>Orders Delivered</span></div>
-          <div class="counter-box"><h3>5000+</h3><span>Happy Customers</span></div>
-          <div class="counter-box"><h3>500+</h3><span>Business Clients</span></div>
-          <div class="counter-box"><h3>99%</h3><span>Customer Satisfaction</span></div>
+        <div class="search-bar">
+          <div class="search-shell">
+            <i class="bi bi-search" style="color: var(--primary-2); font-size: 1.1rem;"></i>
+            <input type="text" placeholder="Search trendy products, categories and brands..." />
+            <button>Search</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="faq-section">
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question">What services does E-Commerce offer?<span>+</span></div>
-          <div class="faq-answer"><p>We provide premium fashion, home, office, gifting, accessories, and personalized products across categories.</p></div>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Shop by Categories</h2>
+          <span class="chip">Top categories</span>
         </div>
-        <div class="faq-item">
-          <div class="faq-question">Do you provide same-day delivery?<span>+</span></div>
-          <div class="faq-answer"><p>Yes, same-day delivery is available for selected products and locations.</p></div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Can I order a single piece?<span>+</span></div>
-          <div class="faq-answer"><p>Yes, many products can be ordered in single quantity depending on stock and availability.</p></div>
+
+        <div class="category-row">
+          <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80" alt="Fashion" />
+            <span>Fashion</span>
+          </div>
+          <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" alt="Footwear" />
+            <span>Footwear</span>
+          </div>
+          <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=500&q=80" alt="Home Decor" />
+            <span>Home Decor</span>
+          </div>
+          <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=500&q=80" alt="Gifts" />
+            <span>Gifts</span>
+          </div>
+          <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="Beauty" />
+            <span>Beauty</span>
+          </div>
+          <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=500&q=80" alt="Electronics" />
+            <span>Electronics</span>
+          </div>
         </div>
       </div>
     </section>
-  </div>
 
-  <footer class="printizy-footer">
-    <div class="brand-top">
-      <div class="brand-text">
-        <h3>E-Commerce</h3>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>New Arrivals</h2>
+          <span class="chip">Fresh this week</span>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="image-wrap">
+              <span class="tag">New</span>
+              <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80" alt="Premium Cotton Tee" />
+            </div>
+            <div class="product-body">
+              <div class="product-title">Premium Cotton Tee</div>
+              <div class="meta-row">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">1,248 reviews</span>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="price">₹999</div>
+                  <div class="old-price">₹1,499</div>
+                </div>
+                <button class="buy-btn">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="image-wrap">
+              <span class="tag">Hot</span>
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80" alt="Signature Bag" />
+            </div>
+            <div class="product-body">
+              <div class="product-title">Signature Everyday Bag</div>
+              <div class="meta-row">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">864 reviews</span>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="price">₹1,799</div>
+                  <div class="old-price">₹2,699</div>
+                </div>
+                <button class="buy-btn">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="image-wrap">
+              <span class="tag">Popular</span>
+              <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Minimal Desk Lamp" />
+            </div>
+            <div class="product-body">
+              <div class="product-title">Minimal Desk Lamp</div>
+              <div class="meta-row">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">610 reviews</span>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="price">₹2,499</div>
+                  <div class="old-price">₹3,399</div>
+                </div>
+                <button class="buy-btn">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="image-wrap">
+              <span class="tag">Best</span>
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80" alt="Urban Runner" />
+            </div>
+            <div class="product-body">
+              <div class="product-title">Urban Runner Shoes</div>
+              <div class="meta-row">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">2,114 reviews</span>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="price">₹2,199</div>
+                  <div class="old-price">₹3,299</div>
+                </div>
+                <button class="buy-btn">Add to cart</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Best Sellers</h2>
+          <span class="chip">Customer favorites</span>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="image-wrap">
+              <span class="tag">Top</span>
+              <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80" alt="Leather Gift Box" />
+            </div>
+            <div class="product-body">
+              <div class="product-title">Luxury Gift Box</div>
+              <div class="meta-row">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">778 reviews</span>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="price">₹1,499</div>
+                  <div class="old-price">₹2,199</div>
+                </div>
+                <button class="buy-btn">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="image-wrap">
+              <span class="tag">Trending</span>
+              <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80" alt="Office Essentials" />
+            </div>
+            <div class="product-body">
+              <div class="product-title">Office Essentials Kit</div>
+              <div class="meta-row">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">903 reviews</span>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="price">₹2,999</div>
+                  <div class="old-price">₹4,299</div>
+                </div>
+                <button class="buy-btn">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="image-wrap">
+              <span class="tag">Popular</span>
+              <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80" alt="Smart Watch" />
+            </div>
+            <div class="product-body">
+              <div class="product-title">Smart Watch Pro</div>
+              <div class="meta-row">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">1,432 reviews</span>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="price">₹4,499</div>
+                  <div class="old-price">₹5,799</div>
+                </div>
+                <button class="buy-btn">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="image-wrap">
+              <span class="tag">Elite</span>
+              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt="Premium Watch" />
+            </div>
+            <div class="product-body">
+              <div class="product-title">Premium Watch</div>
+              <div class="meta-row">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">1,008 reviews</span>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="price">₹5,999</div>
+                  <div class="old-price">₹7,999</div>
+                </div>
+                <button class="buy-btn">Add to cart</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="feature-band">
+      <div class="container">
+        <div class="feature-grid">
+          <div class="feature-box">
+            <i class="bi bi-truck"></i>
+            <h3>Fast Delivery</h3>
+            <p>Quick shipping across India with safe handling of every order.</p>
+          </div>
+          <div class="feature-box">
+            <i class="bi bi-shield-check"></i>
+            <h3>Secure Checkout</h3>
+            <p>Protected payments and worry-free transactions for every customer.</p>
+          </div>
+          <div class="feature-box">
+            <i class="bi bi-arrow-repeat"></i>
+            <h3>Easy Returns</h3>
+            <p>Hassle-free return policy for worry-free shopping experiences.</p>
+          </div>
+          <div class="feature-box">
+            <i class="bi bi-headset"></i>
+            <h3>24/7 Support</h3>
+            <p>Friendly support team ready to help before and after purchase.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <p class="brand-line">Premium online shopping, fast delivery, secure payments, and best-value products for every lifestyle.</p>
 
-    <div class="footer-accordion">
-      <div class="accordion-item">
-        <button class="accordion-btn">Company <i class="bi bi-plus"></i></button>
-        <div class="accordion-content"><a href="#">About us</a><a href="#">Contact</a><a href="#">Careers</a></div>
+    <section class="section">
+      <div class="container">
+        <div class="promo-banner">
+          <div class="promo-banner-inner">
+            <div>
+              <div class="chip" style="margin-bottom: 12px; background: rgba(255,255,255,0.1); color: #ffffff; border-color: rgba(255,255,255,0.15);">Limited time offer</div>
+              <h2>Summer Sale is live</h2>
+              <p>Up to 60% off on premium essentials, gifting products, accessories and daily lifestyle picks. Grab this limited-time discount before it ends.</p>
+              <div class="hero-cta" style="margin-top: 18px;">
+                <button class="btn btn-primary">Shop The Deal</button>
+              </div>
+            </div>
+            <img class="promo-image" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80" alt="Summer sale" />
+          </div>
+        </div>
       </div>
-      <div class="accordion-item">
-        <button class="accordion-btn">Support <i class="bi bi-plus"></i></button>
-        <div class="accordion-content"><a href="#">Help center</a><a href="#">Shipping</a><a href="#">Returns</a></div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>What our customers say</h2>
+          <span class="chip">Loved by shoppers</span>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="testimonial">
+            <div class="quote">“Loved the quality and super-fast delivery. The packaging was premium and exactly matched the product photos.”</div>
+            <div class="person">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Customer" />
+              <div>
+                <strong>Aditi Sharma</strong>
+                <span>Verified Buyer</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial">
+            <div class="quote">“Very professional website, smooth ordering process and the product quality exceeded our expectations. Highly recommended.”</div>
+            <div class="person">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Customer" />
+              <div>
+                <strong>Rohit Mehta</strong>
+                <span>Business Client</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial">
+            <div class="quote">“The design, pricing and service feel premium. This is exactly the kind of e-commerce store buyers trust instantly.”</div>
+            <div class="person">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Customer" />
+              <div>
+                <strong>Neha Verma</strong>
+                <span>Frequent Shopper</span>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
-      <div class="accordion-item">
-        <button class="accordion-btn">Categories <i class="bi bi-plus"></i></button>
-        <div class="accordion-content"><a href="#">Apparel</a><a href="#">Home</a><a href="#">Accessories</a></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="brand-block">
+          <div class="brand">E-Commerce</div>
+          <p>Your trusted online destination for premium lifestyle, gifting, fashion, and work essentials—designed for modern shopping.</p>
+          <div class="social-list">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Offers</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#">Fashion</a></li>
+            <li><a href="#">Beauty</a></li>
+            <li><a href="#">Electronics</a></li>
+            <li><a href="#">Gifting</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 E-Commerce. All rights reserved.</span>
+        <span>Made for premium online shopping</span>
       </div>
     </div>
-
-    <div class="footer-social">
-      <a href="#"><i class="bi bi-facebook"></i></a>
-      <a href="#"><i class="bi bi-instagram"></i></a>
-      <a href="#"><i class="bi bi-twitter-x"></i></a>
-      <a href="#"><i class="bi bi-youtube"></i></a>
-    </div>
-
-    <div class="footer-copy">© 2026 E-Commerce. All rights reserved.</div>
   </footer>
-
-  <a class="whatsapp-float" href="https://wa.me/919999999999" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-
-  <script>
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach((item) => {
-      item.addEventListener('click', () => {
-        const answer = item.nextElementSibling;
-        const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
-        document.querySelectorAll('.faq-answer').forEach((el) => {
-          el.style.maxHeight = null;
-        });
-        if (!isOpen) {
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        }
-      });
-    });
-
-    const accordionButtons = document.querySelectorAll('.accordion-btn');
-    accordionButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const content = button.nextElementSibling;
-        const isOpen = content.style.display === 'block';
-        document.querySelectorAll('.accordion-content').forEach((el) => {
-          el.style.display = 'none';
-        });
-        if (!isOpen) content.style.display = 'block';
-      });
-    });
-  </script>
 </body>
 </html>
