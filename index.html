@@ -125,15 +125,6 @@ const productNames = [
   "Frozen French Fries", "Ready-to-Eat Meals"
 ];
 
-const products = productNames.map((name, index) => ({
-  id: index + 1,
-  name,
-  price: 20 + (index % 20) * 5,
-  category: "grocery",
-  image: `https://loremflickr.com/600/500/grocery,food?lock=${index + 1}`,
-  description: `Quality ${name} available at Fresh Basket.`,
-  stock: 100
-}));
 
 console.log("Total Products:", products.length);
 const products=[];let nextId=1;
