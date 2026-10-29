@@ -1,1094 +1,263 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>PRINTiZY</title>
+  <title>E-Commerce</title>
 
-  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=64&q=80" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
   <style>
-  :root {
-    --bg: #ffffff;
-    --bg-2: #ffffff;
-    --bg-3: #ffffff;
-
-    --panel: #ffffff;
-    --panel-2:#ffffff;
-    --panel-3:#ffffff;
-
-    --text: #0d2338;
-    --text-strong: #071d2e;
-    --muted: #4e6a82;
-    --muted-2: #788ea6;
-
-    --primary: #168fe5;
-    --primary-2: #0d75d1;
-    --primary-3: #095ca5;
-    --secondary: #66c6ff;
-
-    --line: rgba(13, 35, 56, 0.12);
-    --shadow: 0 8px 24px rgba(13, 35, 56, 0.08);
-    --strong-shadow: 0 16px 36px rgba(13, 35, 56, 0.16);
-
-    --dark-bg: #0d2338;
-    --dark-panel: #122d45;
-    --dark-panel-2: #163a56;
-    --dark-text: #f3faff;
-    --dark-muted: #c9dff7;
-    --dark-line: rgba(201, 223, 247, 0.15);
-
-    --radius: 18px;
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-  margin: 0;
-  width: 100%;
-  overflow-x: hidden;
-  font-family: 'Rubik', sans-serif;
-  background: linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
-  color: var(--text);
-}
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  img {
-    display: block;
-    max-width: 100%;
-  }
-
-  button, input {
-    font-family: 'Rubik', sans-serif;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--text-strong);
-  }
-
-  p, label, small {
-    color: var(--muted);
-  }
-
-  input,
-  textarea,
-  select {
-    background: #ffffff;
-    color: var(--text);
-    border: 1px solid var(--line);
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: #7b90a7;
-  }
-
-  .card,
-  .panel,
-  .modal-content {
-    background: var(--panel);
-    color: var(--text);
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-  }
-
-  .btn-primary,
-  button.primary {
-    background: linear-gradient(135deg, #3bb0ff, #168fe5);
-    color: #ffffff;
-    border: none;
-  }
-
-  .btn-primary:hover,
-  button.primary:hover {
-    background: linear-gradient(135deg, #52c4ff, #0d75d1);
-  }
-
-  a {
-    color: var(--primary-2);
-  }
-
-  a:hover {
-    color: var(--primary-3);
-  }
-
-  table {
-    background: #ffffff;
-    color: var(--text);
-  }
-
-  th {
-    background: #e8f4ff;
-    color: var(--text);
-  }
-
-  td {
-    border-color: var(--line);
-  }
-
-  .card,
-  .panel,
-  button,
-  input,
-  textarea,
-  select {
-    transition: all 0.25s ease;
-  }
-
-  .top-scroll {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 30px;
-    z-index: 99999;
-    background: linear-gradient(90deg, #0b2843, #0d3359, #1d9be7);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    box-shadow: 0 6px 20px rgba(29, 155, 231, 0.25);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .top-scroll marquee {
-    width: 100%;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2px;
-  }
-
-  .navbar {
-    position: fixed;
-    top: 30px;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    background: rgba(11, 26, 38, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
-  }
-
-  .navbar-wrapper {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px;
-    gap: 8px;
-  }
-
-  .navbar-brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .brand-logo {
-    width: 200px;
-    height: 40px;
-    object-fit: contain;
-    filter: drop-shadow(0 8px 18px rgba(94, 201, 255, 0.2));
-  }
-
-  .navbar-icons {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-
-  .nav-btn {
-    width: 38px;
-    height: 38px;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #eaf6ff;
-    background: linear-gradient(180deg, rgba(18, 46, 72, 0.95), rgba(9, 24, 37, 0.9));
-    border: 1px solid rgba(151, 202, 255, 0.16);
-    box-shadow: 0 8px 18px rgba(4, 17, 28, 0.28);
-    position: relative;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .nav-btn:hover {
-    background: linear-gradient(180deg, rgba(25, 72, 110, 0.9), rgba(14, 31, 47, 0.92));
-    transform: translateY(-2px);
-    box-shadow: 0 12px 22px rgba(16, 109, 194, 0.28);
-  }
-
-  .badge {
-    position: absolute;
-    top: -6px;
-    right: -5px;
-    min-width: 16px;
-    height: 16px;
-    padding: 0 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #5ec9ff, #1f8af5);
-    color: #fff;
-    font-weight: 700;
-    font-size: 9px;
-    box-shadow: 0 8px 18px rgba(47, 146, 255, 0.36);
-  }
-
-  .main-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 18px 10px 28px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .search-section {
-    margin-top: 72px;
-    background: rgba(13, 35, 56, 0.94);
-    border: 1px solid var(--dark-line);
-    box-shadow: var(--shadow);
-    border-radius: 18px;
-    padding: 10px 12px;
-    backdrop-filter: blur(8px);
-  }
-
-  .search-input {
-    width: 100%;
-    height: 42px;
-    border: 1px solid rgba(124, 180, 255, 0.14);
-    border-radius: 24px;
-    background: linear-gradient(180deg, #10283e, #0d2033);
-    color: var(--dark-text);
-    font-size: 13px;
-    padding: 0 14px;
-    outline: none;
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.02);
-  }
-
-  .search-input::placeholder {
-    color: #a8bfd7;
-  }
-
-  .search-input:focus {
-    border-color: rgba(94, 201, 255, 0.65);
-    box-shadow: 0 0 0 4px rgba(94, 201, 255, 0.12);
-  }
-.category {
-  background: #000;
-  border-radius: 18px;
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255,255,255,0.06);
-}
-
-.category img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 18px rgba(255,255,255,0.08));
-}
-  .categories {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px 8px;
-    padding: 12px 4px 0;
-  }
-
-  .category {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 14px;
-    transition: 0.25s ease;
-    cursor: pointer;
-  }
-
-  .category img {
-    width: 76px;
-    height: 76px;
-    object-fit: contain;
-    border-radius: 16px;
-    transition: 0.25s ease;
-    filter: drop-shadow(0 10px 18px rgba(30, 116, 214, 0.16));
-  }
-
-  .category:hover {
-    transform: translateY(-2px) scale(1.02);
-  }
-
-  .category:hover img {
-    filter: drop-shadow(0 16px 24px rgba(94, 201, 255, 0.22));
-  }
-
-  .promo-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 12px;
-  }
-
-  .promo-card {
-    display: block;
-    border-radius: 18px;
-    overflow: hidden;
-    background: rgba(12, 29, 43, 0.8);
-    border: 1px solid rgba(143, 191, 255, 0.12);
-    box-shadow: var(--shadow);
-    transition: 0.25s ease;
-  }
-
-  .promo-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 26px rgba(28, 85, 125, 0.22);
-  }
-
-  .promo-card img {
-    width: 100%;
-    display: block;
-    border-radius: 18px;
-  }
-
-  .section-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 18px 0 12px;
-    text-align: center;
-    font-size: clamp(20px, 4.4vw, 29px);
-    font-weight: 700;
-    color: var(--text-strong);
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    display: block;
-    flex: 1;
-    max-width: 70px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(94, 201, 255, 0.8), transparent);
-    border-radius: 999px;
-  }
-
-  .business-needs,
-  .trending-categories {
-    background: linear-gradient(180deg, rgba(13, 35, 56, 0.96), rgba(10, 24, 37, 0.96));
-    border: 1px solid var(--dark-line);
-    border-radius: 18px;
-    box-shadow: var(--shadow);
-    padding: 12px 10px 14px;
-    margin-top: 14px;
-  }
-
-  .business-needs .section-title,
-  .trending-categories .section-title {
-    color: var(--dark-text);
-  }
-
-  .business-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px 8px;
-    margin-top: 8px;
-  }
-
-  .business-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: 0.25s ease;
-    position: relative;
-    background: rgba(17, 39, 59, 0.7);
-    border: 1px solid rgba(143, 191, 255, 0.08);
-  }
-
-  .business-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 22px rgba(25, 98, 175, 0.18);
-  }
-
-  .business-card img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 12px;
-    background: #0d1c2b;
-  }
-
-  .business-card span {
-    display: block;
-    width: 100%;
-    padding: 0 4px 6px;
-    font-size: 12px;
-    line-height: 1.3;
-    font-weight: 600;
-    color: var(--dark-text);
-  }
-
-  .best-selling {
-    margin-top: 6px;
-  }
-
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 8px;
-  }
-
-  .product-card {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(180deg, rgba(18, 45, 69, 0.96), rgba(12, 28, 40, 0.96));
-    border: 1px solid var(--dark-line);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    transition: 0.25s ease;
-    display: flex;
-    flex-direction: column;
-    min-height: 196px;
-    color: var(--dark-text);
-  }
-
-  .product-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 28px rgba(19, 78, 140, 0.28);
-  }
-
-  .product-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.1), transparent 70%);
-    transform: translateX(-120%);
-    transition: transform .8s ease;
-  }
-
-  .product-card:hover::before {
-    transform: translateX(120%);
-  }
-
-  .product-image {
-    width: 100%;
-    height: 126px;
-    object-fit: contain;
-    padding: 8px 8px 0;
-    background: linear-gradient(180deg, rgba(19, 43, 61, 0.9), rgba(11, 24, 35, 0.7));
-  }
-
-  .product-card h3 {
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    color: var(--dark-text) !important;
-    line-height: 1.35 !important;
-    text-align: center !important;
-    padding: 8px 8px 10px !important;
-    margin: 0 !important;
-    letter-spacing: -0.01em;
-  }
-
-  .offer-banner {
-    margin-top: 14px;
-  }
-
-  .offer-banner-img {
-    width: 100%;
-    display: block;
-    border-radius: 18px;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--line);
-  }
-
-  .testimonials {
-    margin-top: 10px;
-    padding: 0;
-  }
-
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .review-card {
-    background: linear-gradient(180deg, rgba(16, 38, 58, 0.95), rgba(9, 25, 39, 0.9));
-    border: 1px solid var(--line);
-    border-top: 4px solid #75d6ff;
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    padding: 18px 12px;
-  }
-
-  .profile {
-    text-align: center;
-  }
-
-  .profile img {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 12px;
-    border: 3px solid rgba(94, 201, 255, 0.7);
-    box-shadow: 0 12px 20px rgba(94, 201, 255, 0.2);
-  }
-
-  .profile h3 {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 2px;
-    color: var(--dark-text);
-  }
-
-  .profile span {
-    font-size: 11px;
-    color: var(--dark-muted);
-  }
-
-  .reviews {
-    background: linear-gradient(180deg, rgba(13, 30, 45, 0.96), rgba(11, 21, 32, 0.95));
-    border: 1px solid var(--dark-line);
-    border-radius: 18px;
-    padding: 12px 10px 14px;
-    margin-top: 14px;
-    box-shadow: var(--shadow);
-  }
-
-  .reviews .section-title {
-    color: var(--dark-text);
-  }
-
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 8px;
-  }
-
-  .review-photo {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    box-shadow: 0 8px 18px rgba(17, 24, 39, 0.12);
-  }
-
-  .offer-slider {
-    margin-top: 14px;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 18px;
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-    background: rgba(15, 36, 56, 0.8);
-  }
-
-  .offer-slider .offer {
-    display: none;
-    width: 100%;
-    height: auto;
-  }
-
-  .offer-slider .offer.active {
-    display: block;
-  }
-
-  .about-printizy {
-    background: linear-gradient(180deg, rgba(13, 30, 45, 0.96), rgba(11, 21, 32, 0.96));
-    border: 1px solid var(--dark-line);
-    border-radius: 18px;
-    padding: 18px 12px;
-    margin-top: 14px;
-    box-shadow: var(--shadow);
-  }
-
-  .about-content h2 {
-    font-size: clamp(22px, 6vw, 30px);
-    font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 10px;
-    color: var(--dark-text);
-  }
-
-  .about-content p {
-    font-size: 13px;
-    line-height: 1.7;
-    color: var(--dark-muted);
-    margin-bottom: 12px;
-  }
-
-  .counter-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  .counter-box {
-    background: linear-gradient(180deg, rgba(15, 39, 59, 0.9), rgba(12, 26, 39, 0.88));
-    border: 1px solid rgba(143, 191, 255, 0.12);
-    border-radius: 14px;
-    padding: 14px 10px;
-    text-align: center;
-    box-shadow: 0 8px 18px rgba(8, 20, 34, 0.22);
-  }
-
-  .counter-box h3 {
-    font-size: 20px;
-    color: var(--dark-text);
-    font-weight: 800;
-    margin-bottom: 4px;
-  }
-
-  .counter-box span {
-    font-size: 11px;
-    color: var(--dark-muted);
-  }
-
-  .faq-section {
-    background: linear-gradient(180deg, rgba(11, 23, 34, 0.94), rgba(13, 33, 48, 0.96));
-    border: 1px solid var(--dark-line);
-    border-radius: 18px;
-    padding: 14px 10px 18px;
-    margin-top: 14px;
-    box-shadow: var(--shadow);
-  }
-
-  .faq-section .section-title {
-    color: var(--dark-text);
-  }
-
-  .faq-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 8px;
-  }
-
-  .faq-item {
-    background: rgba(14, 33, 49, 0.88);
-    border: 1px solid rgba(143, 191, 255, 0.12);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 18px rgba(7, 18, 29, 0.12);
-  }
-
-  .faq-question {
-    padding: 14px 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--dark-text);
-    cursor: pointer;
-    gap: 8px;
-  }
-
-  .faq-question span {
-    font-size: 20px;
-    line-height: 1;
-    color: var(--secondary);
-    font-weight: 700;
-  }
-
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: 0.35s ease;
-  }
-
-  .faq-answer p {
-    font-size: 12px;
-    line-height: 1.6;
-    color: var(--dark-muted);
-    padding: 0 12px 14px;
-  }
-
-  .printizy-footer {
-    background: linear-gradient(180deg, rgba(9, 22, 33, 0.92), rgba(12, 29, 43, 0.95));
-    border-top: 1px solid rgba(143, 191, 255, 0.12);
-    margin-top: 20px;
-    padding: 18px 12px 28px;
-  }
-
-  .brand-top {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-
-  .brand-top .brand-logo {
-    width: 110px;
-  }
-
-  .brand-line {
-    font-size: 12px;
-    color: var(--dark-muted);
-    line-height: 1.45;
-    margin: 0;
-  }
-
-  .brand-text h3 {
-    margin-top: 8px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: #dfeffb;
-    font-weight: 600;
-  }
-
-  .footer-accordion {
-    background: rgba(10, 25, 37, 0.92);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .accordion-item {
-    border-bottom: 1px solid rgba(143, 191, 255, 0.1);
-    background: transparent;
-  }
-
-  .accordion-item:last-child {
-    border-bottom: none;
-  }
-
-  .accordion-btn {
-    width: 100%;
-    background: transparent;
-    border: none;
-    color: var(--dark-text);
-    padding: 14px 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: left;
-  }
-
-  .accordion-btn i {
-    font-size: 18px;
-    color: var(--secondary);
-  }
-
-  .accordion-content {
-    display: none;
-    padding: 0 12px 12px;
-    background: transparent;
-  }
-
-  .accordion-content a {
-    display: block;
-    padding: 8px 0;
-    color: var(--dark-muted);
-    font-size: 12px;
-    border-bottom: 1px solid rgba(143, 191, 255, 0.08);
-  }
-
-  .accordion-content a:last-child {
-    border-bottom: none;
-  }
-
-  .footer-social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin: 18px 0 12px;
-    flex-wrap: wrap;
-  }
-
-  .footer-social a {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(180deg, rgba(16, 39, 61, 0.9), rgba(12, 28, 42, 0.9));
-    color: #dfeeff;
-    border: 1px solid rgba(125, 176, 255, 0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    box-shadow: 0 8px 18px rgba(7, 18, 29, 0.14);
-  }
-
-  .footer-apps,
-  .footer-payments {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  }
-
-  .footer-apps img,
-  .footer-payments img {
-    height: 32px;
-    border-radius: 8px;
-  }
-
-  .footer-copy {
-    text-align: center;
-    font-size: 11px;
-    color: var(--dark-muted);
-    padding-top: 10px;
-    border-top: 1px solid rgba(143, 191, 255, 0.08);
-  }
-
-  .whatsapp-float {
-    position: fixed;
-    right: 16px;
-    bottom: 20px;
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #25D366, #1fc15d);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    z-index: 9999;
-    box-shadow: 0 14px 28px rgba(37,211,102,0.32);
-  }
-
-  .modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(6, 14, 22, 0.6);
-    display: none;
-    align-items: flex-end;
-    z-index: 99999;
-    backdrop-filter: blur(5px);
-  }
-
-  .modal-sheet {
-    width: 100%;
-    max-height: 92vh;
-    background: linear-gradient(180deg, #0d2237, #0a1d2a);
-    border-radius: 22px 22px 0 0;
-    overflow-y: auto;
-    animation: slideUp .28s ease;
-    padding: 0 14px 16px;
-    border-top: 1px solid rgba(143, 191, 255, 0.12);
-    box-shadow: 0 -12px 28px rgba(0,0,0,0.28);
-    color: var(--dark-text);
-  }
-
-  @keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
-  }
-
-  .modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(135deg, #124268, #1b5b9d);
-    padding: 14px 16px;
-    margin: 0 -14px 14px;
-    border-radius: 22px 22px 0 0;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-  }
-
-  .modal-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #f3fbff;
-  }
-
-  .close-btn {
-    width: 34px;
-    height: 34px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.15);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-
-  .profile-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-
-  .profile-avatar {
-    width: 68px;
-    height: 68px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #1a6edb, #5ec9ff);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    box-shadow: 0 12px 24px rgba(67,159,255,0.3);
-  }
-
-  .profile-user {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .profile-input {
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(143,191,255,0.12);
-    background: rgba(10,26,38,0.9);
-    color: var(--dark-text);
-    font-size: 13px;
-    outline: none;
-  }
-
-  .wallet-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(135deg, #174c7a, #1e6fc5);
-    border-radius: 16px;
-    padding: 14px 12px;
-    color: #fff;
-    margin-bottom: 12px;
-    box-shadow: 0 14px 28px rgba(25,104,190,0.22);
-  }
-
-  .wallet-title {
-    font-size: 16px;
-    font-weight: 700;
-  }
-
-  .coin-value {
-    font-size: 24px;
-    font-weight: 700;
-    color: #dff8ff;
-  }
-
-  .menu-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 10px;
-    background: rgba(15,39,59,0.9);
-    border: 1px solid rgba(143,191,255,0.12);
-    border-radius: 12px;
-    margin-bottom: 10px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--dark-text);
-    box-shadow: 0 8px 18px rgba(8,20,34,0.12);
-  }
-
-  .btn-primary {
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 14px;
-    background: linear-gradient(135deg, #52c0ff, #1d7fe8);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 12px 22px rgba(29,127,232,0.35);
-  }
-
-  .btn-secondary {
-    width: 100%;
-    border: 1px solid rgba(143,191,255,0.12);
-    border-radius: 10px;
-    padding: 12px 14px;
-    background: rgba(13,31,46,0.9);
-    color: var(--dark-text);
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  @media (max-width: 360px) {
-    .brand-logo { width: 170px; }
-    .nav-btn { width: 34px; height: 34px; }
-    .categories { gap: 6px; }
-    .category img { width: 68px; height: 68px; }
-    .product-card { min-height: 184px; }
-    .product-image { height: 118px; }
-    .section-title { gap: 8px; }
-    .section-title span { max-width: 46px; }
-    .business-card span { font-size: 11px; }
-    .footer-apps img, .footer-payments img { height: 28px; }
-  }
-</style>
-        
-      
-  
+    :root {
+      --bg: #ffffff;
+      --panel: #ffffff;
+      --text: #0d2338;
+      --text-strong: #071d2e;
+      --muted: #4e6a82;
+      --muted-2: #788ea6;
+      --primary: #168fe5;
+      --primary-2: #0d75d1;
+      --primary-3: #095ca5;
+      --secondary: #66c6ff;
+      --line: rgba(13, 35, 56, 0.12);
+      --shadow: 0 8px 24px rgba(13, 35, 56, 0.08);
+      --dark-bg: #0d2338;
+      --dark-panel: #122d45;
+      --dark-text: #f3faff;
+      --dark-muted: #c9dff7;
+      --dark-line: rgba(201, 223, 247, 0.15);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      width: 100%;
+      overflow-x: hidden;
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
+      color: var(--text);
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    button, input { font-family: 'Rubik', sans-serif; }
+    h1,h2,h3,h4,h5,h6 { color: var(--text-strong); }
+    p,label,small { color: var(--muted); }
+
+    .top-scroll {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 30px; z-index: 99999;
+      background: linear-gradient(90deg, #0b2843, #0d3359, #1d9be7);
+      color: #fff; display: flex; align-items: center; overflow: hidden;
+      box-shadow: 0 6px 20px rgba(29, 155, 231, 0.25);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .top-scroll marquee {
+      width: 100%; font-size: 11px; font-weight: 600; letter-spacing: 0.2px;
+    }
+
+    .navbar {
+      position: fixed; top: 30px; left: 0; right: 0;
+      z-index: 9999; background: rgba(11,26,38,0.8);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line); box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+    }
+    .navbar-wrapper {
+      max-width: 1400px; margin: 0 auto; display: flex; align-items: center;
+      justify-content: space-between; padding: 8px 12px; gap: 8px;
+    }
+    .navbar-brand {
+      display: flex; align-items: center; justify-content: center; font-weight: 800;
+      color: #fff; font-size: 1.3rem; letter-spacing: 0.04em;
+    }
+    .brand-logo {
+      width: 200px; height: 40px; object-fit: contain;
+      filter: drop-shadow(0 8px 18px rgba(94, 201, 255, 0.2));
+    }
+    .navbar-icons { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .nav-btn {
+      width: 38px; height: 38px; border: none; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; color: #eaf6ff; background: linear-gradient(180deg, rgba(18,46,72,0.95), rgba(9,24,37,0.9));
+      border: 1px solid rgba(151,202,255,0.16); box-shadow: 0 8px 18px rgba(4,17,28,0.28);
+      position: relative; cursor: pointer; transition: all 0.25s ease;
+    }
+    .nav-btn:hover {
+      background: linear-gradient(180deg, rgba(25,72,110,0.9), rgba(14,31,47,0.92));
+      transform: translateY(-2px); box-shadow: 0 12px 22px rgba(16,109,194,0.28);
+    }
+    .badge {
+      position: absolute; top: -6px; right: -5px; min-width: 16px; height: 16px; padding: 0 4px; display: flex;
+      align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg,#5ec9ff,#1f8af5);
+      color: #fff; font-weight: 700; font-size: 9px; box-shadow: 0 8px 18px rgba(47,146,255,0.36);
+    }
+
+    .main-container {
+      max-width: 1400px; margin: 0 auto; padding: 18px 10px 28px; position: relative; z-index: 1;
+    }
+    .search-section {
+      margin-top: 72px; background: rgba(13,35,56,0.94); border: 1px solid var(--dark-line);
+      box-shadow: var(--shadow); border-radius: 18px; padding: 10px 12px; backdrop-filter: blur(8px);
+    }
+    .search-input {
+      width: 100%; height: 42px; border: 1px solid rgba(124,180,255,0.14); border-radius: 24px;
+      background: linear-gradient(180deg, #10283e, #0d2033); color: var(--dark-text); font-size: 13px; padding: 0 14px;
+      outline: none; box-shadow: inset 0 1px 2px rgba(255,255,255,0.02);
+    }
+    .search-input::placeholder { color: #a8bfd7; }
+    .search-input:focus { border-color: rgba(94,201,255,0.65); box-shadow: 0 0 0 4px rgba(94,201,255,0.12); }
+
+    .categories {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 8px; padding: 12px 4px 0;
+    }
+    .category {
+      display: flex; justify-content: center; align-items: center; border-radius: 14px; transition: 0.25s ease;
+      cursor: pointer; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.06);
+      padding: 12px; min-height: 110px;
+    }
+    .category img {
+      width: 76px; height: 76px; object-fit: cover; border-radius: 16px; transition: 0.25s ease;
+      filter: drop-shadow(0 10px 18px rgba(30,116,214,0.16));
+    }
+    .category:hover { transform: translateY(-2px) scale(1.02); }
+    .category:hover img { filter: drop-shadow(0 16px 24px rgba(94,201,255,0.22)); }
+
+    .promo-container { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+    .promo-card {
+      display: block; border-radius: 18px; overflow: hidden; background: rgba(12,29,43,0.8);
+      border: 1px solid rgba(143,191,255,0.12); box-shadow: var(--shadow); transition: 0.25s ease;
+    }
+    .promo-card:hover { transform: translateY(-2px); box-shadow: 0 16px 26px rgba(28,85,125,0.22); }
+    .promo-card img { width: 100%; display: block; border-radius: 18px; }
+
+    .section-title {
+      display: flex; align-items: center; justify-content: center; gap: 10px; margin: 18px 0 12px; text-align: center;
+      font-size: clamp(20px, 4.4vw, 29px); font-weight: 700; color: var(--text-strong); letter-spacing: -0.02em; line-height: 1.2;
+    }
+    .section-title span { display: block; flex: 1; max-width: 70px; height: 2px; background: linear-gradient(90deg, transparent, rgba(94,201,255,0.8), transparent); border-radius: 999px; }
+
+    .business-needs, .trending-categories {
+      background: linear-gradient(180deg, rgba(13,35,56,0.96), rgba(10,24,37,0.96)); border-radius: 18px;
+      border: 1px solid var(--dark-line); box-shadow: var(--shadow); padding: 12px 10px 14px; margin-top: 14px;
+    }
+    .business-needs .section-title, .trending-categories .section-title { color: var(--dark-text); }
+
+    .business-list { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px 8px; margin-top: 8px; }
+    .business-card {
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;
+      border-radius: 12px; overflow: hidden; transition: 0.25s ease; position: relative; background: rgba(17,39,59,0.7);
+      border: 1px solid rgba(143,191,255,0.08);
+    }
+    .business-card:hover { transform: translateY(-2px); box-shadow: 0 12px 22px rgba(25,98,175,0.18); }
+    .business-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; background: #0d1c2b; }
+    .business-card span { display: block; width: 100%; padding: 0 4px 6px; font-size: 12px; line-height: 1.3; font-weight: 600; color: var(--dark-text); }
+
+    .products-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 8px;
+    }
+    .product-card {
+      position: relative; overflow: hidden; border: 1px solid var(--dark-line); border-radius: 16px;
+      background: linear-gradient(180deg, rgba(18,45,69,0.96), rgba(12,28,40,0.96)); box-shadow: var(--shadow);
+      cursor: pointer; transition: 0.25s ease; display: flex; flex-direction: column; min-height: 196px; color: var(--dark-text);
+    }
+    .product-card:hover { transform: translateY(-2px); box-shadow: 0 18px 28px rgba(19,78,140,0.28); }
+    .product-image {
+      width: 100%; height: 126px; object-fit: cover; padding: 8px 8px 0; background: linear-gradient(180deg, rgba(19,43,61,0.9), rgba(11,24,35,0.7));
+    }
+    .product-card h3 {
+      font-size: 12px !important; font-weight: 600 !important; color: var(--dark-text) !important; line-height: 1.35 !important;
+      text-align: center !important; padding: 8px 8px 10px !important; margin: 0 !important; letter-spacing: -0.01em;
+    }
+
+    .offer-banner { margin-top: 14px; }
+    .offer-banner-img { width: 100%; display: block; border-radius: 18px; box-shadow: var(--shadow); border: 1px solid var(--line); }
+
+    .reviews { background: linear-gradient(180deg, rgba(13,30,45,0.96), rgba(11,21,32,0.95)); border: 1px solid var(--dark-line); border-radius: 18px; padding: 12px 10px 14px; margin-top: 14px; box-shadow: var(--shadow); }
+    .reviews .section-title { color: var(--dark-text); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 8px; }
+    .review-photo { width: 100%; height: 150px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 8px 18px rgba(17,24,39,0.12); }
+
+    .about-printizy {
+      background: linear-gradient(180deg, rgba(13,30,45,0.96), rgba(11,21,32,0.96)); border: 1px solid var(--dark-line);
+      border-radius: 18px; padding: 18px 12px; margin-top: 14px; box-shadow: var(--shadow);
+    }
+    .about-content h2 { font-size: clamp(22px, 6vw, 30px); font-weight: 800; line-height: 1.15; margin-bottom: 10px; color: var(--dark-text); }
+    .about-content p { font-size: 13px; line-height: 1.7; color: var(--dark-muted); margin-bottom: 12px; }
+    .counter-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 12px; }
+    .counter-box {
+      background: linear-gradient(180deg, rgba(15,39,59,0.9), rgba(12,26,39,0.88)); border: 1px solid rgba(143,191,255,0.12);
+      border-radius: 14px; padding: 14px 10px; text-align: center; box-shadow: 0 8px 18px rgba(8,20,34,0.22);
+    }
+    .counter-box h3 { font-size: 20px; color: var(--dark-text); font-weight: 800; margin-bottom: 4px; }
+    .counter-box span { font-size: 11px; color: var(--dark-muted); }
+
+    .faq-section {
+      background: linear-gradient(180deg, rgba(11,23,34,0.94), rgba(13,33,48,0.96)); border: 1px solid var(--dark-line);
+      border-radius: 18px; padding: 14px 10px 18px; margin-top: 14px; box-shadow: var(--shadow);
+    }
+    .faq-section .section-title { color: var(--dark-text); }
+    .faq-container { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+    .faq-item { background: rgba(14,33,49,0.88); border: 1px solid rgba(143,191,255,0.12); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 18px rgba(7,18,29,0.12); }
+    .faq-question { padding: 14px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; color: var(--dark-text); cursor: pointer; gap: 8px; }
+    .faq-question span { font-size: 20px; line-height: 1; color: var(--secondary); font-weight: 700; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: 0.35s ease; }
+    .faq-answer p { font-size: 12px; line-height: 1.6; color: var(--dark-muted); padding: 0 12px 14px; }
+
+    .printizy-footer {
+      background: linear-gradient(180deg, rgba(9,22,33,0.92), rgba(12,29,43,0.95)); border-top: 1px solid rgba(143,191,255,0.12);
+      margin-top: 20px; padding: 18px 12px 28px;
+    }
+    .brand-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .brand-top .brand-logo { width: 110px; }
+    .brand-line { font-size: 12px; color: var(--dark-muted); line-height: 1.45; margin: 0; }
+    .brand-text h3 { margin-top: 8px; font-size: 12px; line-height: 1.5; color: #dfeffb; font-weight: 600; }
+    .footer-accordion { background: rgba(10,25,37,0.92); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .accordion-item { border-bottom: 1px solid rgba(143,191,255,0.1); background: transparent; }
+    .accordion-item:last-child { border-bottom: none; }
+    .accordion-btn { width: 100%; background: transparent; border: none; color: var(--dark-text); padding: 14px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; cursor: pointer; text-align: left; }
+    .accordion-btn i { font-size: 18px; color: var(--secondary); }
+    .accordion-content { display: none; padding: 0 12px 12px; background: transparent; }
+    .accordion-content a { display: block; padding: 8px 0; color: var(--dark-muted); font-size: 12px; border-bottom: 1px solid rgba(143,191,255,0.08); }
+    .accordion-content a:last-child { border-bottom: none; }
+    .footer-social { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 18px 0 12px; flex-wrap: wrap; }
+    .footer-social a { width: 40px; height: 40px; background: linear-gradient(180deg, rgba(16,39,61,0.9), rgba(12,28,42,0.9)); color: #dfeeff; border: 1px solid rgba(125,176,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 8px 18px rgba(7,18,29,0.14); }
+    .footer-apps, .footer-payments { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .footer-apps img, .footer-payments img { height: 32px; border-radius: 8px; }
+    .footer-copy { text-align: center; font-size: 11px; color: var(--dark-muted); padding-top: 10px; border-top: 1px solid rgba(143,191,255,0.08); }
+    .whatsapp-float {
+      position: fixed; right: 16px; bottom: 20px; width: 54px; height: 54px; border-radius: 50%;
+      background: linear-gradient(135deg, #25D366, #1fc15d); color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 28px; z-index: 9999; box-shadow: 0 14px 28px rgba(37,211,102,0.32);
+    }
+
+    @media (max-width: 360px) {
+      .brand-logo { width: 170px; }
+      .categories { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .products-grid { grid-template-columns: 1fr; }
+      .business-list { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-
   <div class="top-scroll">
     <marquee behavior="scroll" direction="left" scrollamount="5">
-      🎉 Welcome to PRINTiZY | 🚚 Free Delivery on Orders Above ₹5000 | 💳 Secure Online Payments | 🎁 Best Offers on Printing Products | 📞 Customer Support Available 24×7
+      Welcome to E-Commerce • Free Delivery on Orders Above ₹999 • Secure Online Payments • Best Offers on Premium Products • Customer Support Available 24/7
     </marquee>
   </div>
 
   <nav class="navbar">
     <div class="navbar-wrapper">
-      <a href="/" class="navbar-brand">
-        <img src="images/categories/logo.webp" alt="PRINTiZY" class="brand-logo">
-      </a>
+      <a href="/" class="navbar-brand">E-Commerce</a>
 
       <div class="navbar-icons">
-        <button class="nav-btn" onclick="openRetailerProfile()" title="Profile">
-          <i class="bi bi-person"></i>
-        </button>
-
-        <button class="nav-btn" onclick="openOrderStatus()" title="Orders">
-          <i class="bi bi-bag"></i>
-        </button>
-
-        <button class="nav-btn" onclick="location.href='cart.html'" title="Cart">
+        <button class="nav-btn" title="Profile"><i class="bi bi-person"></i></button>
+        <button class="nav-btn" title="Orders"><i class="bi bi-bag"></i></button>
+        <button class="nav-btn" title="Cart">
           <i class="bi bi-cart3"></i>
           <span class="badge" id="cartBadge">0</span>
         </button>
@@ -1098,260 +267,88 @@
 
   <div class="main-container">
     <div class="search-section">
-      <input type="text" id="searchInput" class="search-input" placeholder="Search Products, Category, Shop..." onkeyup="searchProducts()">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search Products, Categories, Shop..." />
     </div>
 
     <div class="categories">
-      <div class="category" onclick="location.href='delivery.html'"><img src="images/categories/A.webp"></div>
-      <div class="category" onclick="location.href='visiting-cards.html'"><img src="images/categories/b.webp"></div>
-      <div class="category" onclick="location.href='apparel.html'"><img src="images/categories/c.webp"></div>
-      <div class="category" onclick="location.href='gifts.html'"><img src="images/categories/q.webp"></div>
-      <div class="category" onclick="location.href='stationery.html'"><img src="images/categories/d.webp"></div>
-      <div class="category" onclick="location.href='packaging.html'"><img src="images/categories/g.webp"></div>
-      <div class="category" onclick="location.href='signage.html'"><img src="images/categories/h.webp"></div>
-      <div class="category" onclick="location.href='drinkware.html'"><img src="images/categories/e.webp"></div>
+      <div class="category"><img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80" alt="Fashion" /></div>
+      <div class="category"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80" alt="Shoes" /></div>
+      <div class="category"><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Accessories" /></div>
+      <div class="category"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=80" alt="Home" /></div>
+      <div class="category"><img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=400&q=80" alt="Stationery" /></div>
+      <div class="category"><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=400&q=80" alt="Gifts" /></div>
+      <div class="category"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Beauty" /></div>
+      <div class="category"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=400&q=80" alt="Electronics" /></div>
     </div>
 
     <div class="promo-container">
-      <a href="visiting-cards.html" class="promo-card">
-        <img src="images/categories/Banner.webp" alt="Banner 1">
-      </a>
-      <a href="apparel.html" class="promo-card">
-        <img src="images/categories/banner2.webp" alt="Banner 2">
-      </a>
+      <a href="#" class="promo-card"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80" alt="Promo Banner 1" /></a>
+      <a href="#" class="promo-card"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1200&q=80" alt="Promo Banner 2" /></a>
     </div>
 
     <section class="business-needs">
       <h2 class="section-title"><span></span>Everything Your Business Needs<span></span></h2>
       <div class="business-list">
-        <a href="startup-branding.html" class="business-card"><img src="images/business/startup.webp" alt="Startup Branding"><span>Startup Branding</span></a>
-        <a href="cafe-restaurant.html" class="business-card"><img src="images/business/cafe.webp" alt="Cafe & Restaurant"><span>Cafe & Restaurant Essentials</span></a>
-        <a href="education-campus.html" class="business-card"><img src="images/business/education.webp" alt="Education"><span>Education & Campus Needs</span></a>
-        <a href="events-promotions.html" class="business-card"><img src="images/business/events.webp" alt="Events"><span>Event & Promotions</span></a>
-        <a href="ecommerce.html" class="business-card"><img src="images/business/ecommerce.webp" alt="E-commerce"><span>E-commerce Business</span></a>
-        <a href="corporate.html" class="business-card"><img src="images/business/corporate.webp" alt="Corporate"><span>Corporate & Business Promotions</span></a>
-        <a href="hotels.html" class="business-card"><img src="images/business/hotel.webp" alt="Hotels"><span>Hotels & Rooms</span></a>
-        <a href="packaging.html" class="business-card"><img src="images/business/packaging.webp" alt="Packaging"><span>End to End Packaging</span></a>
-        <a href="boutique.html" class="business-card"><img src="images/business/boutique.webp" alt="Boutique"><span>Boutique & Fashion</span></a>
-        <a href="beauty-salon.html" class="business-card"><img src="images/business/beauty.webp" alt="Beauty"><span>Beauty, Salon & Spa</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=600&q=80" alt="Startup Branding" /><span>Startup Branding</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=80" alt="Cafe & Restaurant" /><span>Cafe & Restaurant Essentials</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Education" /><span>Education & Campus Needs</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=600&q=80" alt="Events" /><span>Events & Promotions</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="E-Commerce" /><span>E-Commerce Business</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" alt="Corporate" /><span>Corporate & Business Promotion</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Hotels" /><span>Hotels & Rooms</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=600&q=80" alt="Packaging" /><span>End to End Packaging</span></a>
       </div>
     </section>
 
     <section class="trending-categories">
       <h2 class="section-title"><span></span>Trending Categories<span></span></h2>
       <div class="business-list">
-        <a href="delivery.html" class="business-card"><img src="images/categories/same-day-delivery.webp" alt=""><span>Same Day Delivery</span></a>
-        <a href="stationery.html" class="business-card"><img src="images/categories/business-stationery.webp" alt=""><span>Business Stationery</span></a>
-        <a href="gifts.html" class="business-card"><img src="images/categories/personalised-gifts.webp" alt=""><span>Personalised Gifts</span></a>
-        <a href="apparel.html" class="business-card"><img src="images/categories/apparel.webp" alt=""><span>Apparel</span></a>
-        <a href="packaging.html" class="business-card"><img src="images/categories/packaging.webp" alt=""><span>Packaging</span></a>
-        <a href="signage.html" class="business-card"><img src="images/categories/marketing-signs.webp" alt=""><span>Marketing & Signs</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80" alt="Same Day Delivery" /><span>Same Day Delivery</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=600&q=80" alt="Business Stationery" /><span>Business Stationery</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80" alt="Personalized Gifts" /><span>Personalized Gifts</span></a>
+        <a href="#" class="business-card"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Apparel" /><span>Apparel</span></a>
       </div>
     </section>
 
     <section class="best-selling">
       <h2 class="section-title"><span></span>Popular Products<span></span></h2>
       <div class="products-grid">
-        <div class="product-card" onclick="location.href='product.html?id=6a59323512563ba6f28ad306'">
-          <img src="images/products/tshirts.webp" class="product-image" />
-          <h3>T-Shirts</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd30319f4b5f6af030675'">
-          <img src="images/products/photo-prints.webp" class="product-image" />
-          <h3>Photo Prints</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd37b19f4b5f6af030677'">
-          <img src="images/products/photo-frames.webp" class="product-image" />
-          <h3>Photo Frames</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5c76a5e75e203a7af36356'">
-          <img src="images/products/business-cards.webp" class="product-image" />
-          <h3>Business Cards</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd42419f4b5f6af030679'">
-          <img src="images/products/booklets.webp" class="product-image" />
-          <h3>Booklets</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd4b219f4b5f6af03067b'">
-          <img src="images/products/hoodies.webp" class="product-image" />
-          <h3>Sweatshirts & Hoodies</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd51319f4b5f6af03067d'">
-          <img src="images/products/posters.webp" class="product-image" />
-          <h3>Posters</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd5e619f4b5f6af03067f'">
-          <img src="images/products/drinkware.webp" class="product-image" />
-          <h3>Drinkware</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd66119f4b5f6af030681'">
-          <img src="images/products/tote-bags.webp" class="product-image" />
-          <h3>Tote Bags</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd6ba19f4b5f6af030683'">
-          <img src="images/products/labels.webp" class="product-image" />
-          <h3>Labels</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd70c19f4b5f6af030685'">
-          <img src="images/products/stickers.webp" class="product-image" />
-          <h3>Stickers</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd75b19f4b5f6af030687'">
-          <img src="images/products/certificates.webp" class="product-image" />
-          <h3>Certificates</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd7ba19f4b5f6af030689'">
-          <img src="images/products/awards.webp" class="product-image" />
-          <h3>Awards</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd80819f4b5f6af03068b'">
-          <img src="images/products/id-cards.webp" class="product-image" />
-          <h3>ID Cards</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd86519f4b5f6af03068d'">
-          <img src="images/products/photo-mugs.webp" class="product-image" />
-          <h3>Photo Mugs</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd8b619f4b5f6af03068f'">
-          <img src="images/products/cards.webp" class="product-image" />
-          <h3>Cards</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd8f419f4b5f6af030691'">
-          <img src="images/products/canvas.webp" class="product-image" />
-          <h3>Canvas</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd92f19f4b5f6af030693'">
-          <img src="images/products/standees.webp" class="product-image" />
-          <h3>Standees</h3>
-        </div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" alt="T-Shirts" /><h3>T-Shirts</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="Photo Prints" /><h3>Photo Prints</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Photo Frames" /><h3>Photo Frames</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" alt="Business Cards" /><h3>Business Cards</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80" alt="Booklets" /><h3>Booklets</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80" alt="Hoodies" /><h3>Sweatshirts & Hoodies</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Posters" /><h3>Posters</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80" alt="Drinkware" /><h3>Drinkware</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=800&q=80" alt="Tote Bags" /><h3>Tote Bags</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" alt="Labels" /><h3>Labels</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" alt="Stickers" /><h3>Stickers</h3></div>
+        <div class="product-card"><img class="product-image" src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80" alt="Certificates" /><h3>Certificates</h3></div>
       </div>
     </section>
 
     <div class="offer-banner">
-      <img src="images/offer.webp" class="offer-banner-img" alt="Offer Banner">
+      <img class="offer-banner-img" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80" alt="Offer Banner" />
     </div>
-
-    <section class="best-selling">
-      <h2 class="section-title"><span></span>New Launches<span></span></h2>
-      <div class="products-grid">
-        <div class="product-card" onclick="location.href='product.html?id=6a59323512563ba6f28ad306'">
-          <img src="images/products/custom-tissue-paper.webp" class="product-image" />
-          <h3>Custom Tissue Paper</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd30319f4b5f6af030675'">
-          <img src="images/products/premium-finish-stationery.webp" class="product-image" />
-          <h3>Premium Finish Stationery</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd37b19f4b5f6af030677'">
-          <img src="images/products/premium-business-stationery.webp" class="product-image" />
-          <h3>Premium Business Stationery</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5c76a5e75e203a7af36356'">
-          <img src="images/products/premium-sipper-bottles.webp" class="product-image" />
-          <h3>Premium Sipper Bottles</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd42419f4b5f6af030679'">
-          <img src="images/products/pocket-photo-album.webp" class="product-image" />
-          <h3>Pocket Photo Album</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd4b219f4b5f6af03067b'">
-          <img src="images/products/mens-polo-tshirt.webp" class="product-image" />
-          <h3>Men's Polo T-Shirt</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd51319f4b5f6af03067d'">
-          <img src="images/products/pocket-notepad.webp" class="product-image" />
-          <h3>Pocket Notepad</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd5e619f4b5f6af03067f'">
-          <img src="images/products/pocket-notebook.webp" class="product-image" />
-          <h3>Pocket Notebook</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd66119f4b5f6af030681'">
-          <img src="images/products/scott-organic-polo.webp" class="product-image" />
-          <h3>Scott Organic Polo</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd6ba19f4b5f6af030683'">
-          <img src="images/products/custom-sports-jersey.webp" class="product-image" />
-          <h3>Custom Sports Jersey</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd70c19f4b5f6af030685'">
-          <img src="images/products/id-card-combos.webp" class="product-image" />
-          <h3>ID Card Combos</h3>
-        </div>
-
-        <div class="product-card" onclick="location.href='product.html?id=6a5dd75b19f4b5f6af030687'">
-          <img src="images/products/pens.webp" class="product-image" />
-          <h3>Pens</h3>
-        </div>
-      </div>
-    </section>
-
-    <section class="testimonials">
-      <h2 class="section-title">Business Owner</h2>
-      <div class="testimonial-grid">
-        <div class="review-card">
-          <div class="profile">
-            <img src="images/users/user1.jpg" />
-            <h3>Vijay Gupta</h3>
-            <span>Business Owner</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="reviews">
       <h2 class="section-title"><span></span>What our Customers Says<span></span></h2>
       <div class="reviews-grid">
-        <div class="review-card"><img src="images/ab.webp" class="review-photo" /></div>
-        <div class="review-card"><img src="images/ac.webp" class="review-photo" /></div>
-        <div class="review-card"><img src="images/ad.webp" class="review-photo" /></div>
-        <div class="review-card"><img src="images/ae.webp" class="review-photo" /></div>
+        <div class="review-card"><img class="review-photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Customer review 1" /></div>
+        <div class="review-card"><img class="review-photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Customer review 2" /></div>
+        <div class="review-card"><img class="review-photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Customer review 3" /></div>
+        <div class="review-card"><img class="review-photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Customer review 4" /></div>
       </div>
     </section>
 
-    <div class="offer-banner">
-      <img src="images/offer1.webp" class="offer-banner-img" alt="Offer Banner">
-    </div>
-
-    <div class="offer-slider">
-      <img src="images/banner1.webp" class="offer active">
-      <img src="images/banner2.webp" class="offer">
-    </div>
-
     <section class="about-printizy">
       <div class="about-content">
-        <h2>About PRINTiZY</h2>
+        <h2>About E-Commerce</h2>
         <p>
-          PRINTiZY is your trusted online printing partner, offering premium quality printing services for businesses, startups, students and individuals. From Business Cards, Brochures and Flyers to T-Shirts, Corporate Gifts, Packaging and Custom Merchandise—we deliver everything with premium quality and fast turnaround.
+          E-Commerce is your trusted online store for premium products, stylish accessories, and everyday essentials.
+          From fashion and home décor to office supplies and personalized gifts, we deliver quality with fast service and secure shopping.
         </p>
-
         <div class="counter-grid">
           <div class="counter-box"><h3>50K+</h3><span>Orders Delivered</span></div>
           <div class="counter-box"><h3>5000+</h3><span>Happy Customers</span></div>
@@ -1363,239 +360,84 @@
 
     <section class="faq-section">
       <h2 class="section-title">Frequently Asked Questions</h2>
-
       <div class="faq-container">
         <div class="faq-item">
-          <div class="faq-question">What services does PRINTiZY offer?<span>+</span></div>
-          <div class="faq-answer">
-            <p>PRINTiZY provides Business Cards, Flyers, Brochures, Posters, Packaging, T-Shirts, Corporate Gifts, Banners, Stickers and many more printing solutions.</p>
-          </div>
+          <div class="faq-question">What services does E-Commerce offer?<span>+</span></div>
+          <div class="faq-answer"><p>We provide premium fashion, home, office, gifting, accessories, and personalized products across categories.</p></div>
         </div>
-
         <div class="faq-item">
           <div class="faq-question">Do you provide same-day delivery?<span>+</span></div>
-          <div class="faq-answer">
-            <p>Yes. Same-day delivery is available for selected products and selected locations.</p>
-          </div>
+          <div class="faq-answer"><p>Yes, same-day delivery is available for selected products and locations.</p></div>
         </div>
-
         <div class="faq-item">
           <div class="faq-question">Can I order a single piece?<span>+</span></div>
-          <div class="faq-answer">
-            <p>Yes, many of our products are available from just one quantity.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">How can I contact PRINTiZY?<span>+</span></div>
-          <div class="faq-answer">
-            <p>You can contact us through WhatsApp, Email or Call. Our support team is always ready to help.</p>
-          </div>
+          <div class="faq-answer"><p>Yes, many products can be ordered in single quantity depending on stock and availability.</p></div>
         </div>
       </div>
     </section>
   </div>
 
   <footer class="printizy-footer">
-    <div class="footer-brand">
-      <div class="brand-top">
-        <img src="images/categories/logo.webp" class="brand-logo" alt="PRINTiZY">
-        <div class="brand-text">
-          <p class="brand-line">PRINTiZY makes your Printing & Branding Hassle-free</p>
-          <h3>India's most trusted Print & Corporate Gifting Brand</h3>
-        </div>
+    <div class="brand-top">
+      <div class="brand-text">
+        <h3>E-Commerce</h3>
       </div>
     </div>
+    <p class="brand-line">Premium online shopping, fast delivery, secure payments, and best-value products for every lifestyle.</p>
 
     <div class="footer-accordion">
       <div class="accordion-item">
-        <button class="accordion-btn"><span>Find Stores</span><i class="bi bi-plus-lg"></i></button>
-        <div class="accordion-content">
-          <a href="#">Rudrapur Store</a>
-          <a href="#">Pantnagar Store</a>
-          <a href="#">All Stores</a>
-        </div>
+        <button class="accordion-btn">Company <i class="bi bi-plus"></i></button>
+        <div class="accordion-content"><a href="#">About us</a><a href="#">Contact</a><a href="#">Careers</a></div>
       </div>
-
       <div class="accordion-item">
-        <button class="accordion-btn"><span>Our Company</span><i class="bi bi-plus-lg"></i></button>
-        <div class="accordion-content">
-          <a href="about.html">About Us</a>
-          <a href="#">Careers</a>
-          <a href="#">Blogs</a>
-          <a href="#">Contact Us</a>
-        </div>
+        <button class="accordion-btn">Support <i class="bi bi-plus"></i></button>
+        <div class="accordion-content"><a href="#">Help center</a><a href="#">Shipping</a><a href="#">Returns</a></div>
       </div>
-
       <div class="accordion-item">
-        <button class="accordion-btn"><span>Support</span><i class="bi bi-plus-lg"></i></button>
-        <div class="accordion-content">
-          <a href="#">Help Center</a>
-          <a href="#">Track Order</a>
-          <a href="#">Return Policy</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms & Conditions</a>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-btn"><span>Important Links</span><i class="bi bi-plus-lg"></i></button>
-        <div class="accordion-content">
-          <a href="index.html">Home</a>
-          <a href="products.html">Products</a>
-          <a href="categories.html">Categories</a>
-          <a href="#">Corporate Orders</a>
-          <a href="#">Bulk Printing</a>
-        </div>
+        <button class="accordion-btn">Categories <i class="bi bi-plus"></i></button>
+        <div class="accordion-content"><a href="#">Apparel</a><a href="#">Home</a><a href="#">Accessories</a></div>
       </div>
     </div>
 
     <div class="footer-social">
-      <a href="#"><i class="bi bi-instagram"></i></a>
       <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>
       <a href="#"><i class="bi bi-twitter-x"></i></a>
-      <a href="#"><i class="bi bi-linkedin"></i></a>
-      <a href="#"><i class="bi bi-pinterest"></i></a>
+      <a href="#"><i class="bi bi-youtube"></i></a>
     </div>
 
-    <div class="footer-apps">
-      <img src="images/footer/google-play.png" alt="Google Play">
-      <img src="images/footer/app-store.png" alt="App Store">
-    </div>
-
-    <div class="footer-payments">
-      <img src="images/footer/visa.png">
-      <img src="images/footer/mastercard.png">
-      <img src="images/footer/upi.png">
-    </div>
-
-    <div class="footer-copy">© 2026 PRINTiZY. All Rights Reserved.</div>
+    <div class="footer-copy">© 2026 E-Commerce. All rights reserved.</div>
   </footer>
 
-  <a href="https://wa.me/919920978766" class="whatsapp-float" target="_blank">
-    <i class="bi bi-whatsapp"></i>
-  </a>
-
-  <div class="modal" id="profileModal">
-    <div class="modal-sheet">
-      <div class="modal-header">
-        <h2 class="modal-title">👤 My Account</h2>
-        <button class="close-btn" onclick="closeAll()"><i class="bi bi-x"></i></button>
-      </div>
-
-      <div class="profile-card">
-        <div class="profile-avatar"><i class="bi bi-person-circle"></i></div>
-        <div class="profile-user">
-          <input id="profileName" class="profile-input" placeholder="Shop Name" readonly>
-          <input id="profileMobile" class="profile-input" placeholder="Mobile Number" readonly>
-        </div>
-      </div>
-
-      <div class="wallet-card">
-        <div class="wallet-title">💰 Printizy Wallet</div>
-        <div class="coin-value">🪙 <span id="coinBalance">0</span></div>
-      </div>
-
-      <div class="menu-item">📦 My Orders <i class="bi bi-chevron-right"></i></div>
-      <div class="menu-item">❤️ Wishlist <i class="bi bi-chevron-right"></i></div>
-      <div class="menu-item">🔔 Notifications <i class="bi bi-chevron-right"></i></div>
-      <div class="menu-item">🪙 Coin History <i class="bi bi-chevron-right"></i></div>
-      <div class="menu-item" onclick="window.open('https://wa.me/919920978766','_blank')">
-        <i class="bi bi-whatsapp" style="color:#25D366;"></i> WhatsApp Support <i class="bi bi-chevron-right"></i>
-      </div>
-
-      <button class="btn-primary" style="margin-top:12px;" onclick="saveProfile()">Save Profile</button>
-      <br><br>
-      <button class="btn-secondary" onclick="window.location.href='login.html#login'">Login</button>
-      <button class="btn-secondary" onclick="window.location.href='login.html#signup'">Sign Up</button>
-    </div>
-  </div>
+  <a class="whatsapp-float" href="https://wa.me/919999999999" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
   <script>
-    const offers = document.querySelectorAll(".offer");
-    let currentOffer = 0;
-
-    setInterval(() => {
-      if (!offers.length) return;
-      offers[currentOffer].classList.remove("active");
-      currentOffer = (currentOffer + 1) % offers.length;
-      offers[currentOffer].classList.add("active");
-    }, 1200);
-
-    document.querySelectorAll(".faq-question").forEach((item) => {
-      item.addEventListener("click", () => {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach((item) => {
+      item.addEventListener('click', () => {
         const answer = item.nextElementSibling;
-        const span = item.querySelector("span");
-
-        if (answer.style.maxHeight) {
-          answer.style.maxHeight = null;
-          span.innerHTML = "+";
-        } else {
-          document.querySelectorAll(".faq-answer").forEach((a) => a.style.maxHeight = null);
-          document.querySelectorAll(".faq-question span").forEach((s) => s.innerHTML = "+");
-          answer.style.maxHeight = answer.scrollHeight + "px";
-          span.innerHTML = "−";
-        }
-      });
-    });
-
-    document.querySelectorAll(".accordion-item").forEach((item) => {
-      const btn = item.querySelector(".accordion-btn");
-      const content = item.querySelector(".accordion-content");
-      const icon = btn.querySelector("i");
-
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".accordion-item").forEach((other) => {
-          if (other !== item) {
-            const oContent = other.querySelector(".accordion-content");
-            const oIcon = other.querySelector(".accordion-btn i");
-            oContent.style.display = "none";
-            oContent.style.maxHeight = null;
-            oIcon.classList.remove("bi-dash-lg");
-            oIcon.classList.add("bi-plus-lg");
-          }
+        const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+        document.querySelectorAll('.faq-answer').forEach((el) => {
+          el.style.maxHeight = null;
         });
-
-        if (content.style.display === "block") {
-          content.style.display = "none";
-          content.style.maxHeight = null;
-          icon.classList.remove("bi-dash-lg");
-          icon.classList.add("bi-plus-lg");
-        } else {
-          content.style.display = "block";
-          content.style.maxHeight = content.scrollHeight + "px";
-          icon.classList.remove("bi-plus-lg");
-          icon.classList.add("bi-dash-lg");
+        if (!isOpen) {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
         }
       });
     });
 
-    function closeAll() {
-      document.getElementById("profileModal").style.display = "none";
-    }
-
-    function saveProfile() {
-      alert("Profile Saved");
-      closeAll();
-    }
-
-    function openRetailerProfile() {
-      document.getElementById("profileModal").style.display = "flex";
-    }
-
-    function openOrderStatus() {
-      alert("Orders page open ho raha hai");
-    }
-
-    function updateCartBadge() {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      let count = 0;
-      cart.forEach(item => count += Number(item.quantity || 1));
-      const badge = document.getElementById("cartBadge");
-      if (badge) badge.innerText = count;
-    }
-
-    window.addEventListener("load", updateCartBadge);
+    const accordionButtons = document.querySelectorAll('.accordion-btn');
+    accordionButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const isOpen = content.style.display === 'block';
+        document.querySelectorAll('.accordion-content').forEach((el) => {
+          el.style.display = 'none';
+        });
+        if (!isOpen) content.style.display = 'block';
+      });
+    });
   </script>
 </body>
 </html>
