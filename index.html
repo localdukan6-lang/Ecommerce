@@ -75,115 +75,272 @@ footer{margin-top:45px;background:var(--green-deep);color:#c7d7cb;padding:40px 0
 /* IMPORTANT: Replace this demo number and demo prices before publishing. */
 const STORE_WHATSAPP="919876543210";
 /* Each product uses its own search terms and unique image lock, so product cards don't all reuse one category photo. */
-const catalog=[
-["Rice & Grains","rice",[
-["Premium Basmati Rice",120,"1 kg","basmati,rice"],["Regular Basmati Rice",90,"1 kg","white,rice,grain"],["Sona Masoori Rice",65,"1 kg","sona,masoori,rice"],["Kolam Rice",70,"1 kg","kolam,rice"],["Gobindobhog Rice",110,"1 kg","aromatic,rice"],["Brown Rice",95,"1 kg","brown,rice"],["Poha",45,"500 g","poha,flattened,rice"],["Dalia",40,"500 g","broken,wheat,dalia"],["Sabudana",55,"500 g","sabudana,tapioca,pearls"],["Rajgira",65,"500 g","amaranth,grain"]]],
-["Atta & Flour","flour",[
-["Whole Wheat Atta",45,"1 kg","whole,wheat,flour"],["Multigrain Atta",65,"1 kg","multigrain,flour"],["Besan",75,"1 kg","besan,chickpea,flour"],["Maida",38,"1 kg","white,flour"],["Sooji / Rava",40,"500 g","sooji,semolina"],["Makki Atta",45,"500 g","corn,flour,maize"],["Ragi Flour",60,"500 g","ragi,millet,flour"],["Rice Flour",45,"500 g","rice,flour"],["Bajra Atta",45,"500 g","bajra,millet,flour"],["Corn Flour",55,"500 g","cornstarch,flour"]]],
-["Dal & Pulses","dal",[
-["Toor Dal",95,"500 g","toor,dal,lentils"],["Moong Dal",80,"500 g","moong,dal,lentils"],["Masoor Dal",65,"500 g","masoor,red,lentils"],["Chana Dal",55,"500 g","chana,dal,lentils"],["Urad Dal",85,"500 g","urad,dal,lentils"],["Rajma",85,"500 g","kidney,beans,rajma"],["Kabuli Chana",75,"500 g","chickpeas,kabuli,chana"],["Kala Chana",55,"500 g","black,chickpeas"],["Green Moong",65,"500 g","green,moong,beans"],["White Peas",50,"500 g","white,peas,dried"]]],
-["Spices & Masala","spice",[
-["Turmeric Powder",35,"100 g","turmeric,powder,spice"],["Red Chilli Powder",45,"100 g","red,chilli,powder"],["Coriander Powder",35,"100 g","coriander,spice,powder"],["Cumin Seeds",45,"100 g","cumin,seeds,jeera"],["Garam Masala",55,"100 g","garam,masala,spices"],["Black Pepper",65,"50 g","black,peppercorns"],["Mustard Seeds",25,"100 g","mustard,seeds"],["Fenugreek Seeds",25,"100 g","fenugreek,seeds,methi"],["Amchur Powder",35,"100 g","amchur,mango,powder"],["Chaat Masala",35,"100 g","chaat,masala,spice"]]],
-["Oil & Ghee","oil",[
-["Sunflower Oil",145,"1 litre","sunflower,cooking,oil"],["Mustard Oil",160,"1 litre","mustard,cooking,oil"],["Soybean Oil",135,"1 litre","soybean,vegetable,oil"],["Groundnut Oil",190,"1 litre","peanut,groundnut,oil"],["Pure Ghee",320,"500 ml","ghee,clarified,butter"],["Butter",60,"100 g","butter,dairy"],["Pickle",75,"200 g","indian,pickle,jar"],["Tomato Ketchup",85,"500 g","tomato,ketchup"],["Green Chilli Sauce",55,"200 g","green,chilli,sauce"],["Vinegar",45,"500 ml","vinegar,bottle"]]],
-["Bread & Bakery","bread",[
-["White Bread",40,"400 g","white,bread,loaf"],["Brown Bread",50,"400 g","brown,bread,loaf"],["Milk Bread",45,"400 g","milk,bread,loaf"],["Burger Buns",40,"Pack","burger,buns"],["Pav",35,"Pack","pav,bread,rolls"],["Rusk Toast",60,"300 g","rusk,toast,bread"],["Plain Khari",55,"200 g","khari,puff,pastry"],["Fruit Cake",70,"Pack","fruit,cake"],["Cream Roll",30,"Pack","cream,roll,pastry"],["Pizza Base",45,"Pack","pizza,bread,base"]]],
-["Biscuits & Cookies","biscuit",[
-["Glucose Biscuits",10,"Pack","glucose,biscuits"],["Marie Biscuits",30,"Pack","marie,biscuits"],["Cream Biscuits",20,"Pack","cream,sandwich,biscuits"],["Chocolate Cookies",50,"Pack","chocolate,cookies"],["Butter Cookies",45,"Pack","butter,cookies"],["Digestive Biscuits",40,"Pack","digestive,biscuits"],["Salted Crackers",25,"Pack","salted,crackers"],["Coconut Biscuits",30,"Pack","coconut,biscuits"],["Jeera Biscuits",35,"Pack","jeera,cookies,biscuits"],["Chocolate Wafers",20,"Pack","chocolate,wafer,biscuits"]]],
-["Dairy & Eggs","milk",[
-["Fresh Milk",30,"500 ml","fresh,milk,bottle"],["Curd",35,"400 g","curd,yogurt,bowl"],["Paneer",90,"200 g","paneer,cottage,cheese"],["Cheese Slices",110,"Pack","cheese,slices"],["Buttermilk",20,"500 ml","buttermilk,drink"],["Flavoured Milk",35,"200 ml","flavoured,milk,bottle"],["Milk Powder",150,"200 g","milk,powder"],["Fresh Cream",65,"Pack","fresh,cream,dairy"],["White Eggs",75,"6 pcs","white,eggs,carton"],["Condensed Milk",65,"200 g","condensed,milk"]]],
-["Tea & Beverages","tea",[
-["Assam Tea",120,"250 g","assam,black,tea"],["Green Tea",100,"Pack","green,tea,cup"],["Instant Coffee",95,"50 g","instant,coffee"],["Filter Coffee",110,"100 g","filter,coffee,powder"],["Mango Drink",40,"600 ml","mango,juice,drink"],["Orange Drink",40,"600 ml","orange,juice,drink"],["Lemon Drink",35,"600 ml","lemon,drink,bottle"],["Coconut Water",45,"Pack","coconut,water,drink"],["Glucose Powder",40,"Pack","glucose,powder,drink"],["Drinking Water",20,"1 litre","drinking,water,bottle"]]],
-["Snacks & Namkeen","snack",[
-["Aloo Bhujia",35,"150 g","aloo,bhujia,namkeen"],["Masala Sev",35,"150 g","masala,sev,snack"],["Moong Dal Namkeen",35,"150 g","moong,dal,namkeen"],["Peanut Masala",40,"150 g","masala,peanuts"],["Potato Chips",20,"Pack","potato,chips,snack"],["Banana Chips",45,"150 g","banana,chips"],["Popcorn",30,"Pack","popcorn,snack"],["Instant Noodles",15,"Pack","instant,noodles"],["Cup Noodles",50,"Cup","cup,noodles"],["Roasted Chana",40,"200 g","roasted,chickpeas,chana"]]],
-["Fruits & Vegetables","vegetables",[
-["Fresh Potatoes",30,"1 kg","fresh,potatoes"],["Fresh Onions",35,"1 kg","red,onions"],["Tomatoes",40,"1 kg","red,tomatoes"],["Green Chilli",20,"100 g","green,chilli,peppers"],["Ginger",25,"100 g","fresh,ginger,root"],["Garlic",35,"250 g","garlic,bulbs"],["Fresh Lemon",30,"250 g","fresh,lemons"],["Bananas",50,"Dozen","ripe,bananas"],["Apples",120,"1 kg","red,apples,fruit"],["Oranges",70,"1 kg","fresh,oranges,fruit"]]],
-["Household & Personal Care","soap",[
-["Bathing Soap",35,"100 g","bathing,soap,bar"],["Shampoo Sachets",2,"1 sachet","shampoo,sachet"],["Shampoo Bottle",120,"180 ml","shampoo,bottle"],["Toothpaste",65,"100 g","toothpaste,tube"],["Toothbrush",25,"1 pc","toothbrush"],["Washing Powder",60,"500 g","washing,detergent,powder"],["Dishwash Bar",20,"1 pc","dishwashing,soap,bar"],["Dishwash Liquid",85,"500 ml","dishwashing,liquid"],["Floor Cleaner",95,"500 ml","floor,cleaner,bottle"],["Toilet Cleaner",100,"500 ml","toilet,cleaner,bottle"]]]
-];
-const categoryImagePool = {
-  "Rice & Grains": [
-    "https://images.unsplash.com/photo-1586201375761-83865001e31d?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1604908553252-7f8d9b4b1b2b?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1615485490382-441e4d049cb5?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Atta & Flour": [
-    "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Dal & Pulses": [
-    "https://images.unsplash.com/photo-1518843875459-f738682238a6?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Spices & Masala": [
-    "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1622057862044-de583d2ba887?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Oil & Ghee": [
-    "https://images.unsplash.com/photo-1626785774625-ddcddc342cc0?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1604908553252-7f8d9b4b1b2b?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Bread & Bakery": [
-    "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Biscuits & Cookies": [
-    "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1499636136210-6d8479053f4f?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Dairy & Eggs": [
-    "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1563636619-e9143da7d8af?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Tea & Beverages": [
-    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Snacks & Namkeen": [
-    "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Fruits & Vegetables": [
-    "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1566385090619-18c6d6c8dd2d?auto=format&fit=crop&w=900&q=80"
-  ],
-  "Household & Personal Care": [
-    "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&w=900&q=80",
-    "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80"
-  ]
-};
+const catalog = [
+  ["Rice & Grains / चावल और अनाज", "rice", [
+    ["Premium Basmati Rice / प्रिमियम बासमती चावल", 120, "1 kg", "basmati rice, बासमती, चावल", "./images/1.webp"],
+    ["Regular Basmati Rice / रेगुलर बासमती चावल", 90, "1 kg", "regular basmati, बासमती, चावल", "./images/2.webp"],
+    ["Sona Masoori Rice / सोना मसूरी चावल", 65, "1 kg", "sona masoori, सोना मसूरी, चावल", "./images/3.webp"],
+    ["Kolam Rice / कोलम चावल", 70, "1 kg", "kolam rice, कोलम, चावल", "./images/4.webp"],
+    ["Gobindobhog Rice / गोविन्दभोग चावल", 110, "1 kg", "gobindobhog, गोविन्दभोग, चावल", "./images/5.webp"],
+    ["Brown Rice / ब्राउन राइस", 95, "1 kg", "brown rice, ब्राउन, चावल", "./images/6.webp"],
+    ["Poha / पोहा", 45, "500 g", "poha, पोहा, rice flakes", "./images/7.webp"],
+    ["Dalia / दालिया", 40, "500 g", "dalia, दालिया, broken wheat", "./images/8.webp"],
+    ["Sabudana / साबूदाना", 55, "500 g", "sabudana, साबूदाना, tapioca", "./images/9.webp"],
+    ["Rajgira / राजगीरा", 65, "500 g", "rajgira, राजगीरा, amaranth", "./images/10.webp"],
+    ["Jowar / ज्वार", 50, "1 kg", "jowar, ज्वार, millet", "./images/11.webp"],
+    ["Bajra / बाजरा", 52, "1 kg", "bajra, बाजरा, millet", "./images/12.webp"],
+    ["Pearl Millet / पेर्ल मिलेट", 58, "1 kg", "pearl millet, पेर्ल मिलेट, grain", "./images/13.webp"],
+    ["Makhana / मखाना", 120, "200 g", "makhana, मखाना, fox nuts", "./images/14.webp"],
+    ["Quinoa / क्विनोआ", 180, "500 g", "quinoa, क्विनोआ, superfood", "./images/15.webp"]
+  ]],
 
+  ["Atta & Flour / आटा और मैदा", "flour", [
+    ["Whole Wheat Atta / गेहूं का आटा", 45, "1 kg", "whole wheat atta, गेहूं का आटा, आटा", "./images/16.webp"],
+    ["Multigrain Atta / मल्टीग्रेन आटा", 65, "1 kg", "multigrain atta, मल्टीग्रेन, आटा", "./images/17.webp"],
+    ["Besan / बेसन", 75, "1 kg", "besan, बेसन, gram flour", "./images/18.webp"],
+    ["Maida / मैदा", 38, "1 kg", "maida, मैदा, flour", "./images/19.webp"],
+    ["Sooji / सूजी", 40, "500 g", "sooji, सूजी, semolina", "./images/20.webp"],
+    ["Makki Atta / मकई का आटा", 45, "500 g", "makki atta, मकई का आटा, corn flour", "./images/21.webp"],
+    ["Ragi Flour / रागी आटा", 60, "500 g", "ragi flour, रागी आटा, millet", "./images/22.webp"],
+    ["Rice Flour / चावल का आटा", 45, "500 g", "rice flour, चावल का आटा", "./images/23.webp"],
+    ["Bajra Atta / बाजरे का आटा", 45, "500 g", "bajra atta, बाजरे का आटा, millet flour", "./images/24.webp"],
+    ["Corn Flour / कॉर्न फ्लावर", 55, "500 g", "corn flour, कॉर्न फ्लावर, flour", "./images/25.webp"],
+    ["Wheat Flour / गेहूं का फ्लोर", 42, "1 kg", "wheat flour, गेहूं का फ्लोर, flour", "./images/26.webp"],
+    ["Gram Flour / ग्रैम फ्लोर", 78, "1 kg", "gram flour, ग्रैम फ्लोर", "./images/27.webp"],
+    ["Oats Flour / ओट्स फ्लोर", 80, "500 g", "oats flour, ओट्स फ्लोर", "./images/28.webp"],
+    ["Arrowroot Flour / आढ़रूट फ्लोर", 90, "500 g", "arrowroot flour, आढ़रूट फ्लोर", "./images/29.webp"],
+    ["Chickpea Flour / चने का आटा", 68, "500 g", "chickpea flour, चने का आटा", "./images/30.webp"]
+  ]],
+
+  ["Dal & Pulses / दाल और दलिया", "dal", [
+    ["Toor Dal / तूर दाल", 95, "500 g", "toor dal, तूर दाल, dal", "./images/31.webp"],
+    ["Moong Dal / मूंग दाल", 80, "500 g", "moong dal, मूंग दाल, dal", "./images/32.webp"],
+    ["Masoor Dal / मसूर दाल", 65, "500 g", "masoor dal, मसूर दाल, lentils", "./images/33.webp"],
+    ["Chana Dal / चना दाल", 55, "500 g", "chana dal, चना दाल, dal", "./images/34.webp"],
+    ["Urad Dal / उड़द दाल", 85, "500 g", "urad dal, उड़द दाल, lentils", "./images/35.webp"],
+    ["Rajma / राजमा", 85, "500 g", "rajma, राजमा, kidney beans", "./images/36.webp"],
+    ["Kabuli Chana / कबुली चना", 75, "500 g", "kabuli chana, कबुली चना, chickpeas", "./images/37.webp"],
+    ["Kala Chana / काला चना", 55, "500 g", "kala chana, काला चना, black chickpeas", "./images/38.webp"],
+    ["Green Moong / हरी मूंग", 65, "500 g", "green moong, हरी मूंग, beans", "./images/39.webp"],
+    ["White Peas / सफेद मटर", 50, "500 g", "white peas, सफेद मटर, peas", "./images/40.webp"],
+    ["Black Eyed Beans / ब्लैक आईड बीन्स", 70, "500 g", "black eyed beans, ब्लैक आईड बीन्स, beans", "./images/41.webp"],
+    ["Horse Gram / कुलथी", 60, "500 g", "horse gram, कुलथी, gram", "./images/42.webp"],
+    ["Moth Beans / मोथ दाल", 62, "500 g", "moth beans, मोथ दाल, beans", "./images/43.webp"],
+    ["Split Bengal Gram / चना दाल", 58, "500 g", "split bengal gram, चना दाल, gram", "./images/44.webp"],
+    ["Mixed Lentils / मिक्स लैटिल्स", 90, "500 g", "mixed lentils, मिक्स लैटिल्स, lentils", "./images/45.webp"]
+  ]],
+
+  ["Spices & Masala / मसाले और मिक्स", "spice", [
+    ["Turmeric Powder / हल्दी पाउडर", 35, "100 g", "turmeric powder, हल्दी पाउडर, spice", "./images/46.webp"],
+    ["Red Chilli Powder / लाल मिर्च पाउडर", 45, "100 g", "red chilli powder, लाल मिर्च, spice", "./images/47.webp"],
+    ["Coriander Powder / धनिया पाउडर", 35, "100 g", "coriander powder, धनिया पाउडर, spice", "./images/48.webp"],
+    ["Cumin Seeds / जीरा", 45, "100 g", "cumin seeds, जीरा, jeera", "./images/49.webp"],
+    ["Garam Masala / गरम मसाला", 55, "100 g", "garam masala, गरम मसाला, spice", "./images/50.webp"],
+    ["Black Pepper / काली मिर्च", 65, "50 g", "black pepper, काली मिर्च, pepper", "./images/51.webp"],
+    ["Mustard Seeds / सरसों के बीज", 25, "100 g", "mustard seeds, सरसों के बीज, mustard", "./images/52.webp"],
+    ["Fenugreek Seeds / मेथी", 25, "100 g", "fenugreek seeds, मेथी, methi", "./images/53.webp"],
+    ["Amchur Powder / अमचूर पाउडर", 35, "100 g", "amchur powder, अमचूर पाउडर, mango powder", "./images/54.webp"],
+    ["Chaat Masala / चाट मसाला", 35, "100 g", "chaat masala, चाट मसाला, spice", "./images/55.webp"],
+    ["Kasuri Methi / कसूरी मेथी", 38, "50 g", "kasuri methi, कसूरी मेथी, methi", "./images/56.webp"],
+    ["Ajwain / अजवाइन", 30, "100 g", "ajwain, अजवाइन, carom seeds", "./images/57.webp"],
+    ["Cardamom / इलायची", 120, "50 g", "cardamom, इलायची, elaichi", "./images/58.webp"],
+    ["Cloves / लौंग", 70, "50 g", "cloves, लौंग, laung", "./images/59.webp"],
+    ["Cinnamon / दालचीनी", 60, "50 g", "cinnamon, दालचीनी, dalchini", "./images/60.webp"]
+  ]],
+
+  ["Oil & Ghee / तेल और घी", "oil", [
+    ["Sunflower Oil / सूरजमुखी तेल", 145, "1 litre", "sunflower oil, सूरजमुखी तेल, oil", "./images/61.webp"],
+    ["Mustard Oil / सरसों का तेल", 160, "1 litre", "mustard oil, सरसों का तेल, oil", "./images/62.webp"],
+    ["Soybean Oil / सोयाबीन तेल", 135, "1 litre", "soybean oil, सोयाबीन तेल, oil", "./images/63.webp"],
+    ["Groundnut Oil / मूंगफली का तेल", 190, "1 litre", "groundnut oil, मूंगफली का तेल, oil", "./images/64.webp"],
+    ["Pure Ghee / शुद्ध घी", 320, "500 ml", "pure ghee, शुद्ध घी, ghee", "./images/65.webp"],
+    ["Butter / मक्खन", 60, "100 g", "butter, मक्खन, dairy", "./images/66.webp"],
+    ["Pickle / अचार", 75, "200 g", "pickle, अचार, jar", "./images/67.webp"],
+    ["Tomato Ketchup / टमाटर केचप", 85, "500 g", "tomato ketchup, टमाटर केचप, ketchup", "./images/68.webp"],
+    ["Green Chilli Sauce / हरी मिर्च सॉस", 55, "200 g", "green chilli sauce, हरी मिर्च सॉस, sauce", "./images/69.webp"],
+    ["Vinegar / सिरका", 45, "500 ml", "vinegar, सिरका, bottle", "./images/70.webp"],
+    ["Sesame Oil / तिल का तेल", 220, "250 ml", "sesame oil, तिल का तेल, oil", "./images/71.webp"],
+    ["Olive Oil / जैतून का तेल", 310, "250 ml", "olive oil, जैतून का तेल, oil", "./images/72.webp"],
+    ["Coconut Oil / नारियल का तेल", 180, "250 ml", "coconut oil, नारियल का तेल, oil", "./images/73.webp"],
+    ["Rice Bran Oil / चावल का तेल", 170, "1 litre", "rice bran oil, चावल का तेल, oil", "./images/74.webp"],
+    ["Vanaspati / वनस्पति", 120, "1 kg", "vanaspati, वनस्पति, shortening", "./images/75.webp"]
+  ]],
+
+  ["Bread & Bakery / ब्रेड और बेकरी", "bread", [
+    ["White Bread / सफेद ब्रेड", 40, "400 g", "white bread, सफेद ब्रेड, bread", "./images/76.webp"],
+    ["Brown Bread / ब्राउन ब्रेड", 50, "400 g", "brown bread, ब्राउन ब्रेड, bread", "./images/77.webp"],
+    ["Milk Bread / मिल्क ब्रेड", 45, "400 g", "milk bread, मिल्क ब्रेड, bread", "./images/78.webp"],
+    ["Burger Buns / बर्गर बन्स", 40, "Pack", "burger buns, बर्गर बन्स, buns", "./images/79.webp"],
+    ["Pav / पाव", 35, "Pack", "pav, पाव, bread rolls", "./images/80.webp"],
+    ["Rusk Toast / रस्क टोस्ट", 60, "300 g", "rusk toast, रस्क टोस्ट, bread", "./images/81.webp"],
+    ["Plain Khari / प्लेन खारी", 55, "200 g", "plain khari, प्लेन खारी, pastry", "./images/82.webp"],
+    ["Fruit Cake / फ्रूट केक", 70, "Pack", "fruit cake, फ्रूट केक, cake", "./images/83.webp"],
+    ["Cream Roll / क्रीम रोल", 30, "Pack", "cream roll, क्रीम रोल, pastry", "./images/84.webp"],
+    ["Pizza Base / पिज़्ज़ा बेस", 45, "Pack", "pizza base, पिज़्ज़ा बेस, bread", "./images/85.webp"],
+    ["Sandwich Bread / सैंडविच ब्रेड", 48, "400 g", "sandwich bread, सैंडविच ब्रेड, bread", "./images/86.webp"],
+    ["Bun / बुन", 32, "Pack", "bun, बुन, bread", "./images/87.webp"],
+    ["Garlic Bread / लहसुन ब्रेड", 70, "250 g", "garlic bread, लहसुन ब्रेड, bread", "./images/88.webp"],
+    ["Sliced Bread / स्लाइस्ड ब्रेड", 42, "300 g", "sliced bread, स्लाइस्ड ब्रेड, bread", "./images/89.webp"],
+    ["Multigrain Bread / मल्टीग्रेन ब्रेड", 58, "400 g", "multigrain bread, मल्टीग्रेन ब्रेड, bread", "./images/90.webp"]
+  ]],
+
+  ["Biscuits & Cookies / बिस्कुट और कुकीज़", "biscuit", [
+    ["Glucose Biscuits / ग्लूकोज बिस्कुट", 10, "Pack", "glucose biscuits, ग्लूकोज बिस्कुट, biscuit", "./images/91.webp"],
+    ["Marie Biscuits / मैरी बिस्कुट", 30, "Pack", "marie biscuits, मैरी बिस्कुट, biscuit", "./images/92.webp"],
+    ["Cream Biscuits / क्रीम बिस्कुट", 20, "Pack", "cream biscuits, क्रीम बिस्कुट, biscuit", "./images/93.webp"],
+    ["Chocolate Cookies / चॉकलेट कुकीज़", 50, "Pack", "chocolate cookies, चॉकलेट कुकीज़, cookies", "./images/94.webp"],
+    ["Butter Cookies / बटर कुकीज़", 45, "Pack", "butter cookies, बटर कुकीज़, cookies", "./images/95.webp"],
+    ["Digestive Biscuits / डाइजेस्टिव बिस्कुट", 40, "Pack", "digestive biscuits, डाइजेस्टिव बिस्कुट, biscuits", "./images/96.webp"],
+    ["Salted Crackers / सॉल्टेड क्रैकर्स", 25, "Pack", "salted crackers, सॉल्टेड क्रैकर्स, crackers", "./images/97.webp"],
+    ["Coconut Biscuits / नारियल बिस्कुट", 30, "Pack", "coconut biscuits, नारियल बिस्कुट, biscuits", "./images/98.webp"],
+    ["Jeera Biscuits / जीरा बिस्कुट", 35, "Pack", "jeera biscuits, जीरा बिस्कुट, biscuits", "./images/99.webp"],
+    ["Chocolate Wafers / चॉकलेट वेफर्स", 20, "Pack", "chocolate wafers, चॉकलेट वेफर्स, wafers", "./images/100.webp"],
+    ["Oat Cookies / ओट कुकीज़", 55, "Pack", "oat cookies, ओट कुकीज़, cookies", "./images/101.webp"],
+    ["Rich Tea Biscuits / रिच टी बिस्कुट", 32, "Pack", "rich tea biscuits, रिच टी बिस्कुट, biscuits", "./images/102.webp"],
+    ["Malted Biscuits / माल्टेड बिस्कुट", 38, "Pack", "malted biscuits, माल्टेड बिस्कुट, biscuits", "./images/103.webp"],
+    ["Butter Shortbread / बटर शॉर्टब्रेड", 48, "Pack", "butter shortbread, बटर शॉर्टब्रेड, biscuits", "./images/104.webp"],
+    ["Coconut Cookies / नारियल कुकीज़", 42, "Pack", "coconut cookies, नारियल कुकीज़, cookies", "./images/105.webp"]
+  ]],
+
+  ["Dairy & Eggs / डेयरी और अंडे", "milk", [
+    ["Fresh Milk / ताज़ा दूध", 30, "500 ml", "fresh milk, ताज़ा दूध, milk", "./images/106.webp"],
+    ["Curd / दही", 35, "400 g", "curd, दही, yogurt", "./images/107.webp"],
+    ["Paneer / पनीर", 90, "200 g", "paneer, पनीर, cottage cheese", "./images/108.webp"],
+    ["Cheese Slices / चीज़ स्लाइस", 110, "Pack", "cheese slices, चीज़ स्लाइस, cheese", "./images/109.webp"],
+    ["Buttermilk / छाछ", 20, "500 ml", "buttermilk, छाछ, drink", "./images/110.webp"],
+    ["Flavoured Milk / फ्लेवर मिल्क", 35, "200 ml", "flavoured milk, फ्लेवर मिल्क, milk", "./images/111.webp"],
+    ["Milk Powder / मिल्क पाउडर", 150, "200 g", "milk powder, मिल्क पाउडर, powder", "./images/112.webp"],
+    ["Fresh Cream / फ्रेस क्रीम", 65, "Pack", "fresh cream, फ्रेस क्रीम, dairy", "./images/113.webp"],
+    ["White Eggs / सफेद अंडे", 75, "6 pcs", "white eggs, सफेद अंडे, eggs", "./images/114.webp"],
+    ["Condensed Milk / कॉन्डेंस्ड मिल्क", 65, "200 g", "condensed milk, कॉन्डेंस्ड मिल्क, milk", "./images/115.webp"],
+    ["Buffalo Milk / भैंस का दूध", 35, "500 ml", "buffalo milk, भैंस का दूध, milk", "./images/116.webp"],
+    ["Skimmed Milk / स्किम्ड दूध", 28, "500 ml", "skimmed milk, स्किम्ड दूध, milk", "./images/117.webp"],
+    ["Toned Milk / टोन्ड दूध", 32, "500 ml", "toned milk, टोन्ड दूध, milk", "./images/118.webp"],
+    ["Lassi / लस्सी", 40, "300 ml", "lassi, लस्सी, yogurt drink", "./images/119.webp"],
+    ["Butter Milk / छाछ", 22, "500 ml", "butter milk, छाछ, beverage", "./images/120.webp"]
+  ]],
+
+  ["Tea & Beverages / चाय और पेय", "tea", [
+    ["Assam Tea / असम चाय", 120, "250 g", "assam tea, असम चाय, tea", "./images/121.webp"],
+    ["Green Tea / ग्रीन टी", 100, "Pack", "green tea, ग्रीन टी, tea", "./images/122.webp"],
+    ["Instant Coffee / इंस्टेंट कॉफी", 95, "50 g", "instant coffee, इंस्टेंट कॉफी, coffee", "./images/123.webp"],
+    ["Filter Coffee / फ़िल्टर कॉफी", 110, "100 g", "filter coffee, फ़िल्टर कॉफी, coffee", "./images/124.webp"],
+    ["Mango Drink / आम ड्रिंक", 40, "600 ml", "mango drink, आम ड्रिंक, juice", "./images/125.webp"],
+    ["Orange Drink / ऑरेंज ड्रिंक", 40, "600 ml", "orange drink, ऑरेंज ड्रिंक, juice", "./images/126.webp"],
+    ["Lemon Drink / लेमन ड्रिंक", 35, "600 ml", "lemon drink, लेमन ड्रिंक, juice", "./images/127.webp"],
+    ["Coconut Water / नारियल पानी", 45, "Pack", "coconut water, नारियल पानी, drink", "./images/128.webp"],
+    ["Glucose Powder / ग्लूकोज पाउडर", 40, "Pack", "glucose powder, ग्लूकोज पाउडर, drink", "./images/129.webp"],
+    ["Drinking Water / पियेंठा पानी", 20, "1 litre", "drinking water, पियेंठा पानी, water", "./images/130.webp"],
+    ["Masala Chai / मसाला चाय", 40, "50 g", "masala chai, मसाला चाय, tea", "./images/131.webp"],
+    ["Cold Coffee / कोल्ड कॉफी", 80, "200 ml", "cold coffee, कोल्ड कॉफी, coffee", "./images/132.webp"],
+    ["Apple Juice / सेब का जूस", 75, "1 litre", "apple juice, सेब का जूस, juice", "./images/133.webp"],
+    ["Orange Juice / ऑरेंज जूस", 80, "1 litre", "orange juice, ऑरेंज जूस, juice", "./images/134.webp"],
+    ["Energy Drink / एनर्जी ड्रिंक", 95, "250 ml", "energy drink, एनर्जी ड्रिंक, beverage", "./images/135.webp"]
+  ]],
+
+  ["Snacks & Namkeen / स्नैक्स और नमकीन", "snack", [
+    ["Aloo Bhujia / आलू भुजिया", 35, "150 g", "aloo bhujia, आलू भुजिया, namkeen", "./images/136.webp"],
+    ["Masala Sev / मसाला सेव", 35, "150 g", "masala sev, मसाला सेव, snack", "./images/137.webp"],
+    ["Moong Dal Namkeen / मूंग दाल नमकीन", 35, "150 g", "moong dal namkeen, मूंग दाल नमकीन, snack", "./images/138.webp"],
+    ["Peanut Masala / मूंगफली मसाला", 40, "150 g", "peanut masala, मूंगफली मसाला, snack", "./images/139.webp"],
+    ["Potato Chips / पोटेटो चिप्स", 20, "Pack", "potato chips, पोटेटो चिप्स, chips", "./images/140.webp"],
+    ["Banana Chips / केला चिप्स", 45, "150 g", "banana chips, केला चिप्स, chips", "./images/141.webp"],
+    ["Popcorn / पोपकॉर्न", 30, "Pack", "popcorn, पोपकॉर्न, snack", "./images/142.webp"],
+    ["Instant Noodles / इंस्टेंट नूडल्स", 15, "Pack", "instant noodles, इंस्टेंट नूडल्स, noodles", "./images/143.webp"],
+    ["Cup Noodles / कप नूडल्स", 50, "Cup", "cup noodles, कप नूडल्स, noodles", "./images/144.webp"],
+    ["Roasted Chana / रोस्टेड चना", 40, "200 g", "roasted chana, रोस्टेड चना, snack", "./images/145.webp"],
+    ["Mixture / मिक्सचर", 45, "200 g", "mixture, मिक्सचर, namkeen", "./images/146.webp"],
+    ["Murukku / मुरुक्कु", 38, "200 g", "murukku, मुरुक्कु, namkeen", "./images/147.webp"],
+    ["Cheese Balls / चीज़ बॉल्स", 35, "100 g", "cheese balls, चीज़ बॉल्स, snack", "./images/148.webp"],
+    ["Cornflakes / कॉर्नफ़्लेक्स", 65, "300 g", "cornflakes, कॉर्नफ़्लेक्स, breakfast", "./images/149.webp"],
+    ["Trail Mix / ट्रेल मिक्स", 120, "200 g", "trail mix, ट्रेल मिक्स, snack", "./images/150.webp"]
+  ]],
+
+  ["Fruits & Vegetables / फल और सब्जियां", "vegetables", [
+    ["Fresh Potatoes / ताज़े आलू", 30, "1 kg", "fresh potatoes, ताज़े आलू, vegetable", "./images/151.webp"],
+    ["Fresh Onions / ताज़े प्याज", 35, "1 kg", "fresh onions, ताज़े प्याज, vegetable", "./images/152.webp"],
+    ["Tomatoes / टमाटर", 40, "1 kg", "tomatoes, टमाटर, vegetable", "./images/153.webp"],
+    ["Green Chilli / हरी मिर्च", 20, "100 g", "green chilli, हरी मिर्च, vegetable", "./images/154.webp"],
+    ["Ginger / अदरक", 25, "100 g", "ginger, अदरक, vegetable", "./images/155.webp"],
+    ["Garlic / लहसुन", 35, "250 g", "garlic, लहसुन, vegetable", "./images/156.webp"],
+    ["Fresh Lemon / ताज़ा नींबू", 30, "250 g", "fresh lemon, ताज़ा नींबू, fruit", "./images/157.webp"],
+    ["Bananas / केले", 50, "Dozen", "bananas, केले, fruit", "./images/158.webp"],
+    ["Apples / सेब", 120, "1 kg", "apples, सेब, fruit", "./images/159.webp"],
+    ["Oranges / संतरे", 70, "1 kg", "oranges, संतरे, fruit", "./images/160.webp"],
+    ["Mangoes / आम", 90, "1 kg", "mangoes, आम, fruit", "./images/161.webp"],
+    ["Grapes / अंगूर", 80, "500 g", "grapes, अंगूर, fruit", "./images/162.webp"],
+    ["Papaya / पपीता", 55, "1 pc", "papaya, पपीता, fruit", "./images/163.webp"],
+    ["Cucumber / ककड़ी", 25, "1 pc", "cucumber, ककड़ी, vegetable", "./images/164.webp"],
+    ["Carrots / गाजर", 35, "500 g", "carrots, गाजर, vegetable", "./images/165.webp"]
+  ]],
+
+  ["Household & Personal Care / घरेलू और व्यक्तिगत देखभाल", "soap", [
+    ["Bathing Soap / बाथिंग साबुन", 35, "100 g", "bathing soap, बाथिंग साबुन, soap", "./images/166.webp"],
+    ["Shampoo Sachets / शैम्पू Sachet", 2, "1 sachet", "shampoo sachet, शैम्पू Sachet, personal care", "./images/167.webp"],
+    ["Shampoo Bottle / शैंपू बोतल", 120, "180 ml", "shampoo bottle, शैंपू बोतल, personal care", "./images/168.webp"],
+    ["Toothpaste / टूथपेस्ट", 65, "100 g", "toothpaste, टूथपेस्ट, personal care", "./images/169.webp"],
+    ["Toothbrush / टूथब्रश", 25, "1 pc", "toothbrush, टूथब्रश, personal care", "./images/170.webp"],
+    ["Washing Powder / वॉशिंग पाउडर", 60, "500 g", "washing powder, वॉशिंग पाउडर, laundry", "./images/171.webp"],
+    ["Dishwash Bar / डिशवॉश बार", 20, "1 pc", "dishwash bar, डिशवॉश बार, kitchen", "./images/172.webp"],
+    ["Dishwash Liquid / डिशवॉश लिक्विड", 85, "500 ml", "dishwash liquid, डिशवॉश लिक्विड, kitchen", "./images/173.webp"],
+    ["Floor Cleaner / फ्लोर क्लीनर", 95, "500 ml", "floor cleaner, फ्लोर क्लीनर, household", "./images/174.webp"],
+    ["Toilet Cleaner / टॉयलेट क्लीनर", 100, "500 ml", "toilet cleaner, टॉयलेट क्लीनर, household", "./images/175.webp"],
+    ["Hand Wash / हैंडवॉश", 70, "250 ml", "hand wash, हैंडवॉश, hygiene", "./images/176.webp"],
+    ["Sanitary Pads / सैनिटरी पैड्स", 80, "Pack", "sanitary pads, सैनिटरी पैड्स, hygiene", "./images/177.webp"],
+    ["Soap Bar / साबुन बार", 28, "1 pc", "soap bar, साबुन बार, soap", "./images/178.webp"],
+    ["Laundry Liquid / लॉन्ड्री लिक्विड", 120, "500 ml", "laundry liquid, लॉन्ड्री लिक्विड, washing", "./images/179.webp"],
+    ["Vim Cleaner / विम क्लीनर", 70, "250 g", "vim cleaner, विम क्लीनर, household", "./images/180.webp"]
+  ]],
+
+  ["Cooking Essentials / खाना पकाने की चीज़ें", "cooking", [
+    ["Salt / नमक", 20, "1 kg", "salt, नमक, cooking essential", "./images/181.webp"],
+    ["Sugar / चीनी", 42, "1 kg", "sugar, चीनी, cooking essential", "./images/182.webp"],
+    ["Jaggery / गुड़", 55, "500 g", "jaggery, गुड़, sweetener", "./images/183.webp"],
+    ["Tea Leaves / चाय पत्ती", 90, "250 g", "tea leaves, चाय पत्ती, tea", "./images/184.webp"],
+    ["Baking Soda / बेकिंग सोडा", 30, "200 g", "baking soda, बेकिंग सोडा, baking", "./images/185.webp"],
+    ["Baking Powder / बेकिंग पाउडर", 40, "200 g", "baking powder, बेकिंग पाउडर", "./images/186.webp"],
+    ["Cornstarch / कॉर्नस्टार्च", 35, "200 g", "cornstarch, कॉर्नस्टार्च, starch", "./images/187.webp"],
+    ["Custard Powder / कस्टर्ड पाउडर", 50, "200 g", "custard powder, कस्टर्ड पाउडर", "./images/188.webp"],
+    ["Pasta / पास्ता", 60, "500 g", "pasta, पास्ता, food", "./images/189.webp"],
+    ["Noodles / नूडल्स", 55, "500 g", "noodles, नूडल्स, food", "./images/190.webp"],
+    ["Coriander Leaves / धनिया पत्ता", 15, "1 bunch", "coriander leaves, धनिया पत्ता, herbs", "./images/191.webp"],
+    ["Mint Leaves / पुदीना", 18, "1 bunch", "mint leaves, पुदीना, herbs", "./images/192.webp"],
+    ["Turmeric Root / हल्दी जड़", 30, "150 g", "turmeric root, हल्दी जड़", "./images/193.webp"],
+    ["Cumin Powder / जीरा पाउडर", 48, "100 g", "cumin powder, जीरा पाउडर, spice", "./images/194.webp"],
+    ["Black Salt / काला नमक", 38, "200 g", "black salt, काला नमक, salt", "./images/195.webp"]
+  ]],
+
+  ["Breakfast & Instant Food / ब्रेकफास्ट और इंस्टेंट फूड", "breakfast", [
+    ["Instant Upma / इंस्टेंट उपमा", 35, "200 g", "instant upma, इंस्टेंट उपमा, breakfast", "./images/196.webp"],
+    ["Semolina Mix / सेमोलिना मिक्स", 40, "500 g", "semolina mix, सेमोलिना मिक्स", "./images/197.webp"],
+    ["Corn Flakes / कॉर्नफ्लेक्स", 65, "300 g", "cornflakes, कॉर्नफ्लेक्स, cereal", "./images/198.webp"],
+    ["Oats / ओट्स", 75, "500 g", "oats, ओट्स, breakfast", "./images/199.webp"],
+    ["Muesli / म्यूज़ली", 150, "500 g", "muesli, म्यूज़ली, breakfast", "./images/200.webp"]
+  ]]
+];
 const products = [];
 let nextId = 1;
 
 catalog.forEach(([category, group, items]) => {
   const imagePool = categoryImagePool[category] || [
-    "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80"
+    "./images/default-grocery.webp"
   ];
 
   items.forEach((it, index) => {
     const productName = it[0];
-    const imageUrl = imagePool[index % imagePool.length];
+    const price = it[1];
+    const unit = it[2];
+    const tags = it[3];
+    const imageUrl = it[4] || imagePool[index % imagePool.length];
 
     products.push({
       id: nextId++,
       name: productName,
-      price: it[1],
-      oldPrice: Math.round(it[1] * 1.15),
-      unit: it[2],
+      price,
+      oldPrice: Math.round(price * 1.15),
+      unit,
       category,
-      terms: it[3],
+      terms: tags,
       imageUrl
     });
   });
@@ -248,14 +405,15 @@ function renderProducts() {
     wrap.className = "product-image-wrap";
 
     const img = document.createElement("img");
-    img.className = "product-image";
-    img.src = p.imageUrl;
-    img.alt = p.name;
-    img.loading = "lazy";
-    img.onerror = function () {
-      this.onerror = null;
-      this.src = `https://placehold.co/600x500/edf5eb/123c2a?text=${encodeURIComponent(p.name)}`;
-    };
+img.className = "product-image";
+img.src = p.imageUrl;
+img.alt = p.name;
+img.loading = "lazy";
+
+img.onerror = function () {
+  this.onerror = null;
+  this.src = "./images/default-grocery.webp";
+};
 
     const label = document.createElement("span");
     label.className = "product-label";
