@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>E-Commerce | Premium Lifestyle Store</title>
-  <meta name="description" content="Premium E-Commerce website for lifestyle, fashion, home, gifting and business essentials." />
+  <title>E-Commerce | Grocery & Daily Essentials</title>
+  <meta name="description" content="Fresh grocery store with rice, pulses, spices, fruits, vegetables and daily essentials." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,22 +13,22 @@
 
   <style>
     :root {
-      --bg: #f5f9ff;
-      --bg-soft: #edf5ff;
+      --bg: #f7fbf2;
+      --bg-soft: #edf9ee;
       --panel: #ffffff;
       --panel-2: #f6fbff;
-      --text: #102638;
-      --text-soft: #4d647d;
-      --muted: #6f8397;
-      --primary: #168fe5;
-      --primary-2: #0d75d1;
-      --primary-3: #095ca5;
-      --secondary: #64c8ff;
-      --line: rgba(10, 33, 49, 0.12);
-      --shadow: 0 14px 30px rgba(10, 33, 49, 0.09);
-      --deep: #0d2338;
-      --deep-2: #102b42;
-      --dark-line: rgba(201,223,247,0.15);
+      --text: #12261d;
+      --text-soft: #536d62;
+      --muted: #708578;
+      --primary: #3ca85d;
+      --primary-2: #2d8d4a;
+      --primary-3: #1c6d36;
+      --secondary: #b7e7a5;
+      --line: rgba(18, 38, 29, 0.10);
+      --shadow: 0 14px 30px rgba(18, 38, 29, 0.08);
+      --deep: #103823;
+      --deep-2: #153f2a;
+      --dark-line: rgba(220, 247, 225, 0.18);
       --success: #1fbc84;
       --warning: #ffc857;
       --radius: 18px;
@@ -38,7 +38,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      margin: 0; width: 100%; overflow-x: hidden; background: linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
+      margin: 0; width: 100%; overflow-x: hidden; background: linear-gradient(180deg, #ffffff 0%, #f7fbf2 100%);
       color: var(--text); font-family: 'Rubik', sans-serif;
     }
     a { color: inherit; text-decoration: none; }
@@ -47,8 +47,8 @@
     .container { max-width: 1280px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
 
     .top-strip {
-      position: sticky; top: 0; z-index: 50; background: linear-gradient(90deg, #0b2843, #0d3359, #1d9be7);
-      color: #f7fbff; border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky; top: 0; z-index: 50; background: linear-gradient(90deg, #133f2c, #184f39, #2d8d4a);
+      color: #f7fff9; border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .top-strip marquee {
       font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
@@ -56,7 +56,7 @@
     }
 
     .header {
-      background: rgba(11, 26, 38, 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      background: rgba(16, 56, 35, 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 30px; z-index: 40;
       box-shadow: 0 10px 25px rgba(13, 35, 56, 0.08);
     }
@@ -78,18 +78,18 @@
     .icon-btn:hover { transform: translateY(-2px); }
     .badge {
       position: absolute; top: -5px; right: -3px; min-width: 18px; height: 18px; border-radius: 50%;
-      background: linear-gradient(135deg, #5ec9ff, #1f8af5); color: #fff; font-size: 9px; font-weight: 700;
+      background: linear-gradient(135deg, #8fe6a8, #3ca85d); color: #fff; font-size: 9px; font-weight: 700;
       display: flex; align-items: center; justify-content: center; padding: 0 4px;
     }
 
     .hero {
-      padding-top: 26px; padding-bottom: 18px; background: linear-gradient(180deg, #eef8ff 0%, #f8fbff 100%);
+      padding-top: 26px; padding-bottom: 18px; background: linear-gradient(180deg, #f1f9f0 0%, #f9fcf7 100%);
     }
     .hero-grid {
       display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 22px; align-items: stretch;
     }
     .hero-main {
-      background: linear-gradient(135deg, #0d2237 0%, #11324f 35%, #0e7ccf 100%); border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #103823 0%, #144f31 35%, #2d8d4a 100%); border-radius: var(--radius-lg);
       box-shadow: var(--shadow); overflow: hidden; position: relative; min-height: 470px; color: #fff;
       padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between;
     }
@@ -100,7 +100,7 @@
     .hero-copy, .hero-image-area { position: relative; z-index: 1; }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
-      color: #ecf8ff; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #ecf8ef; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
       padding: 8px 12px; border-radius: 999px; margin-bottom: 18px;
     }
     .hero-copy h1 {
@@ -118,7 +118,7 @@
     }
     .btn:hover { transform: translateY(-2px); }
     .btn-primary {
-      background: linear-gradient(135deg, #5ec9ff, #168fe5 55%, #0d75d1); color: #fff; box-shadow: 0 18px 30px rgba(18,130,224,0.3);
+      background: linear-gradient(135deg, #b7e7a5, #3ca85d 55%, #2d8d4a); color: #fff; box-shadow: 0 18px 30px rgba(31, 125, 62, 0.28);
     }
     .btn-secondary {
       background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.18);
@@ -139,7 +139,7 @@
     }
     .hero-product-info h3 { color: #fff; font-size: 1rem; font-weight: 700; }
     .price-badge {
-      background: rgba(94, 201, 255, 0.18); border: 1px solid rgba(255,255,255,0.18); color: #dff7ff; border-radius: 999px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); color: #eafef2; border-radius: 999px;
       padding: 8px 12px; font-weight: 700; font-size: 0.86rem;
     }
 
@@ -147,12 +147,12 @@
       display: grid; gap: 18px;
     }
     .mini-card {
-      background: linear-gradient(180deg, #ffffff 0%, #f3f9ff 100%); border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #f3fff4 100%); border: 1px solid var(--line);
       border-radius: 22px; padding: 16px; box-shadow: var(--shadow);
     }
     .mini-card .mini-label {
       display: inline-flex; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--primary-2); background: rgba(22, 143, 229, 0.08); padding: 8px 10px; border-radius: 999px;
+      color: var(--primary-2); background: rgba(60, 168, 93, 0.08); padding: 8px 10px; border-radius: 999px;
       margin-bottom: 14px;
     }
     .mini-card h3 { color: var(--text); font-size: 1.4rem; margin-bottom: 8px; }
@@ -173,7 +173,7 @@
     }
     .search-shell input::placeholder { color: var(--muted); }
     .search-shell button {
-      padding: 10px 18px; border: none; border-radius: 999px; background: linear-gradient(135deg, #5ec9ff, #0d75d1);
+      padding: 10px 18px; border: none; border-radius: 999px; background: linear-gradient(135deg, #b7e7a5, #2d8d4a);
       color: #fff; font-weight: 700; cursor: pointer;
     }
 
@@ -188,23 +188,23 @@
     }
     .chip {
       display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
-      color: var(--primary-2); background: rgba(22,143,229,0.08); border: 1px solid rgba(22,143,229,0.1);
+      color: var(--primary-2); background: rgba(60,168,93,0.08); border: 1px solid rgba(60,168,93,0.12);
     }
 
     .category-row {
       display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;
     }
     .category-card {
-      background: linear-gradient(180deg, #0d2237 0%, #153859 100%); border-radius: 22px; overflow: hidden; border: 1px solid rgba(255,255,255,0.04);
-      box-shadow: 0 12px 24px rgba(13, 35, 56, 0.08); padding: 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 12px;
+      background: linear-gradient(180deg, #fff 0%, #edf9ee 100%); border-radius: 22px; overflow: hidden; border: 1px solid var(--line);
+      box-shadow: 0 12px 24px rgba(18, 38, 29, 0.08); padding: 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 12px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .category-card:hover { transform: translateY(-4px); box-shadow: 0 18px 30px rgba(13,35,56,0.12); }
+    .category-card:hover { transform: translateY(-4px); box-shadow: 0 18px 30px rgba(18,38,29,0.12); }
     .category-card img {
-      width: 78px; height: 78px; object-fit: cover; border-radius: 18px; border: 1px solid rgba(255,255,255,0.08);
+      width: 78px; height: 78px; object-fit: cover; border-radius: 18px; border: 1px solid rgba(18,38,29,0.06);
     }
     .category-card span {
-      color: #eaf6ff; font-size: 0.82rem; font-weight: 700; text-align: center; line-height: 1.45;
+      color: var(--text); font-size: 0.82rem; font-weight: 700; text-align: center; line-height: 1.45;
     }
 
     .product-grid {
@@ -214,13 +214,13 @@
       background: var(--panel); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: var(--shadow);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .product-card:hover { transform: translateY(-4px); box-shadow: 0 18px 28px rgba(13,35,56,0.12); }
-    .product-card .image-wrap { position: relative; background: linear-gradient(180deg, #edf6ff 0%, #f9fbff 100%); }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 18px 28px rgba(18,38,29,0.12); }
+    .product-card .image-wrap { position: relative; background: linear-gradient(180deg, #edf9ee 0%, #f9fcf7 100%); }
     .product-card img {
       width: 100%; height: 260px; object-fit: cover; display: block;
     }
     .tag {
-      position: absolute; left: 12px; top: 12px; background: rgba(22,143,229,0.12); color: var(--primary-2); border: 1px solid rgba(22,143,229,0.12);
+      position: absolute; left: 12px; top: 12px; background: rgba(60,168,93,0.12); color: var(--primary-2); border: 1px solid rgba(60,168,93,0.12);
       padding: 7px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
     }
     .product-body { padding: 16px; }
@@ -237,7 +237,7 @@
     .old-price { text-decoration: line-through; color: var(--muted); font-size: 0.85rem; }
     .buy-btn {
       display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: 10px 16px;
-      background: linear-gradient(135deg, #5ec9ff, #168fe5); color: #fff; font-weight: 700; border: none; cursor: pointer; width: 100%;
+      background: linear-gradient(135deg, #b7e7a5, #3ca85d); color: #fff; font-weight: 700; border: none; cursor: pointer; width: 100%;
     }
 
     .feature-band {
@@ -247,12 +247,12 @@
       display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px;
     }
     .feature-box {
-      background: linear-gradient(180deg, #fff 0%, #f5faff 100%); border: 1px solid var(--line); border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #f5fbf6 100%); border: 1px solid var(--line); border-radius: 18px;
       padding: 18px 16px; box-shadow: var(--shadow); text-align: center;
     }
     .feature-box i {
       width: 52px; height: 52px; margin: 0 auto 12px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
-      background: rgba(22,143,229,0.08); color: var(--primary-2); font-size: 1.4rem;
+      background: rgba(60,168,93,0.08); color: var(--primary-2); font-size: 1.4rem;
     }
     .feature-box h3 {
       font-size: 1.02rem; margin-bottom: 6px; color: var(--text);
@@ -260,7 +260,7 @@
     .feature-box p { color: var(--text-soft); font-size: 0.87rem; line-height: 1.6; }
 
     .promo-banner {
-      margin-top: 18px; margin-bottom: 18px; border-radius: 28px; overflow: hidden; position: relative; background: linear-gradient(135deg, #0d2338, #153b5a, #1c7ad1);
+      margin-top: 18px; margin-bottom: 18px; border-radius: 28px; overflow: hidden; position: relative; background: linear-gradient(135deg, #0f3a27, #175836, #2d8d4a);
       box-shadow: var(--shadow); padding: 28px 30px;
       color: #fff; min-height: 220px;
     }
@@ -282,7 +282,7 @@
       display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px;
     }
     .testimonial {
-      background: linear-gradient(180deg, #fff 0%, #f5fbff 100%); border: 1px solid var(--line); border-radius: 22px; padding: 22px 18px; box-shadow: var(--shadow);
+      background: linear-gradient(180deg, #fff 0%, #f5fbf6 100%); border: 1px solid var(--line); border-radius: 22px; padding: 22px 18px; box-shadow: var(--shadow);
     }
     .quote {
       font-size: 1.2rem; line-height: 1.7; color: var(--text); margin-bottom: 16px;
@@ -293,7 +293,7 @@
     .person span { color: var(--muted); font-size: 0.8rem; }
 
     .footer {
-      margin-top: 30px; background: linear-gradient(180deg, rgba(9,22,33,0.96) 0%, rgba(13,35,56,0.96) 100%);
+      margin-top: 30px; background: linear-gradient(180deg, rgba(14, 51, 31, 0.96) 0%, rgba(17, 61, 38, 0.96) 100%);
       border-top: 1px solid rgba(143,191,255,0.08); padding: 36px 0 18px; color: rgba(255,255,255,0.75);
     }
     .footer-grid {
@@ -342,7 +342,7 @@
 </head>
 <body>
   <div class="top-strip">
-    <marquee behavior="scroll" direction="left" scrollamount="5">Welcome to E-Commerce • Free Delivery on Orders Above ₹999 • Secure Payments • Premium Picks • Customer Support 24/7</marquee>
+    <marquee behavior="scroll" direction="left" scrollamount="5">Fresh Grocery • Farm Fresh Produce • Daily Essentials • Home Delivery • Best Prices</marquee>
   </div>
 
   <header class="header">
@@ -352,8 +352,8 @@
       <nav class="nav" aria-label="Main navigation">
         <a href="#">Home</a>
         <a href="#">Categories</a>
-        <a href="#">New Arrivals</a>
-        <a href="#">Best Sellers</a>
+        <a href="#">Fresh Food</a>
+        <a href="#">Best Deals</a>
         <a href="#">Offers</a>
         <a href="#">Contact</a>
       </nav>
@@ -363,7 +363,7 @@
         <button class="icon-btn" aria-label="Orders"><i class="bi bi-bag"></i></button>
         <button class="icon-btn" aria-label="Cart">
           <i class="bi bi-cart3"></i>
-          <span class="badge">3</span>
+          <span class="badge">2</span>
         </button>
       </div>
     </div>
@@ -375,22 +375,22 @@
         <div class="hero-grid">
           <div class="hero-main">
             <div class="hero-copy">
-              <div class="eyebrow">Premium Collections</div>
-              <h1>Smart shopping for modern living.</h1>
-              <p>Shop trending essentials for lifestyle, fashion, tech, gifting and business needs. Premium quality, faster delivery and complete trust at every step.</p>
+              <div class="eyebrow">Fresh & Healthy</div>
+              <h1>Fresh groceries for your daily life.</h1>
+              <p>Get premium rice, wheat, pulses, fruits, vegetables, spices and daily essentials delivered to your doorstep with quality you can trust.</p>
 
               <div class="hero-cta">
-                <button class="btn btn-primary">Shop Now</button>
-                <button class="btn btn-secondary">Explore Deals</button>
+                <button class="btn btn-primary">Shop Groceries</button>
+                <button class="btn btn-secondary">Explore Offers</button>
               </div>
             </div>
 
             <div class="hero-image-area">
               <div class="hero-product-card">
-                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80" alt="Premium Product" />
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Fresh vegetable basket" />
                 <div class="hero-product-info">
-                  <h3>Signature Cotton Tee</h3>
-                  <span class="price-badge">₹999</span>
+                  <h3>Farm Fresh Basket</h3>
+                  <span class="price-badge">₹699</span>
                 </div>
               </div>
             </div>
@@ -399,16 +399,16 @@
           <div class="side-stack">
             <div class="mini-card">
               <div class="mini-label">Trending</div>
-              <h3>Fresh Picks</h3>
-              <p>Trending lifestyle essentials curated for comfort, style and convenience.</p>
-              <img class="mini-image" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Fresh picks" />
+              <h3>Daily Essentials</h3>
+              <p>Rice, lentils, spices, snacks, and household staples with the best quality at fair prices.</p>
+              <img class="mini-image" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Daily essentials" />
             </div>
 
             <div class="mini-card">
-              <div class="mini-label">Flash Sale</div>
-              <h3>Up to 50% Off</h3>
-              <p>Top-rated products with limited-time savings on premium essentials.</p>
-              <img class="mini-image" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Flash sale" />
+              <div class="mini-label">Hot Deals</div>
+              <h3>Save More</h3>
+              <p>Fresh groceries and kitchen essentials with special combo offers and weekly discounts.</p>
+              <img class="mini-image" src="https://images.unsplash.com/photo-1571167530147-0a1fbb59a2a8?auto=format&fit=crop&w=900&q=80" alt="Hot deals" />
             </div>
           </div>
         </div>
@@ -416,7 +416,7 @@
         <div class="search-bar">
           <div class="search-shell">
             <i class="bi bi-search" style="color: var(--primary-2); font-size: 1.1rem;"></i>
-            <input type="text" placeholder="Search trendy products, categories and brands..." />
+            <input type="text" placeholder="Search grocery items, fruits, rice, pulses, spices..." />
             <button>Search</button>
           </div>
         </div>
@@ -427,33 +427,33 @@
       <div class="container">
         <div class="section-head">
           <h2>Shop by Categories</h2>
-          <span class="chip">Top categories</span>
+          <span class="chip">Fresh picks</span>
         </div>
 
         <div class="category-row">
           <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80" alt="Fashion" />
-            <span>Fashion</span>
+            <img src="https://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=500&q=80" alt="Rice" />
+            <span>Rice & Grains</span>
           </div>
           <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" alt="Footwear" />
-            <span>Footwear</span>
+            <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=500&q=80" alt="Pulses" />
+            <span>Pulses & Dal</span>
           </div>
           <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=500&q=80" alt="Home Decor" />
-            <span>Home Decor</span>
+            <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=500&q=80" alt="Spices" />
+            <span>Spices</span>
           </div>
           <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=500&q=80" alt="Gifts" />
-            <span>Gifts</span>
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80" alt="Vegetables" />
+            <span>Vegetables</span>
           </div>
           <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="Beauty" />
-            <span>Beauty</span>
+            <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=500&q=80" alt="Fruits" />
+            <span>Fruits</span>
           </div>
           <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=500&q=80" alt="Electronics" />
-            <span>Electronics</span>
+            <img src="https://images.unsplash.com/photo-1571167530147-0a1fbb59a2a8?auto=format&fit=crop&w=500&q=80" alt="Snacks" />
+            <span>Snacks & Bakery</span>
           </div>
         </div>
       </div>
@@ -462,47 +462,26 @@
     <section class="section">
       <div class="container">
         <div class="section-head">
-          <h2>New Arrivals</h2>
+          <h2>Best Selling Groceries</h2>
           <span class="chip">Fresh this week</span>
         </div>
 
         <div class="product-grid">
           <article class="product-card">
             <div class="image-wrap">
-              <span class="tag">New</span>
-              <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80" alt="Premium Cotton Tee" />
+              <span class="tag">Fresh</span>
+              <img src="https://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=900&q=80" alt="Basmati Rice" />
             </div>
             <div class="product-body">
-              <div class="product-title">Premium Cotton Tee</div>
+              <div class="product-title">Basmati Rice</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">1,248 reviews</span>
+                <span class="reviews-count">1,240 reviews</span>
               </div>
               <div class="price-row">
                 <div>
-                  <div class="price">₹999</div>
-                  <div class="old-price">₹1,499</div>
-                </div>
-                <button class="buy-btn">Add to cart</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="image-wrap">
-              <span class="tag">Hot</span>
-              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80" alt="Signature Bag" />
-            </div>
-            <div class="product-body">
-              <div class="product-title">Signature Everyday Bag</div>
-              <div class="meta-row">
-                <span class="stars">★★★★★</span>
-                <span class="reviews-count">864 reviews</span>
-              </div>
-              <div class="price-row">
-                <div>
-                  <div class="price">₹1,799</div>
-                  <div class="old-price">₹2,699</div>
+                  <div class="price">₹419</div>
+                  <div class="old-price">₹599</div>
                 </div>
                 <button class="buy-btn">Add to cart</button>
               </div>
@@ -512,18 +491,18 @@
           <article class="product-card">
             <div class="image-wrap">
               <span class="tag">Popular</span>
-              <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Minimal Desk Lamp" />
+              <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=900&q=80" alt="Toor Dal" />
             </div>
             <div class="product-body">
-              <div class="product-title">Minimal Desk Lamp</div>
+              <div class="product-title">Toor Dal</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">610 reviews</span>
+                <span class="reviews-count">960 reviews</span>
               </div>
               <div class="price-row">
                 <div>
-                  <div class="price">₹2,499</div>
-                  <div class="old-price">₹3,399</div>
+                  <div class="price">₹189</div>
+                  <div class="old-price">₹249</div>
                 </div>
                 <button class="buy-btn">Add to cart</button>
               </div>
@@ -532,19 +511,40 @@
 
           <article class="product-card">
             <div class="image-wrap">
-              <span class="tag">Best</span>
-              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80" alt="Urban Runner" />
+              <span class="tag">Pure</span>
+              <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=900&q=80" alt="Turmeric Powder" />
             </div>
             <div class="product-body">
-              <div class="product-title">Urban Runner Shoes</div>
+              <div class="product-title">Turmeric Powder</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">2,114 reviews</span>
+                <span class="reviews-count">812 reviews</span>
               </div>
               <div class="price-row">
                 <div>
-                  <div class="price">₹2,199</div>
-                  <div class="old-price">₹3,299</div>
+                  <div class="price">₹129</div>
+                  <div class="old-price">₹179</div>
+                </div>
+                <button class="buy-btn">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="image-wrap">
+              <span class="tag">Farm</span>
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Mixed Vegetables" />
+            </div>
+            <div class="product-body">
+              <div class="product-title">Mixed Vegetables</div>
+              <div class="meta-row">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">1,680 reviews</span>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="price">₹349</div>
+                  <div class="old-price">₹499</div>
                 </div>
                 <button class="buy-btn">Add to cart</button>
               </div>
@@ -557,7 +557,7 @@
     <section class="section">
       <div class="container">
         <div class="section-head">
-          <h2>Best Sellers</h2>
+          <h2>Popular Grocery Picks</h2>
           <span class="chip">Customer favorites</span>
         </div>
 
@@ -565,18 +565,18 @@
           <article class="product-card">
             <div class="image-wrap">
               <span class="tag">Top</span>
-              <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80" alt="Leather Gift Box" />
+              <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=900&q=80" alt="Fresh Fruits" />
             </div>
             <div class="product-body">
-              <div class="product-title">Luxury Gift Box</div>
+              <div class="product-title">Fresh Fruit Pack</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">778 reviews</span>
+                <span class="reviews-count">704 reviews</span>
               </div>
               <div class="price-row">
                 <div>
-                  <div class="price">₹1,499</div>
-                  <div class="old-price">₹2,199</div>
+                  <div class="price">₹499</div>
+                  <div class="old-price">₹699</div>
                 </div>
                 <button class="buy-btn">Add to cart</button>
               </div>
@@ -585,19 +585,19 @@
 
           <article class="product-card">
             <div class="image-wrap">
-              <span class="tag">Trending</span>
-              <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80" alt="Office Essentials" />
+              <span class="tag">Combo</span>
+              <img src="https://images.unsplash.com/photo-1571167530147-0a1fbb59a2a8?auto=format&fit=crop&w=900&q=80" alt="Kitchen Combo" />
             </div>
             <div class="product-body">
-              <div class="product-title">Office Essentials Kit</div>
+              <div class="product-title">Kitchen Essentials Combo</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">903 reviews</span>
+                <span class="reviews-count">923 reviews</span>
               </div>
               <div class="price-row">
                 <div>
-                  <div class="price">₹2,999</div>
-                  <div class="old-price">₹4,299</div>
+                  <div class="price">₹799</div>
+                  <div class="old-price">₹1,099</div>
                 </div>
                 <button class="buy-btn">Add to cart</button>
               </div>
@@ -606,19 +606,19 @@
 
           <article class="product-card">
             <div class="image-wrap">
-              <span class="tag">Popular</span>
-              <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80" alt="Smart Watch" />
+              <span class="tag">Organic</span>
+              <img src="https://images.unsplash.com/photo-1461354464878-ad92f492a5a0?auto=format&fit=crop&w=900&q=80" alt="Organic Vegetables" />
             </div>
             <div class="product-body">
-              <div class="product-title">Smart Watch Pro</div>
+              <div class="product-title">Organic Veg Box</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">1,432 reviews</span>
+                <span class="reviews-count">1,120 reviews</span>
               </div>
               <div class="price-row">
                 <div>
-                  <div class="price">₹4,499</div>
-                  <div class="old-price">₹5,799</div>
+                  <div class="price">₹599</div>
+                  <div class="old-price">₹849</div>
                 </div>
                 <button class="buy-btn">Add to cart</button>
               </div>
@@ -627,19 +627,19 @@
 
           <article class="product-card">
             <div class="image-wrap">
-              <span class="tag">Elite</span>
-              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt="Premium Watch" />
+              <span class="tag">Family</span>
+              <img src="https://images.unsplash.com/photo-1551739440-5dd934d3a94a?auto=format&fit=crop&w=900&q=80" alt="Snacks and Biscuits" />
             </div>
             <div class="product-body">
-              <div class="product-title">Premium Watch</div>
+              <div class="product-title">Snacks & Biscuits Pack</div>
               <div class="meta-row">
                 <span class="stars">★★★★★</span>
-                <span class="reviews-count">1,008 reviews</span>
+                <span class="reviews-count">1,394 reviews</span>
               </div>
               <div class="price-row">
                 <div>
-                  <div class="price">₹5,999</div>
-                  <div class="old-price">₹7,999</div>
+                  <div class="price">₹279</div>
+                  <div class="old-price">₹399</div>
                 </div>
                 <button class="buy-btn">Add to cart</button>
               </div>
@@ -655,22 +655,22 @@
           <div class="feature-box">
             <i class="bi bi-truck"></i>
             <h3>Fast Delivery</h3>
-            <p>Quick shipping across India with safe handling of every order.</p>
+            <p>Fresh groceries delivered quickly to your home in time.</p>
           </div>
           <div class="feature-box">
             <i class="bi bi-shield-check"></i>
-            <h3>Secure Checkout</h3>
-            <p>Protected payments and worry-free transactions for every customer.</p>
+            <h3>Safe & Fresh</h3>
+            <p>Every grocery item is carefully selected and packed with care.</p>
           </div>
           <div class="feature-box">
             <i class="bi bi-arrow-repeat"></i>
             <h3>Easy Returns</h3>
-            <p>Hassle-free return policy for worry-free shopping experiences.</p>
+            <p>Simple replacement and return support for damaged products.</p>
           </div>
           <div class="feature-box">
             <i class="bi bi-headset"></i>
             <h3>24/7 Support</h3>
-            <p>Friendly support team ready to help before and after purchase.</p>
+            <p>Friendly support for orders, delivery and product queries.</p>
           </div>
         </div>
       </div>
@@ -681,14 +681,14 @@
         <div class="promo-banner">
           <div class="promo-banner-inner">
             <div>
-              <div class="chip" style="margin-bottom: 12px; background: rgba(255,255,255,0.1); color: #ffffff; border-color: rgba(255,255,255,0.15);">Limited time offer</div>
-              <h2>Summer Sale is live</h2>
-              <p>Up to 60% off on premium essentials, gifting products, accessories and daily lifestyle picks. Grab this limited-time discount before it ends.</p>
+              <div class="chip" style="margin-bottom: 12px; background: rgba(255,255,255,0.1); color: #ffffff; border-color: rgba(255,255,255,0.15);">Weekend Special</div>
+              <h2>Fresh groceries at great prices</h2>
+              <p>Discover pantry staples, fruits, vegetables, pulses and household essentials with great discounts and free delivery on selected orders.</p>
               <div class="hero-cta" style="margin-top: 18px;">
-                <button class="btn btn-primary">Shop The Deal</button>
+                <button class="btn btn-primary">Shop The Offer</button>
               </div>
             </div>
-            <img class="promo-image" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80" alt="Summer sale" />
+            <img class="promo-image" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80" alt="Fresh produce sale" />
           </div>
         </div>
       </div>
@@ -698,39 +698,39 @@
       <div class="container">
         <div class="section-head">
           <h2>What our customers say</h2>
-          <span class="chip">Loved by shoppers</span>
+          <span class="chip">Loved by families</span>
         </div>
 
         <div class="testimonial-grid">
           <article class="testimonial">
-            <div class="quote">“Loved the quality and super-fast delivery. The packaging was premium and exactly matched the product photos.”</div>
+            <div class="quote">“Grocery quality is excellent and delivery is very fast. The rice, dal and vegetables are fresh every time.”</div>
             <div class="person">
               <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Customer" />
               <div>
-                <strong>Aditi Sharma</strong>
+                <strong>Seema R.</strong>
                 <span>Verified Buyer</span>
               </div>
             </div>
           </article>
 
           <article class="testimonial">
-            <div class="quote">“Very professional website, smooth ordering process and the product quality exceeded our expectations. Highly recommended.”</div>
+            <div class="quote">“Best grocery website for daily needs. Nice prices, fresh produce, and great support when I needed help.”</div>
             <div class="person">
               <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Customer" />
               <div>
-                <strong>Rohit Mehta</strong>
-                <span>Business Client</span>
+                <strong>Vikas M.</strong>
+                <span>Regular Customer</span>
               </div>
             </div>
           </article>
 
           <article class="testimonial">
-            <div class="quote">“The design, pricing and service feel premium. This is exactly the kind of e-commerce store buyers trust instantly.”</div>
+            <div class="quote">“The fruits and pulses are fresh and the ordering process is very simple. This feels trustworthy and premium.”</div>
             <div class="person">
               <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Customer" />
               <div>
-                <strong>Neha Verma</strong>
-                <span>Frequent Shopper</span>
+                <strong>Pooja S.</strong>
+                <span>Happy Shopper</span>
               </div>
             </div>
           </article>
@@ -744,7 +744,7 @@
       <div class="footer-grid">
         <div class="brand-block">
           <div class="brand">E-Commerce</div>
-          <p>Your trusted online destination for premium lifestyle, gifting, fashion, and work essentials—designed for modern shopping.</p>
+          <p>Your trusted source for fresh groceries, vegetables, rice, spices, fruits and home essentials delivered with care.</p>
           <div class="social-list">
             <a href="#"><i class="bi bi-facebook"></i></a>
             <a href="#"><i class="bi bi-instagram"></i></a>
@@ -766,10 +766,10 @@
         <div>
           <h4>Categories</h4>
           <ul>
-            <li><a href="#">Fashion</a></li>
-            <li><a href="#">Beauty</a></li>
-            <li><a href="#">Electronics</a></li>
-            <li><a href="#">Gifting</a></li>
+            <li><a href="#">Rice & Grains</a></li>
+            <li><a href="#">Pulses</a></li>
+            <li><a href="#">Vegetables</a></li>
+            <li><a href="#">Fruits</a></li>
           </ul>
         </div>
 
@@ -786,7 +786,7 @@
 
       <div class="footer-bottom">
         <span>© 2026 E-Commerce. All rights reserved.</span>
-        <span>Made for premium online shopping</span>
+        <span>Fresh groceries for everyday life</span>
       </div>
     </div>
   </footer>
