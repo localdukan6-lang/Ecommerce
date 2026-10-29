@@ -70,381 +70,478 @@ footer{margin-top:45px;background:var(--green-deep);color:#c7d7cb;padding:40px 0
 <div class="cart-head"><h2><i class="bi bi-basket2"></i> Your basket</h2><button class="close-btn" onclick="closeCart()" aria-label="Close cart"><i class="bi bi-x"></i></button></div>
 <div class="cart-items" id="cartItems"></div><div class="cart-footer"><div class="total-row"><span>Estimated total</span><span id="cartTotal">₹0</span></div><button class="checkout-btn" onclick="checkout()"><i class="bi bi-whatsapp"></i> Order on WhatsApp</button><p class="checkout-note">Final prices, availability and delivery charges are confirmed by the store.</p></div>
 </div></div><div class="toast" id="toast"></div>
-<script>
-/* IMPORTANT: Replace this demo number and demo prices before publishing. */
-const STORE_WHATSAPP="919917422376";
-/* Each product uses its own search terms and unique image lock, so product cards don't all reuse one category photo. */
-const productNames = [
-  "Basmati Rice", "Sona Masoori Rice", "Brown Rice", "Kolam Rice",
-  "Wheat Flour", "Maida", "Besan", "Suji", "Poha", "Dalia",
-  "Toor Dal", "Moong Dal", "Masoor Dal", "Urad Dal", "Chana Dal",
-  "Rajma", "Kabuli Chana", "Black Chana", "White Peas", "Green Peas",
-  "Sugar", "Jaggery", "Salt", "Rock Salt", "Black Salt",
-  "Mustard Oil", "Sunflower Oil", "Soybean Oil", "Groundnut Oil", "Ghee",
-  "Refined Oil", "Coconut Oil", "Olive Oil", "Butter", "Margarine",
-  "Turmeric Powder", "Red Chilli Powder", "Coriander Powder",
-  "Cumin Seeds", "Mustard Seeds", "Black Pepper", "Garam Masala",
-  "Chaat Masala", "Kitchen King Masala", "Curry Powder",
-  "Cardamom", "Cloves", "Cinnamon", "Bay Leaves", "Fenugreek Seeds",
-  "Tea", "Green Tea", "Coffee", "Milk", "Toned Milk",
-  "Curd", "Paneer", "Cheese", "Buttermilk", "Flavoured Milk",
-  "Bread", "Brown Bread", "Burger Buns", "Pav", "Rusk",
-  "Marie Biscuits", "Glucose Biscuits", "Cream Biscuits",
-  "Chocolate Biscuits", "Cookies", "Crackers", "Digestive Biscuits",
-  "Oats", "Cornflakes", "Muesli", "Chocos", "Peanut Butter",
-  "Jam", "Honey", "Chocolate Spread", "Maple Syrup", "Custard Powder",
-  "Tomato Ketchup", "Mayonnaise", "Soy Sauce", "Vinegar", "Chilli Sauce",
-  "Pasta", "Macaroni", "Noodles", "Vermicelli", "Instant Soup",
-  "Papad", "Pickle", "Mango Pickle", "Lemon Pickle", "Mixed Pickle",
-  "Potato Chips", "Banana Chips", "Namkeen", "Bhujia", "Peanuts",
-  "Almonds", "Cashews", "Raisins", "Walnuts", "Pistachios",
-  "Dates", "Pistachio Nuts", "Fox Nuts", "Chia Seeds", "Flax Seeds",
-  "Potato", "Onion", "Tomato", "Garlic", "Ginger",
-  "Green Chilli", "Coriander Leaves", "Mint Leaves", "Lemon", "Carrot",
-  "Cabbage", "Cauliflower", "Brinjal", "Okra", "Bottle Gourd",
-  "Bitter Gourd", "Cucumber", "Spinach", "Capsicum", "Pumpkin",
-  "Apple", "Banana", "Orange", "Mango", "Papaya",
-  "Guava", "Grapes", "Pomegranate", "Watermelon", "Pineapple",
-  "Coconut", "Strawberry", "Pear", "Sweet Lime", "Kiwi",
-  "Mineral Water", "Soda Water", "Orange Juice", "Mango Juice",
-  "Apple Juice", "Lemon Drink", "Soft Drink", "Energy Drink",
-  "Cold Coffee", "Packaged Lassi",
-  "Toothpaste", "Toothbrush", "Bath Soap", "Handwash", "Shampoo",
-  "Conditioner", "Hair Oil", "Face Wash", "Body Lotion", "Cold Cream",
-  "Talcum Powder", "Deodorant", "Shaving Cream", "Razor", "Comb",
-  "Laundry Detergent", "Washing Powder", "Dishwash Bar",
-  "Dishwash Liquid", "Floor Cleaner", "Toilet Cleaner", "Phenyl",
-  "Fabric Softener", "Scrub Pad", "Garbage Bags",
-  "Tissue Paper", "Toilet Paper", "Aluminium Foil", "Cling Film",
-  "Paper Plates", "Paper Cups", "Matchbox", "Candles", "Batteries",
-  "Mosquito Repellent", "Room Freshener", "Shoe Polish", "Glue",
-  "Baby Soap", "Baby Shampoo", "Baby Wipes", "Baby Diapers",
-  "Sanitary Pads", "Cotton Balls", "Bandages", "Antiseptic Liquid",
-  "Instant Yeast", "Baking Powder", "Baking Soda", "Cocoa Powder",
-  "Food Colour", "Ice Cream", "Frozen Peas", "Frozen Corn",
-  "Frozen French Fries", "Ready-to-Eat Meals"
-];
+  <script>
+/* Store WhatsApp number: replace with the verified store number */
+const STORE_WHATSAPP = "919917422376";
 
+/*
+  IMPORTANT:
+  Keep your existing productNames array here.
+  Keep your existing categoryMap object here.
+  Keep your existing getCategory(name) function here.
+  Keep your existing getImageUrl(product) function here.
+*/
 
-console.log("Total Products:", products.length);
-
-const categoryMap = {
-  "Rice": ["Basmati Rice", "Sona Masoori Rice", "Brown Rice", "Kolam Rice"],
-  "Atta & Flours": ["Wheat Flour", "Maida", "Besan", "Suji", "Dalia"],
-  "Dal & Pulses": ["Toor Dal", "Moong Dal", "Masoor Dal", "Urad Dal", "Chana Dal", "Rajma", "Kabuli Chana", "Black Chana", "White Peas", "Green Peas"],
-  "Oil & Ghee": ["Mustard Oil", "Sunflower Oil", "Soybean Oil", "Groundnut Oil", "Ghee", "Refined Oil", "Coconut Oil", "Olive Oil", "Butter", "Margarine"],
-  "Spices": ["Turmeric Powder", "Red Chilli Powder", "Coriander Powder", "Cumin Seeds", "Mustard Seeds", "Black Pepper", "Garam Masala", "Chaat Masala", "Kitchen King Masala", "Curry Powder", "Cardamom", "Cloves", "Cinnamon", "Bay Leaves", "Fenugreek Seeds"],
-  "Dairy": ["Milk", "Toned Milk", "Curd", "Paneer", "Cheese", "Buttermilk", "Flavoured Milk"],
-  "Bakery & Biscuits": ["Bread", "Brown Bread", "Burger Buns", "Pav", "Rusk", "Marie Biscuits", "Glucose Biscuits", "Cream Biscuits", "Chocolate Biscuits", "Cookies", "Crackers", "Digestive Biscuits"],
-  "Snacks": ["Potato Chips", "Banana Chips", "Namkeen", "Bhujia", "Peanuts", "Papad"],
-  "Dry Fruits": ["Almonds", "Cashews", "Raisins", "Walnuts", "Pistachios", "Dates", "Pistachio Nuts", "Fox Nuts", "Chia Seeds", "Flax Seeds"],
-  "Vegetables": ["Potato", "Onion", "Tomato", "Garlic", "Ginger", "Green Chilli", "Coriander Leaves", "Mint Leaves", "Lemon", "Carrot", "Cabbage", "Cauliflower", "Brinjal", "Okra", "Bottle Gourd", "Bitter Gourd", "Cucumber", "Spinach", "Capsicum", "Pumpkin"],
-  "Fruits": ["Apple", "Banana", "Orange", "Mango", "Papaya", "Guava", "Grapes", "Pomegranate", "Watermelon", "Pineapple", "Coconut", "Strawberry", "Pear", "Sweet Lime", "Kiwi"],
-  "Beverages": ["Mineral Water", "Soda Water", "Orange Juice", "Mango Juice", "Apple Juice", "Lemon Drink", "Soft Drink", "Energy Drink", "Cold Coffee", "Packaged Lassi"],
-  "Personal Care": ["Toothpaste", "Toothbrush", "Bath Soap", "Handwash", "Shampoo", "Conditioner", "Hair Oil", "Face Wash", "Body Lotion", "Cold Cream", "Talcum Powder", "Deodorant", "Shaving Cream", "Razor", "Comb"],
-  "Cleaning & Household": ["Laundry Detergent", "Washing Powder", "Dishwash Bar", "Dishwash Liquid", "Floor Cleaner", "Toilet Cleaner", "Phenyl", "Fabric Softener", "Scrub Pad", "Garbage Bags", "Tissue Paper", "Toilet Paper", "Aluminium Foil", "Cling Film", "Paper Plates", "Paper Cups", "Matchbox", "Candles", "Batteries", "Mosquito Repellent", "Room Freshener", "Shoe Polish", "Glue"],
-  "Baby & Health": ["Baby Soap", "Baby Shampoo", "Baby Wipes", "Baby Diapers", "Sanitary Pads", "Cotton Balls", "Bandages", "Antiseptic Liquid"],
-  "Baking & Frozen": ["Instant Yeast", "Baking Powder", "Baking Soda", "Cocoa Powder", "Food Colour", "Ice Cream", "Frozen Peas", "Frozen Corn", "Frozen French Fries", "Ready-to-Eat Meals"]
-};
-
-function getCategory(name) {
-  for (const [category, names] of Object.entries(categoryMap)) {
-    if (names.includes(name)) return category;
-  }
-
-  if (["Sugar", "Jaggery", "Salt", "Rock Salt", "Black Salt"].includes(name)) {
-    return "Daily Essentials";
-  }
-
-  if (["Tea", "Green Tea", "Coffee"].includes(name)) {
-    return "Tea & Coffee";
-  }
-
-  if (["Pasta", "Macaroni", "Noodles", "Vermicelli", "Instant Soup"].includes(name)) {
-    return "Instant Foods";
-  }
-
-  if (["Pickle", "Mango Pickle", "Lemon Pickle", "Mixed Pickle", "Tomato Ketchup", "Mayonnaise", "Soy Sauce", "Vinegar", "Chilli Sauce"].includes(name)) {
-    return "Sauces & Pickles";
-  }
-
-  if (["Oats", "Cornflakes", "Muesli", "Chocos", "Peanut Butter", "Jam", "Honey", "Chocolate Spread", "Maple Syrup", "Custard Powder"].includes(name)) {
-    return "Breakfast & Spreads";
-  }
-
-  return "Other Groceries";
-}
+/* Create products AFTER productNames, categoryMap,
+   getCategory() and getImageUrl() have been defined. */
 
 const products = productNames.map((name, index) => ({
   id: index + 1,
-  name,
+  name: name,
   price: 20 + (index % 20) * 5,
   oldPrice: Math.round((20 + (index % 20) * 5) * 1.15),
   unit: "1 pack",
   category: getCategory(name),
   terms: name.toLowerCase(),
-  imageUrl: getImageUrl({ id: index + 1, name })
+  imageUrl: getImageUrl({
+    id: index + 1,
+    name: name
+  })
 }));
 
-const categories = ["All Products", ...new Set(products.map(p => p.category))];
+const categories = [
+  "All Products",
+  ...new Set(products.map(product => product.category))
+];
 
-console.log("Total Products Loaded:", products.length);let activeCategory="All Products",searchTerm="",cart={};
-try{cart=JSON.parse(localStorage.getItem("freshBasketCart"))||{}}catch(e){cart={}}
-function getImageUrl(product) {
-  const productImages = {
-    "Premium Basmati Rice": "basmati rice grains",
-    "Regular Basmati Rice": "white rice grains",
-    "Sona Masoori Rice": "sona masoori rice",
-    "Kolam Rice": "kolam rice grains",
-    "Gobindobhog Rice": "aromatic rice grains",
-    "Brown Rice": "brown rice",
-    "Poha": "flattened rice poha",
-    "Dalia": "broken wheat dalia",
-    "Sabudana": "sabudana tapioca pearls",
-    "Wheat Flour": "whole wheat flour",
-    "Whole Wheat Atta": "whole wheat flour",
-    "Multigrain Atta": "multigrain atta flour",
-    "Besan": "chickpea flour besan",
-    "Maida": "white refined flour",
-    "Sooji / Rava": "semolina sooji",
-    "Makki Atta": "corn flour maize",
-    "Ragi Flour": "ragi flour",
-    "Rice Flour": "rice flour powder",
-    "Bajra Atta": "pearl millet flour",
-    "Corn Flour": "cornstarch powder",
-    "Toor Dal": "toor arhar dal lentils",
-    "Moong Dal": "yellow moong dal",
-    "Masoor Dal": "red masoor lentils",
-    "Chana Dal": "chana dal split chickpeas",
-    "Urad Dal": "urad dal black gram",
-    "Rajma": "red kidney beans rajma",
-    "Kabuli Chana": "kabuli chana chickpeas",
-    "Kala Chana": "black chickpeas",
-    "Green Moong": "green mung beans",
-    "White Peas": "dried white peas",
-    "Turmeric Powder": "turmeric powder haldi",
-    "Red Chilli Powder": "red chilli powder",
-    "Coriander Powder": "coriander powder dhania",
-    "Cumin Seeds": "cumin seeds jeera",
-    "Garam Masala": "garam masala spice",
-    "Black Pepper": "black peppercorns",
-    "Mustard Seeds": "mustard seeds rai",
-    "Fenugreek Seeds": "fenugreek seeds methi",
-    "Amchur Powder": "dried mango amchur powder",
-    "Chaat Masala": "chaat masala spice",
-    "Sunflower Oil": "sunflower cooking oil bottle",
-    "Mustard Oil": "mustard oil bottle",
-    "Soybean Oil": "soybean cooking oil bottle",
-    "Groundnut Oil": "groundnut peanut oil",
-    "Pure Ghee": "pure ghee jar",
-    "Butter": "butter block",
-    "Pickle": "indian pickle jar",
-    "Tomato Ketchup": "tomato ketchup bottle",
-    "Green Chilli Sauce": "green chilli sauce bottle",
-    "Vinegar": "vinegar bottle",
-    "White Bread": "white bread loaf",
-    "Brown Bread": "brown bread loaf",
-    "Milk Bread": "milk bread loaf",
-    "Burger Buns": "burger buns",
-    "Pav": "indian pav bread rolls",
-    "Rusk Toast": "bread rusk toast",
-    "Plain Khari": "khari puff pastry",
-    "Fruit Cake": "fruit cake",
-    "Cream Roll": "cream roll pastry",
-    "Pizza Base": "pizza bread base",
-    "Glucose Biscuits": "glucose biscuits",
-    "Marie Biscuits": "marie biscuits",
-    "Cream Biscuits": "cream sandwich biscuits",
-    "Chocolate Cookies": "chocolate cookies",
-    "Butter Cookies": "butter cookies",
-    "Digestive Biscuits": "digestive biscuits",
-    "Salted Crackers": "salted crackers",
-    "Coconut Biscuits": "coconut biscuits",
-    "Jeera Biscuits": "jeera biscuits",
-    "Chocolate Wafers": "chocolate wafer biscuits",
-    "Fresh Milk": "fresh milk bottle",
-    "Curd": "curd yogurt bowl",
-    "Paneer": "indian paneer cubes",
-    "Cheese Slices": "cheese slices",
-    "Buttermilk": "buttermilk glass",
-    "Flavoured Milk": "flavoured milk bottle",
-    "Milk Powder": "milk powder",
-    "Fresh Cream": "fresh dairy cream",
-    "White Eggs": "white eggs carton",
-    "Condensed Milk": "condensed milk can",
-    "Assam Tea": "assam black tea leaves",
-    "Green Tea": "green tea leaves",
-    "Instant Coffee": "instant coffee jar",
-    "Filter Coffee": "filter coffee powder",
-    "Mango Drink": "mango juice bottle",
-    "Orange Drink": "orange juice bottle",
-    "Lemon Drink": "lemon drink bottle",
-    "Coconut Water": "coconut water drink",
-    "Glucose Powder": "glucose powder pack",
-    "Drinking Water": "mineral water bottle",
-    "Aloo Bhujia": "aloo bhujia namkeen",
-    "Masala Sev": "indian masala sev",
-    "Moong Dal Namkeen": "moong dal namkeen",
-    "Peanut Masala": "masala peanuts",
-    "Potato Chips": "potato chips packet",
-    "Banana Chips": "banana chips",
-    "Popcorn": "popcorn snack",
-    "Instant Noodles": "instant noodles packet",
-    "Cup Noodles": "instant cup noodles",
-    "Roasted Chana": "roasted chana chickpeas",
-    "Fresh Potatoes": "fresh potatoes",
-    "Fresh Onions": "fresh red onions",
-    "Tomatoes": "fresh red tomatoes",
-    "Green Chilli": "fresh green chillies",
-    "Ginger": "fresh ginger root",
-    "Garlic": "fresh garlic bulbs",
-    "Fresh Lemon": "fresh lemons",
-    "Bananas": "ripe yellow bananas",
-    "Apples": "fresh red apples",
-    "Oranges": "fresh oranges",
-    "Bathing Soap": "bathing soap bar",
-    "Shampoo Sachets": "shampoo sachets",
-    "Shampoo Bottle": "shampoo bottle",
-    "Toothpaste": "toothpaste tube",
-    "Toothbrush": "toothbrush",
-    "Washing Powder": "laundry detergent powder",
-    "Dishwash Bar": "dishwashing soap bar",
-    "Dishwash Liquid": "dishwashing liquid bottle",
-    "Floor Cleaner": "floor cleaner bottle",
-    "Toilet Cleaner": "toilet cleaner bottle",
+console.log("Total Products Loaded:", products.length);
 
-    // Additional grocery products
-    "Sugar": "white sugar crystals",
-    "Jaggery": "jaggery blocks",
-    "Rock Salt": "pink rock salt",
-    "Black Salt": "black salt powder",
-    "Olive Oil": "olive oil bottle",
-    "Coconut Oil": "coconut oil bottle",
-    "Cardamom": "green cardamom pods",
-    "Cloves": "whole cloves spice",
-    "Cinnamon": "cinnamon sticks",
-    "Bay Leaves": "bay leaves spice",
-    "Fennel Seeds": "fennel seeds saunf",
-    "Carom Seeds": "ajwain carom seeds",
-    "Dry Ginger Powder": "dry ginger powder",
-    "White Pepper": "white pepper powder",
-    "Curry Powder": "curry powder spice",
-    "Mayonnaise": "mayonnaise jar",
-    "Soy Sauce": "soy sauce bottle",
-    "Red Chilli Sauce": "red chilli sauce bottle",
-    "Jam": "fruit jam jar",
-    "Honey": "honey jar",
-    "Peanut Butter": "peanut butter jar",
-    "Chocolate Spread": "chocolate spread jar",
-    "Oats": "rolled oats bowl",
-    "Cornflakes": "cornflakes cereal bowl",
-    "Muesli": "muesli cereal bowl",
-    "Vermicelli": "vermicelli noodles",
-    "Pasta": "uncooked pasta",
-    "Macaroni": "dry macaroni pasta",
-    "Papad": "indian papad",
-    "Mango Pickle": "mango pickle jar",
-    "Lemon Pickle": "lemon pickle jar",
-    "Mixed Pickle": "mixed vegetable pickle jar",
-    "Almonds": "almonds nuts",
-    "Cashews": "cashew nuts",
-    "Raisins": "raisins dried grapes",
-    "Walnuts": "walnut kernels",
-    "Pistachios": "pistachio nuts",
-    "Dates": "dates fruit",
-    "Fox Nuts": "makhana fox nuts",
-    "Chia Seeds": "chia seeds bowl",
-    "Flax Seeds": "flax seeds bowl",
-    "Peanuts": "raw peanuts",
-    "Carrot": "fresh carrots",
-    "Cabbage": "fresh cabbage",
-    "Cauliflower": "fresh cauliflower",
-    "Brinjal": "fresh eggplant brinjal",
-    "Okra": "fresh okra lady finger",
-    "Bottle Gourd": "fresh bottle gourd",
-    "Bitter Gourd": "fresh bitter gourd",
-    "Cucumber": "fresh cucumber",
-    "Spinach": "fresh spinach leaves",
-    "Capsicum": "fresh green capsicum",
-    "Pumpkin": "fresh pumpkin",
-    "Mango": "fresh mango fruit",
-    "Papaya": "fresh papaya fruit",
-    "Guava": "fresh guava fruit",
-    "Grapes": "fresh grapes",
-    "Pomegranate": "fresh pomegranate",
-    "Watermelon": "fresh watermelon",
-    "Pineapple": "fresh pineapple",
-    "Pear": "fresh pear fruit",
-    "Kiwi": "fresh kiwi fruit",
-    "Strawberry": "fresh strawberries",
-    "Mineral Water": "mineral water bottle",
-    "Soda Water": "soda water bottle",
-    "Orange Juice": "orange juice glass",
-    "Mango Juice": "mango juice glass",
-    "Apple Juice": "apple juice glass",
-    "Soft Drink": "soft drink bottle",
-    "Energy Drink": "energy drink can",
-    "Cold Coffee": "iced cold coffee glass",
-    "Lassi": "indian lassi glass",
-    "Handwash": "hand wash bottle",
-    "Conditioner": "hair conditioner bottle",
-    "Hair Oil": "hair oil bottle",
-    "Face Wash": "face wash tube",
-    "Body Lotion": "body lotion bottle",
-    "Talcum Powder": "talcum powder container",
-    "Deodorant": "deodorant spray bottle",
-    "Shaving Cream": "shaving cream tube",
-    "Razor": "disposable shaving razor",
-    "Comb": "hair comb",
-    "Laundry Detergent": "laundry detergent pack",
-    "Fabric Softener": "fabric softener bottle",
-    "Scrub Pad": "dishwashing scrub pad",
-    "Garbage Bags": "black garbage bags",
-    "Tissue Paper": "tissue paper pack",
-    "Toilet Paper": "toilet paper rolls",
-    "Aluminium Foil": "aluminium foil roll",
-    "Paper Plates": "disposable paper plates",
-    "Paper Cups": "paper cups",
-    "Matchbox": "matchbox",
-    "Candles": "white candles",
-    "Batteries": "AA batteries",
-    "Room Freshener": "room freshener spray",
-    "Baby Soap": "baby soap bar",
-    "Baby Shampoo": "baby shampoo bottle",
-    "Baby Wipes": "baby wipes pack",
-    "Baby Diapers": "baby diapers pack",
-    "Sanitary Pads": "sanitary pads pack",
-    "Baking Powder": "baking powder container",
-    "Baking Soda": "baking soda powder",
-    "Cocoa Powder": "cocoa powder",
-    "Ice Cream": "ice cream bowl",
-    "Frozen Peas": "frozen green peas",
-    "Frozen Corn": "frozen sweet corn",
-    "French Fries": "frozen french fries",
-    "Ready-to-Eat Meals": "ready to eat meal pack"
-  };
+let activeCategory = "All Products";
+let searchTerm = "";
+let cart = {};
 
-  const searchName = productImages[product.name] || product.name;
-  const lockId = product.id || Math.floor(Math.random() * 10000) + 1;
-
-  return "https://loremflickr.com/600/500/" +
-    encodeURIComponent(searchName.replace(/ /g, ",")) +
-    "?lock=" + lockId;
+try {
+  cart = JSON.parse(localStorage.getItem("freshBasketCart")) || {};
+} catch (error) {
+  cart = {};
 }
-  function formatPrice(n){return "₹"+Number(n).toLocaleString("en-IN")}
-function renderCategories(){const el=document.getElementById("categoryList");el.innerHTML="";categories.forEach(cat=>{const b=document.createElement("button");b.className="category-btn"+(cat===activeCategory?" active":"");b.textContent=cat;b.onclick=()=>{activeCategory=cat;renderCategories();renderProducts();document.getElementById("products").scrollIntoView({behavior:"smooth",block:"start"})};el.appendChild(b)})}
-function renderProducts(){const grid=document.getElementById("productGrid"),no=document.getElementById("noResults");let list=products.filter(p=>(activeCategory==="All Products"||p.category===activeCategory)&&(p.name+" "+p.category+" "+p.unit+" "+p.terms).toLowerCase().includes(searchTerm));const sort=document.getElementById("sortSelect")?.value||"featured";if(sort==="price-low")list.sort((a,b)=>a.price-b.price);if(sort==="price-high")list.sort((a,b)=>b.price-a.price);if(sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name));document.getElementById("productHeading").textContent=activeCategory;document.getElementById("productCount").textContent=`${list.length} products to explore`;grid.innerHTML="";no.style.display=list.length?"none":"block";
-list.forEach(p=>{const card=document.createElement("article");card.className="product-card";const wrap=document.createElement("div");wrap.className="product-image-wrap";const img=document.createElement("img");img.className="product-image";img.src=p.imageUrl;img.alt=p.name;img.loading="lazy";img.onerror=function(){this.onerror=null;this.src=`https://placehold.co/600x500/eaf5eb/176d3d?text=${encodeURIComponent(p.name)}`};const label=document.createElement("span");label.className="product-label";label.textContent="Popular pick";wrap.append(img,label);const body=document.createElement("div");body.className="product-body";const cat=document.createElement("div");cat.className="product-category";cat.textContent=p.category;const name=document.createElement("h3");name.className="product-name";name.textContent=p.name;const unit=document.createElement("div");unit.className="product-weight";unit.textContent=p.unit;const priceLine=document.createElement("div");priceLine.className="price-line";const box=document.createElement("div");const price=document.createElement("div");price.className="product-price";price.textContent=formatPrice(p.price);const old=document.createElement("div");old.className="product-old";old.textContent=formatPrice(p.oldPrice);box.append(price,old);const disc=document.createElement("span");disc.className="discount";disc.textContent="DEMO PRICE";priceLine.append(box,disc);const actions=document.createElement("div");actions.className="product-actions";const add=document.createElement("button");add.className="add-btn";add.innerHTML='<i class="bi bi-cart-plus"></i> Add';add.onclick=()=>addToCart(p.id);const buy=document.createElement("button");buy.className="buy-btn";buy.innerHTML='<i class="bi bi-bag-check"></i> Buy now';buy.onclick=()=>{addToCart(p.id,false);openCart()};actions.append(add,buy);body.append(cat,name,unit,priceLine,actions);card.append(wrap,body);grid.appendChild(card)})}
-function saveCart(){try{localStorage.setItem("freshBasketCart",JSON.stringify(cart))}catch(e){}}
-function addToCart(id,message=true){const p=products.find(x=>x.id===id);if(!p)return;cart[id]=(cart[id]||0)+1;saveCart();updateCart();if(message)showToast(p.name+" added to your basket")}
-function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];saveCart();updateCart()}
-function updateCart(){document.getElementById("cartCount").textContent=Object.values(cart).reduce((s,q)=>s+q,0);const el=document.getElementById("cartItems");el.innerHTML="";let total=0;const entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id===Number(id)));if(!entries.length)el.innerHTML='<div class="empty-cart"><i class="bi bi-basket" style="font-size:38px"></i><p style="margin-top:12px">Your basket is waiting.</p><p style="font-size:12px;margin-top:6px">Add some everyday favourites.</p></div>';entries.forEach(([id,q])=>{const p=products.find(x=>x.id===Number(id));if(!p)return;total+=p.price*q;const row=document.createElement("div");row.className="cart-item";const img=document.createElement("img");img.src=p.imageUrl;img.alt=p.name;img.onerror=function(){this.onerror=null;this.src="https://placehold.co/100x100/eaf5eb/176d3d?text=Item"};const info=document.createElement("div"),title=document.createElement("h4");title.textContent=p.name;const price=document.createElement("div");price.className="cart-item-price";price.textContent=formatPrice(p.price*q);const qty=document.createElement("div");qty.className="qty-row";const minus=document.createElement("button");minus.textContent="−";minus.setAttribute("aria-label","Decrease quantity");minus.onclick=()=>changeQty(p.id,-1);const count=document.createElement("span");count.textContent=q;const plus=document.createElement("button");plus.textContent="+";plus.setAttribute("aria-label","Increase quantity");plus.onclick=()=>changeQty(p.id,1);qty.append(minus,count,plus);info.append(title,price,qty);row.append(img,info);el.appendChild(row)});document.getElementById("cartTotal").textContent=formatPrice(total)}
-function openCart(){document.getElementById("cartOverlay").classList.add("open");document.body.style.overflow="hidden";updateCart()}function closeCart(){document.getElementById("cartOverlay").classList.remove("open");document.body.style.overflow=""}function overlayClick(e){if(e.target.id==="cartOverlay")closeCart()}
-function showToast(msg){const el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove("show"),2300)}
-function searchProducts(){searchTerm=document.getElementById("searchInput").value.trim().toLowerCase();renderProducts();document.getElementById("products").scrollIntoView({behavior:"smooth",block:"start"})}
-document.getElementById("searchInput").addEventListener("input",e=>{searchTerm=e.target.value.trim().toLowerCase();renderProducts()});document.getElementById("sortSelect").addEventListener("change",renderProducts);
-function checkout(){const entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id===Number(id)));if(!entries.length){showToast("Please add products to your basket first.");return}if(!STORE_WHATSAPP||STORE_WHATSAPP==="917417302405"){showToast("Please add your real store WhatsApp number in the code first.");return}const lines=["*Fresh Basket — New Grocery Order*","","Order items:"];let total=0;entries.forEach(([id,q])=>{const p=products.find(x=>x.id===Number(id));if(!p)return;const sub=p.price*q;total+=sub;lines.push(`• ${p.name} (${p.unit}) x ${q} = ${formatPrice(sub)}`)});lines.push("",`*Estimated total: ${formatPrice(total)}*`,"","Please confirm availability, delivery charges and final prices.","Customer name:","Delivery address:","Payment preference:");window.open("https://wa.me/"+STORE_WHATSAPP+"?text="+encodeURIComponent(lines.join("\n")),"_blank")}
-renderCategories();renderProducts();updateCart();
-</script>
+
+function formatPrice(amount) {
+  return "₹" + Number(amount).toLocaleString("en-IN");
+}
+
+function renderCategories() {
+  const element = document.getElementById("categoryList");
+  element.innerHTML = "";
+
+  categories.forEach(category => {
+    const button = document.createElement("button");
+
+    button.className =
+      "category-btn" +
+      (category === activeCategory ? " active" : "");
+
+    button.textContent = category;
+
+    button.onclick = () => {
+      activeCategory = category;
+      renderCategories();
+      renderProducts();
+
+      document.getElementById("products").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    };
+
+    element.appendChild(button);
+  });
+}
+
+function renderProducts() {
+  const grid = document.getElementById("productGrid");
+  const noResults = document.getElementById("noResults");
+
+  let list = products.filter(product => {
+    const matchesCategory =
+      activeCategory === "All Products" ||
+      product.category === activeCategory;
+
+    const searchableText = (
+      product.name + " " +
+      product.category + " " +
+      product.unit + " " +
+      product.terms
+    ).toLowerCase();
+
+    return matchesCategory &&
+      searchableText.includes(searchTerm);
+  });
+
+  const sortValue =
+    document.getElementById("sortSelect").value;
+
+  if (sortValue === "price-low") {
+    list.sort((a, b) => a.price - b.price);
+  }
+
+  if (sortValue === "price-high") {
+    list.sort((a, b) => b.price - a.price);
+  }
+
+  if (sortValue === "name") {
+    list.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  document.getElementById("productHeading").textContent =
+    activeCategory === "All Products"
+      ? "All grocery products"
+      : activeCategory;
+
+  document.getElementById("productCount").textContent =
+    `${list.length} products to explore`;
+
+  grid.innerHTML = "";
+  noResults.style.display = list.length ? "none" : "block";
+
+  list.forEach(product => {
+    const card = document.createElement("article");
+    card.className = "product-card";
+
+    const imageWrap = document.createElement("div");
+    imageWrap.className = "product-image-wrap";
+
+    const image = document.createElement("img");
+    image.className = "product-image";
+    image.src = product.imageUrl;
+    image.alt = product.name;
+    image.loading = "lazy";
+
+    image.onerror = function () {
+      this.onerror = null;
+      this.src =
+        "https://placehold.co/600x500/eaf5eb/176d3d?text=" +
+        encodeURIComponent(product.name);
+    };
+
+    const label = document.createElement("span");
+    label.className = "product-label";
+    label.textContent = "Popular pick";
+
+    imageWrap.append(image, label);
+
+    const body = document.createElement("div");
+    body.className = "product-body";
+
+    const category = document.createElement("div");
+    category.className = "product-category";
+    category.textContent = product.category;
+
+    const name = document.createElement("h3");
+    name.className = "product-name";
+    name.textContent = product.name;
+
+    const unit = document.createElement("div");
+    unit.className = "product-weight";
+    unit.textContent = product.unit;
+
+    const priceLine = document.createElement("div");
+    priceLine.className = "price-line";
+
+    const priceBox = document.createElement("div");
+
+    const price = document.createElement("div");
+    price.className = "product-price";
+    price.textContent = formatPrice(product.price);
+
+    const oldPrice = document.createElement("div");
+    oldPrice.className = "product-old";
+    oldPrice.textContent = formatPrice(product.oldPrice);
+
+    priceBox.append(price, oldPrice);
+
+    const discount = document.createElement("span");
+    discount.className = "discount";
+    discount.textContent = "DEMO PRICE";
+
+    priceLine.append(priceBox, discount);
+
+    const actions = document.createElement("div");
+    actions.className = "product-actions";
+
+    const addButton = document.createElement("button");
+    addButton.className = "add-btn";
+    addButton.innerHTML =
+      '<i class="bi bi-cart-plus"></i> Add';
+
+    addButton.onclick = () => addToCart(product.id);
+
+    const buyButton = document.createElement("button");
+    buyButton.className = "buy-btn";
+    buyButton.innerHTML =
+      '<i class="bi bi-bag-check"></i> Buy now';
+
+    buyButton.onclick = () => {
+      addToCart(product.id, false);
+      openCart();
+    };
+
+    actions.append(addButton, buyButton);
+
+    body.append(
+      category,
+      name,
+      unit,
+      priceLine,
+      actions
+    );
+
+    card.append(imageWrap, body);
+    grid.appendChild(card);
+  });
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem(
+      "freshBasketCart",
+      JSON.stringify(cart)
+    );
+  } catch (error) {
+    console.error("Unable to save basket:", error);
+  }
+}
+
+function addToCart(id, showMessage = true) {
+  const product = products.find(item => item.id === id);
+
+  if (!product) return;
+
+  cart[id] = (cart[id] || 0) + 1;
+
+  saveCart();
+  updateCart();
+
+  if (showMessage) {
+    showToast(product.name + " added to your basket");
+  }
+}
+
+function changeQty(id, delta) {
+  cart[id] = (cart[id] || 0) + delta;
+
+  if (cart[id] <= 0) {
+    delete cart[id];
+  }
+
+  saveCart();
+  updateCart();
+}
+
+function updateCart() {
+  document.getElementById("cartCount").textContent =
+    Object.values(cart).reduce(
+      (sum, quantity) => sum + quantity,
+      0
+    );
+
+  const element = document.getElementById("cartItems");
+  element.innerHTML = "";
+
+  let total = 0;
+
+  const entries = Object.entries(cart).filter(
+    ([id, quantity]) =>
+      quantity > 0 &&
+      products.some(product => product.id === Number(id))
+  );
+
+  if (!entries.length) {
+    element.innerHTML = `
+      <div class="empty-cart">
+        <i class="bi bi-basket" style="font-size:38px"></i>
+        <p style="margin-top:12px">Your basket is waiting.</p>
+        <p style="font-size:12px;margin-top:6px">
+          Add some everyday favourites.
+        </p>
+      </div>
+    `;
+  }
+
+  entries.forEach(([id, quantity]) => {
+    const product = products.find(
+      item => item.id === Number(id)
+    );
+
+    if (!product) return;
+
+    const subtotal = product.price * quantity;
+    total += subtotal;
+
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    const image = document.createElement("img");
+    image.src = product.imageUrl;
+    image.alt = product.name;
+
+    image.onerror = function () {
+      this.onerror = null;
+      this.src =
+        "https://placehold.co/100x100/eaf5eb/176d3d?text=Item";
+    };
+
+    const info = document.createElement("div");
+
+    const title = document.createElement("h4");
+    title.textContent = product.name;
+
+    const price = document.createElement("div");
+    price.className = "cart-item-price";
+    price.textContent = formatPrice(subtotal);
+
+    const quantityRow = document.createElement("div");
+    quantityRow.className = "qty-row";
+
+    const minus = document.createElement("button");
+    minus.textContent = "−";
+    minus.setAttribute("aria-label", "Decrease quantity");
+    minus.onclick = () => changeQty(product.id, -1);
+
+    const count = document.createElement("span");
+    count.textContent = quantity;
+
+    const plus = document.createElement("button");
+    plus.textContent = "+";
+    plus.setAttribute("aria-label", "Increase quantity");
+    plus.onclick = () => changeQty(product.id, 1);
+
+    quantityRow.append(minus, count, plus);
+    info.append(title, price, quantityRow);
+    row.append(image, info);
+
+    element.appendChild(row);
+  });
+
+  document.getElementById("cartTotal").textContent =
+    formatPrice(total);
+}
+
+function openCart() {
+  document.getElementById("cartOverlay")
+    .classList.add("open");
+
+  document.body.style.overflow = "hidden";
+  updateCart();
+}
+
+function closeCart() {
+  document.getElementById("cartOverlay")
+    .classList.remove("open");
+
+  document.body.style.overflow = "";
+}
+
+function overlayClick(event) {
+  if (event.target.id === "cartOverlay") {
+    closeCart();
+  }
+}
+
+function showToast(message) {
+  const element = document.getElementById("toast");
+
+  element.textContent = message;
+  element.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer = setTimeout(() => {
+    element.classList.remove("show");
+  }, 2300);
+}
+
+function searchProducts() {
+  searchTerm = document
+    .getElementById("searchInput")
+    .value.trim()
+    .toLowerCase();
+
+  renderProducts();
+
+  document.getElementById("products").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+document.getElementById("searchInput").addEventListener(
+  "input",
+  event => {
+    searchTerm = event.target.value.trim().toLowerCase();
+    renderProducts();
+  }
+);
+
+document.getElementById("sortSelect").addEventListener(
+  "change",
+  renderProducts
+);
+
+function checkout() {
+  const entries = Object.entries(cart).filter(
+    ([id, quantity]) =>
+      quantity > 0 &&
+      products.some(product => product.id === Number(id))
+  );
+
+  if (!entries.length) {
+    showToast("Please add products to your basket first.");
+    return;
+  }
+
+  if (!STORE_WHATSAPP) {
+    showToast("Please configure the store WhatsApp number.");
+    return;
+  }
+
+  const lines = [
+    "*Ashish Kirana Store — New Grocery Order*",
+    "",
+    "Order items:"
+  ];
+
+  let total = 0;
+
+  entries.forEach(([id, quantity]) => {
+    const product = products.find(
+      item => item.id === Number(id)
+    );
+
+    if (!product) return;
+
+    const subtotal = product.price * quantity;
+    total += subtotal;
+
+    lines.push(
+      `• ${product.name} (${product.unit}) x ${quantity} = ${formatPrice(subtotal)}`
+    );
+  });
+
+  lines.push(
+    "",
+    `*Estimated total: ${formatPrice(total)}*`,
+    "",
+    "Please confirm availability, final prices and delivery charges.",
+    "",
+    "Customer name:",
+    "Delivery address:",
+    "Payment preference:"
+  );
+
+  const whatsappUrl =
+    "https://wa.me/" +
+    STORE_WHATSAPP +
+    "?text=" +
+    encodeURIComponent(lines.join("\n"));
+
+  window.open(whatsappUrl, "_blank");
+}
+
+/* Initialise the page */
+renderCategories();
+renderProducts();
+updateCart();
+  </script>
 </body>
 </html>
